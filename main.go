@@ -61,7 +61,7 @@ S_PUSH <val> - Добавить в стек
 S_POP - Извлечь из стека
 S_GET - Прочитать верхний элемент
 
---- ДЕРЕВО (BST) ---
+--- ДЕРЕВО (CBT) ---
 T_INSERT <num> - Вставить число в дерево
 T_SEARCH <num> - Найти число в дереве
 T_DEL <num> - Удалить число из дерева
@@ -88,7 +88,8 @@ func main() {
 	dlist := ds.NewDList()
 	queue := ds.NewQueue()
 	stack := ds.NewStack()
-	tree := ds.NewBST()
+	// Заменили BST на CBT
+	tree := ds.NewCBT()
 
 	scanner := bufio.NewScanner(os.Stdin)
 	showComm()
@@ -146,7 +147,8 @@ func main() {
 			dlist.SaveToFile(arg1 + ".dlist")
 			stack.SaveToFile(arg1 + ".stack")
 			queue.SaveToFile(arg1 + ".queue")
-			tree.SaveToFile(arg1 + ".bst")
+			// Используем расширение .cbt
+			tree.SaveToFile(arg1 + ".cbt")
 			fmt.Printf("Структуры сохранены с базовым именем: %s\n", arg1)
 
 		case "LOAD":
@@ -159,7 +161,7 @@ func main() {
 			dlist.LoadFromFile(arg1 + ".dlist")
 			stack.LoadFromFile(arg1 + ".stack")
 			queue.LoadFromFile(arg1 + ".queue")
-			tree.LoadFromFile(arg1 + ".bst")
+			tree.LoadFromFile(arg1 + ".cbt")
 			fmt.Printf("Структуры загружены с базовым именем: %s\n", arg1)
 
 		// Массив
@@ -189,7 +191,6 @@ func main() {
 		case "M_LENGTH":
 			fmt.Printf("Длина массива: %d\n", arr.LenArr())
 
-		// Список
 		case "F_PUSH_HEAD":
 			slist.AddHead(arg1)
 			slist.ReadForward()
@@ -218,7 +219,6 @@ func main() {
 			}
 			fmt.Printf("Элемент \"%s\" найден: %s\n", arg1, found)
 
-		// Двусвязный список
 		case "L_PUSH_HEAD":
 			dlist.AddHead(arg1)
 			dlist.ReadForward()
@@ -249,7 +249,6 @@ func main() {
 		case "L_PRINT_REV":
 			dlist.ReadBackward()
 
-		// Очередь
 		case "Q_PUSH":
 			queue.Push(arg1)
 			queue.Print()
@@ -259,7 +258,6 @@ func main() {
 		case "Q_GET":
 			fmt.Printf("Первый: %s\n", queue.Peek())
 
-		// Стек
 		case "S_PUSH":
 			stack.Push(arg1)
 			stack.ReadStack()
@@ -269,7 +267,6 @@ func main() {
 		case "S_GET":
 			fmt.Printf("Верхний: %s\n", stack.Peek())
 
-		// Дерево
 		case "T_INSERT":
 			tree.Insert(safeStoi(arg1))
 			tree.InorderPrint()
@@ -285,7 +282,6 @@ func main() {
 		case "T_PRINT":
 			tree.InorderPrint()
 
-		// Хеш
 		case "HASH":
 			fmt.Println("--- Вход в подсистему Хеш-таблиц ---")
 			ds.HashMan()

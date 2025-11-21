@@ -92,3 +92,70 @@ func TestMyList_SaveAndLoad(t *testing.T) {
 		t.Errorf("List load failed")
 	}
 }
+
+func TestMyList_Coverage(t *testing.T) {
+	l := NewMyList()
+	
+	l.ReadForward()
+	l.ReadBack()
+	l.DelHead()
+	l.DelTail()
+	l.DelByValue("X")
+	l.AddBefore("A", "B") 
+	l.AddAfter("A", "B")  
+	
+	l.AddTail("A")
+	l.AddBefore("A", "BeforeA") 
+	l.DelTail() 
+	if !l.FindValue("BeforeA") { t.Error("Expected BeforeA") }
+	
+	l.DelHead() 
+	if l.Head != nil { t.Error("Should be empty") }
+
+	l.AddHead("1")
+	l.AddTail("2")
+	l.AddTail("3")
+	
+	l.AddAfter("1", "1.5")
+	l.AddAfter("3", "3.5") 
+	l.AddAfter("99", "XX") 
+
+	l.AddBefore("3", "2.5")
+	l.AddBefore("1", "0.5") 
+	l.AddBefore("99", "XX") 
+
+	l.DelByValue("1")   
+	l.DelByValue("0.5") 
+	l.DelByValue("3.5") 
+	l.DelByValue("99")  
+
+	l2 := NewMyList()
+	l2.DelAfterValue("X") 
+	l2.DelBeforeValue("X") 
+	
+	l2.AddTail("A")
+	l2.DelAfterValue("A") 
+	l2.DelBeforeValue("A") 
+	
+	l2.AddTail("B") 
+	l2.DelBeforeValue("B") 
+	if l2.Head.Value != "B" { t.Error("DelBefore failed") }
+	
+	l2.AddTail("C") 
+	l2.DelAfterValue("B") 
+	if l2.FindValue("C") { t.Error("DelAfter failed") }
+
+	l2.ReadBack()
+
+	l2.SaveToFile("list_cov.txt")
+	defer os.Remove("list_cov.txt")
+	l3 := NewMyList()
+	l3.LoadFromFile("list_cov.txt")
+	if l3.Head.Value != "B" { t.Error("Load failed") }
+
+	l2.SaveToBinaryFile("list_cov.bin")
+	defer os.Remove("list_cov.bin")
+	l4 := NewMyList()
+	l4.LoadFromBinaryFile("list_cov.bin")
+	if l4.Head.Value != "B" { t.Error("Bin Load failed") }
+}

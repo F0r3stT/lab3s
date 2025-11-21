@@ -6,16 +6,13 @@ import (
 )
 
 func TestHash_ChainHash_Coverage(t *testing.T) {
-	// 1. Создаем таблицу с 1 бакетом, чтобы форсировать коллизии
 	ch := NewChainHash(1)
-	ch.Show() // Empty show
+	ch.Show() 
 
-	// Вставка 3 элементов в 1 бакет (цепочка)
 	ch.Insert("A", "1")
 	ch.Insert("B", "2")
 	ch.Insert("C", "3")
 
-	// Проверка поиска в глубине цепочки
 	if val := ch.Find("B"); val != "2" {
 		t.Errorf("Find failed deep in chain. Expected 2, got %s", val)
 	}
@@ -29,8 +26,7 @@ func TestHash_ChainHash_Coverage(t *testing.T) {
 		t.Errorf("Update failed. Expected 222, got %s", val)
 	}
 
-	// Удаление из середины цепочки (B)
-	// Цепочка сейчас: C -> B -> A (т.к. вставка в начало)
+	
 	ch.Erase("B")
 	if ch.Find("B") != "" {
 		t.Error("B should be erased")
@@ -68,7 +64,6 @@ func TestHash_OpenHash_Coverage(t *testing.T) {
 	oh.Insert("B", "2")
 	
 	// Попытка вставить в переполненную таблицу
-	// (В текущей реализации выводит в консоль и выходит, не падает)
 	oh.Insert("C", "3") 
 
 	// Проверка поиска
@@ -85,18 +80,15 @@ func TestHash_OpenHash_Coverage(t *testing.T) {
 		t.Error("Update failed")
 	}
 
-	// Проверка удаления и флага DELETED
 	oh.Erase("A")
 	if oh.Find("A") != "" {
 		t.Error("A should be deleted")
 	}
-	// Слот A теперь DELETED. Попробуем вставить туда новое значение
 	oh.Insert("A", "NewA")
 	if oh.Find("A") != "NewA" {
 		t.Error("Insert into deleted slot failed")
 	}
 	
-	// Удаление несуществующего
 	if oh.Erase("Z") {
 		t.Error("Erase non-existent should return false")
 	}
@@ -106,7 +98,6 @@ func TestHash_SaveLoad(t *testing.T) {
 	filename := "hash_test.bin"
 	defer os.Remove(filename)
 
-	// Chain
 	ch := NewChainHash(5)
 	ch.Insert("key1", "val1")
 	ch.SaveToFile(filename)
@@ -117,7 +108,6 @@ func TestHash_SaveLoad(t *testing.T) {
 		t.Error("ChainHash Save/Load failed")
 	}
 
-	// Open
 	oh := NewOpenHash(5)
 	oh.Insert("k1", "v1")
 	oh.SaveToFile(filename)
@@ -130,8 +120,7 @@ func TestHash_SaveLoad(t *testing.T) {
 }
 
 func TestHashMan_Simulation(t *testing.T) {
-	// Этот тест просто вызывает функцию HashMan, но т.к. она блокирует ввод, 
-	// мы эмулируем ввод через пайп, чтобы покрыть ветки парсинга команд.
+
 	r, w, _ := os.Pipe()
 	origStdin := os.Stdin
 	os.Stdin = r
@@ -142,5 +131,90 @@ func TestHashMan_Simulation(t *testing.T) {
 		w.Close()
 	}()
 
+	HashMan()
+}
+
+func TestHash_Chain_Coverage(t *testing.T) {
+	ch := NewChainHash(1)
+	
+	ch.Insert("A", "1")
+	ch.Insert("B", "2") 
+	
+	ch.Insert("A", "11")
+	if ch.Find("A") != "11" { t.Error("Update A failed") }
+	
+	ch.Insert("C", "3") 
+	ch.Erase("B")
+	if ch.Find("B") != "" { t.Error("Erase B failed") }
+	if ch.Find("C") != "3" || ch.Find("A") != "11" { t.Error("Chain broken") }
+
+	ch.Erase("C")
+	if ch.Find("C") != "" { t.Error("Erase C failed") }
+
+	if ch.Erase("Z") { t.Error("Erase Z should be false") }
+
+	ch.SaveToFile("ch.txt")
+	defer os.Remove("ch.txt")
+	ch2 := NewChainHash(1)
+	ch2.LoadFromFile("ch.txt")
+	if ch2.Find("A") != "11" { t.Error("Load txt failed") }
+
+	ch.SaveToBinaryFile("ch.bin")
+	defer os.Remove("ch.bin")
+	ch3 := NewChainHash(1)
+	ch3.LoadFromBinaryFile("ch.bin")
+	if ch3.Find("A") != "11" { t.Error("Load bin failed") }
+}
+
+func TestHash_Open_Coverage(t *testing.T) {
+	oh := NewOpenHash(2)
+	oh.Show() 
+	
+	oh.Insert("A", "1")
+	oh.Insert("B", "2")
+	
+	oh.Insert("C", "3") 
+	
+	if oh.Find("A") != "1" { t.Error("Find A fail") }
+	if oh.Find("Z") != "" { t.Error("Find Z fail") }
+	
+	oh.Insert("A", "11")
+	if oh.Find("A") != "11" { t.Error("Update A fail") }
+
+	oh.Erase("A")
+	if oh.Find("A") != "" { t.Error("Should be deleted") }
+	
+	oh.Insert("A", "22") 
+	if oh.Find("A") != "22" { t.Error("Reuse slot fail") }
+
+	if oh.Erase("ZZ") { t.Error("Erase missing fail") }
+
+	oh.SaveToFile("oh.txt")
+	defer os.Remove("oh.txt")
+	oh2 := NewOpenHash(2)
+	oh2.LoadFromFile("oh.txt")
+	if oh2.Find("B") != "2" { t.Error("Load txt fail") }
+
+	oh.SaveToBinaryFile("oh.bin")
+	defer os.Remove("oh.bin")
+	oh3 := NewOpenHash(2)
+	oh3.LoadFromBinaryFile("oh.bin")
+	if oh3.Find("B") != "2" { t.Error("Load bin fail") }
+	
+	bad := NewOpenHash(0)
+	if bad.Cap != 1 { t.Error("Min cap fail") }
+}
+
+func TestHashMan_Run(t *testing.T) {
+	r, w, _ := os.Pipe()
+	origStdin := os.Stdin
+	os.Stdin = r
+	defer func() { os.Stdin = origStdin }()
+
+	go func() {
+		w.Write([]byte("CHAIN\nINSERT k1 v1\nSHOW\nOPEN\nINSERT k2 v2\nSEARCH k2\nDELETE k2\nBAD\nBACK\n"))
+		w.Close()
+	}()
+	
 	HashMan()
 }

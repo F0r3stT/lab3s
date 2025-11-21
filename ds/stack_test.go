@@ -44,3 +44,38 @@ func TestStack_SaveAndLoad(t *testing.T) {
 		t.Errorf("Expected hello")
 	}
 }
+
+func TestStack_Coverage(t *testing.T) {
+	s := NewStack()
+	
+	if !s.IsEmpty() { t.Error("New stack not empty") }
+	if s.Pop() != "[STACK_EMPTY]" { t.Error("Pop empty failed") }
+	if s.Peek() != "[STACK_EMPTY]" { t.Error("Peek empty failed") }
+	s.ReadStack() 
+
+	s.Push("A")
+	s.Push("B")
+	if s.Peek() != "B" { t.Error("Peek failed") }
+	s.ReadStack() 
+
+	if s.Pop() != "B" { t.Error("Pop failed") }
+	if s.Pop() != "A" { t.Error("Pop 2 failed") }
+	if !s.IsEmpty() { t.Error("Should be empty") }
+
+	s.Push("Bottom")
+	s.Push("Top")
+	
+	s.SaveToFile("st.txt")
+	defer os.Remove("st.txt")
+	
+	s2 := NewStack()
+	s2.LoadFromFile("st.txt")
+	if s2.Pop() != "Top" { t.Error("Order lost in Text Save/Load") }
+	
+	s.SaveToBinaryFile("st.bin")
+	defer os.Remove("st.bin")
+	
+	s3 := NewStack()
+	s3.LoadFromBinaryFile("st.bin")
+	if s3.Pop() != "Top" { t.Error("Order lost in Bin Save/Load") }
+}

@@ -5,110 +5,149 @@ import (
 	"testing"
 )
 
+// Наборы диапазонов, совпадающие с примером C++
+var rangesStandard = []int{1000, 4096, 32768, 100000}
+var rangesTreeHash = []int{1000, 4096, 32768, 50000}
+
 // --- MyArr (Динамический массив) ---
-// Измеряем скорость добавления в конец
-func BenchmarkArr_AddEnd(b *testing.B) {
-	// b.N автоматически подбирается Go для получения точных замеров
-	for i := 0; i < b.N; i++ {
-		arr := NewMyArr()
-		// Эмулируем пакетную вставку 1000 элементов (как в bench.cpp Range(1000))
-		for j := 0; j < 1000; j++ {
-			arr.AddEnd("X")
-		}
+func BenchmarkDynArr_PushEnd(b *testing.B) {
+	for _, n := range rangesStandard {
+		b.Run(fmt.Sprintf("%d", n), func(b *testing.B) {
+			for i := 0; i < b.N; i++ {
+				arr := NewMyArr()
+				for j := 0; j < n; j++ {
+					arr.AddEnd("X")
+				}
+			}
+		})
 	}
 }
 
 // --- MyList (Односвязный список) ---
 func BenchmarkList_AddTail(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		l := NewMyList()
-		for j := 0; j < 1000; j++ {
-			l.AddTail("X")
-		}
+	for _, n := range rangesStandard {
+		b.Run(fmt.Sprintf("%d", n), func(b *testing.B) {
+			for i := 0; i < b.N; i++ {
+				l := NewMyList()
+				for j := 0; j < n; j++ {
+					l.AddTail("X")
+				}
+			}
+		})
 	}
 }
 
 // --- DList (Двусвязный список) ---
 func BenchmarkDList_AddTail(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		dl := NewDList()
-		for j := 0; j < 1000; j++ {
-			dl.AddTail("Y")
-		}
+	for _, n := range rangesStandard {
+		b.Run(fmt.Sprintf("%d", n), func(b *testing.B) {
+			for i := 0; i < b.N; i++ {
+				dl := NewDList()
+				for j := 0; j < n; j++ {
+					dl.AddTail("Y")
+				}
+			}
+		})
 	}
 }
 
 // --- Stack (Стек) ---
-// Измеряем пару операций Push + Pop
 func BenchmarkStack_PushPop(b *testing.B) {
-	// Здесь мы можем измерять операции напрямую без пересоздания структуры на каждой итерации,
-	// так как стек возвращается в исходное состояние.
-	s := NewStack()
-	b.ResetTimer() // Сбрасываем время подготовки
-	for i := 0; i < b.N; i++ {
-		s.Push("A")
-		s.Pop()
+	for _, n := range rangesStandard {
+		b.Run(fmt.Sprintf("%d", n), func(b *testing.B) {
+			for i := 0; i < b.N; i++ {
+				s := NewStack()
+				// Сначала N Push
+				for j := 0; j < n; j++ {
+					s.Push("A")
+				}
+				// Затем N Pop
+				for j := 0; j < n; j++ {
+					s.Pop()
+				}
+			}
+		})
 	}
 }
 
 // --- Queue (Очередь) ---
 func BenchmarkQueue_PushPop(b *testing.B) {
-	q := NewQueue()
-	b.ResetTimer()
-	for i := 0; i < b.N; i++ {
-		q.Push("A")
-		q.Pop()
+	for _, n := range rangesStandard {
+		b.Run(fmt.Sprintf("%d", n), func(b *testing.B) {
+			for i := 0; i < b.N; i++ {
+				q := NewQueue()
+				for j := 0; j < n; j++ {
+					q.Push("A")
+				}
+				for j := 0; j < n; j++ {
+					q.Pop()
+				}
+			}
+		})
 	}
 }
 
 // --- CBT (Complete Binary Tree) ---
 
-// Вставка (Batch insert)
 func BenchmarkCBT_Insert(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		t := NewCBT()
-		for j := 0; j < 1000; j++ {
-			t.Insert(j)
-		}
+	for _, n := range rangesTreeHash {
+		b.Run(fmt.Sprintf("%d", n), func(b *testing.B) {
+			for i := 0; i < b.N; i++ {
+				t := NewCBT()
+				for j := 0; j < n; j++ {
+					t.Insert(j)
+				}
+			}
+		})
 	}
 }
 
-// Поиск (Search)
 func BenchmarkCBT_Search(b *testing.B) {
-	// Подготовка: создаем дерево один раз
-	t := NewCBT()
-	for j := 0; j < 5000; j++ {
-		t.Insert(j)
-	}
-	
-	b.ResetTimer() // Запускаем таймер только для поиска
-	for i := 0; i < b.N; i++ {
-		// Ищем элемент в середине
-		t.Contains(2500) 
+	for _, n := range rangesTreeHash {
+		b.Run(fmt.Sprintf("%d", n), func(b *testing.B) {
+			// Подготовка: создаем дерево один раз перед замером
+			b.StopTimer()
+			t := NewCBT()
+			for j := 0; j < n; j++ {
+				t.Insert(j)
+			}
+			target := n / 2
+			b.StartTimer()
+
+			// Замеряем только поиск
+			for i := 0; i < b.N; i++ {
+				t.Search(target)
+			}
+		})
 	}
 }
 
-// --- Hash Tables ---
+// --- Хеш-таблицы ---
 
-// ChainHash Вставка
 func BenchmarkChainHash_Insert(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		// Создаем новую таблицу на каждой итерации, чтобы проверить чистую вставку
-		h := NewChainHash(100) 
-		for j := 0; j < 1000; j++ {
-			key := fmt.Sprintf("%d", j)
-			h.Insert(key, "X")
-		}
+	for _, n := range rangesTreeHash {
+		b.Run(fmt.Sprintf("%d", n), func(b *testing.B) {
+			for i := 0; i < b.N; i++ {
+				h := NewChainHash(1000) // Размер бакетов как в C++ (1000)
+				for j := 0; j < n; j++ {
+					key := fmt.Sprintf("%d", j)
+					h.Insert(key, "X")
+				}
+			}
+		})
 	}
 }
 
-// OpenHash Вставка
 func BenchmarkOpenHash_Insert(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		h := NewOpenHash(2000) // Достаточный размер, чтобы избежать рехеширования (если оно есть) или вечного цикла
-		for j := 0; j < 1000; j++ {
-			key := fmt.Sprintf("%d", j)
-			h.Insert(key, "X")
-		}
+	for _, n := range rangesTreeHash {
+		b.Run(fmt.Sprintf("%d", n), func(b *testing.B) {
+			for i := 0; i < b.N; i++ {
+				h := NewOpenHash(n * 2) // Размер x2 от кол-ва элементов
+				for j := 0; j < n; j++ {
+					key := fmt.Sprintf("%d", j)
+					h.Insert(key, "X")
+				}
+			}
+		})
 	}
 }

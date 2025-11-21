@@ -52,3 +52,40 @@ func TestQueue_SaveAndLoad(t *testing.T) {
 		t.Errorf("Expected second")
 	}
 }
+
+func TestQueue_Coverage(t *testing.T) {
+	q := NewQueue()
+	
+	if !q.IsEmpty() { t.Error("New Q not empty") }
+	if q.Pop() != "[QUEUE_EMPTY]" { t.Error("Pop empty fail") }
+	if q.Peek() != "[QUEUE_EMPTY]" { t.Error("Peek empty fail") }
+	q.Print()
+
+	q.Push("A") 
+	if q.Peek() != "A" { t.Error("Peek fail") }
+	
+	q.Push("B") 
+	
+	val := q.Pop() 
+	if val != "A" { t.Error("Pop A fail") }
+	
+	val = q.Pop() 
+	if val != "B" { t.Error("Pop B fail") }
+	if !q.IsEmpty() { t.Error("Should be empty logic fail") }
+
+	q.Push("1")
+	q.Push("2")
+	q.SaveToFile("q.txt")
+	defer os.Remove("q.txt")
+	
+	q2 := NewQueue()
+	q2.LoadFromFile("q.txt")
+	if q2.Pop() != "1" { t.Error("Load order fail") }
+
+	q.SaveToBinaryFile("q.bin")
+	defer os.Remove("q.bin")
+	
+	q3 := NewQueue()
+	q3.LoadFromBinaryFile("q.bin")
+	if q3.Pop() != "1" { t.Error("Bin load order fail") }
+}

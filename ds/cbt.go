@@ -1,7 +1,9 @@
 package ds
 
-import "os"
-
+import (
+    "fmt"
+    "os"
+)
 
 type CBTNode struct {
     Data  int32
@@ -14,9 +16,6 @@ type CompleteBinaryTree struct {
     Size int
 }
 
-// ---------------------------------------------------------
-// BASIC TREE OPERATIONS
-// ---------------------------------------------------------
 
 func NewCBT() *CompleteBinaryTree {
     return &CompleteBinaryTree{Root: nil, Size: 0}
@@ -75,9 +74,7 @@ func (t *CompleteBinaryTree) Remove(value int) {
     if t.Root == nil {
         return
     }
-    initial := t.Size
     t.Root = t.deleteNodeRec(t.Root, int32(value))
-    _ = initial
 }
 
 func (t *CompleteBinaryTree) Search(value int) bool {
@@ -96,14 +93,43 @@ func (t *CompleteBinaryTree) Search(value int) bool {
     return false
 }
 
+func (t *CompleteBinaryTree) Contains(value int) bool {
+    return t.Search(value)
+}
+
+func (t *CompleteBinaryTree) Print() {
+    if t.Root == nil {
+        fmt.Println("Дерево пусто")
+        return
+    }
+    t.inOrderRec(t.Root)
+    fmt.Println()
+}
+
+func (t *CompleteBinaryTree) InorderPrint() {
+    t.Print()
+}
+
+func (t *CompleteBinaryTree) inOrderRec(n *CBTNode) {
+    if n == nil {
+        return
+    }
+    t.inOrderRec(n.Left)
+    fmt.Printf("%d ", n.Data)
+    t.inOrderRec(n.Right)
+}
+
 func (t *CompleteBinaryTree) Clear() {
     t.Root = nil
     t.Size = 0
 }
 
-// ---------------------------------------------------------
-// TEXT SERIALIZATION (USES serialize.go: SaveCBTText / LoadCBTText)
-// ---------------------------------------------------------
+// Добавлено: метод для пересчета размера
+func (t *CompleteBinaryTree) countNodes(n *CBTNode) int {
+    if n == nil { return 0 }
+    return 1 + t.countNodes(n.Left) + t.countNodes(n.Right)
+}
+
 
 func (t *CompleteBinaryTree) SaveToFile(filename string) error {
     return SaveCBTText(filename, t.Root)
@@ -115,12 +141,10 @@ func (t *CompleteBinaryTree) LoadFromFile(filename string) error {
         return err
     }
     t.Root = root
+    t.Size = t.countNodes(t.Root) // Исправлено: обновляем Size
     return nil
 }
 
-// ---------------------------------------------------------
-// BINARY SERIALIZATION (DFS WITH -1 SENTINEL)
-// ---------------------------------------------------------
 
 func writeBinaryRec(n *CBTNode, f *os.File) error {
     if n == nil {
@@ -177,5 +201,6 @@ func (t *CompleteBinaryTree) LoadFromBinaryFile(filename string) error {
         return err
     }
     t.Root = root
+    t.Size = t.countNodes(t.Root) // Исправлено: обновляем Size
     return nil
 }

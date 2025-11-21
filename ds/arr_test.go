@@ -102,3 +102,47 @@ func TestMyArr_SaveAndLoad(t *testing.T) {
 		t.Errorf("Content mismatch")
 	}
 }	
+
+func TestMyArr_FullCoverage(t *testing.T) {
+	arr := NewMyArr()
+
+	arr.AddAt(0, "A")     
+	arr.AddAt(5, "B")   
+	arr.AddAt(-1, "C")    
+	arr.AddAt(1, "Tail")   
+	arr.AddAt(0, "Head")  
+	
+	if arr.GetAt(0) != "Head" || arr.GetAt(2) != "Tail" {
+		t.Error("AddAt logic failed")
+	}
+
+	arr.DelAt(-1) 
+	arr.DelAt(100) 
+	arr.DelAt(1)   // Удаляем "A" (середина)
+	if arr.LenArr() != 2 { t.Error("DelAt failed") }
+
+	arr.RepArr(-1, "X")
+	arr.RepArr(100, "X")
+	arr.RepArr(0, "NewHead")
+	if arr.GetAt(0) != "NewHead" { t.Error("RepArr failed") }
+
+	if arr.GetAt(-5) != "[INVALID_INDEX]" { t.Error("GetAt negative failed") }
+	if arr.GetAt(100) != "[INVALID_INDEX]" { t.Error("GetAt overflow failed") }
+
+	empty := NewMyArr()
+	empty.DelHead()
+	empty.DelEnd()  
+	empty.ReadArray() 
+
+	arr.SaveToFile("arr_cov.txt")
+	defer os.Remove("arr_cov.txt")
+	arr2 := NewMyArr()
+	arr2.LoadFromFile("arr_cov.txt")
+	if arr2.LenArr() != arr.LenArr() { t.Error("Text Save/Load size mismatch") }
+
+	arr.SaveToBinaryFile("arr_cov.bin")
+	defer os.Remove("arr_cov.bin")
+	arr3 := NewMyArr()
+	arr3.LoadFromBinaryFile("arr_cov.bin")
+	if arr3.GetAt(0) != "NewHead" { t.Error("Binary Save/Load val mismatch") }
+}

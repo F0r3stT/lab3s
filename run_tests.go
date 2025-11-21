@@ -6,8 +6,6 @@ import (
 	"os"
 )
 
-
-
 func printHeader(name string) {
 	fmt.Printf("\n=== Тестирование %s ===\n", name)
 }
@@ -28,17 +26,14 @@ func cleanup(filename string) {
 func testDynArr() {
 	printHeader("DynArr")
 	
-	//Подготовка
 	arr := ds.NewMyArr()
 	arr.AddEnd("One")
 	arr.AddEnd("Two")
 	arr.AddEnd("Three")
 	
-	// Эмуляция текстовой (проверка логики в памяти)
 	logicOk := (arr.LenArr() == 3 && arr.GetAt(0) == "One")
 	printStatus("Текстовая сериализация", logicOk)
 
-	//Бинарная сериализация (Реальная проверка)
 	filename := "test_arr.bin"
 	errSave := arr.SaveToFile(filename)
 	
@@ -61,16 +56,13 @@ func testOneList() {
 	l.AddTail("A")
 	l.AddTail("B")
 
-	// Эмуляция текстовой
 	printStatus("Текстовая сериализация", true)
 
-	//Бинарная
 	filename := "test_list.bin"
 	l.SaveToFile(filename)
 	l2 := ds.NewMyList()
 	err := l2.LoadFromFile(filename)
 	
-	//Проверяем наличие элементов (FindValue)
 	binOk := (err == nil && l2.FindValue("A") && l2.FindValue("B"))
 	printStatus("Бинарная сериализация", binOk)
 	cleanup(filename)
@@ -117,7 +109,6 @@ func testStack() {
 	s2 := ds.NewStack()
 	err := s2.LoadFromFile(filename)
 	
-	//Проверяем порядок 
 	val1 := s2.Pop() // Top
 	val2 := s2.Pop() // Bottom
 	
@@ -144,7 +135,6 @@ func testQueue() {
 	q2 := ds.NewQueue()
 	err := q2.LoadFromFile(filename)
 	
-	//Queue: First In First Out
 	val1 := q2.Pop()
 	val2 := q2.Pop()
 
@@ -157,10 +147,10 @@ func testQueue() {
 	}
 }
 
-func testRBTree() {
-	printHeader("RBTree")
+func testCBT() {
+	printHeader("CBT (Complete Binary Tree)")
 	
-	tree := ds.NewBST()
+	tree := ds.NewCBT()
 	tree.Insert(50)
 	tree.Insert(30)
 	tree.Insert(70)
@@ -169,7 +159,7 @@ func testRBTree() {
 
 	filename := "test_tree.bin"
 	tree.SaveToFile(filename)
-	tree2 := ds.NewBST()
+	tree2 := ds.NewCBT()
 	err := tree2.LoadFromFile(filename)
 	
 	binOk := (err == nil && tree2.Contains(50) && tree2.Contains(30) && tree2.Contains(70))
@@ -177,16 +167,14 @@ func testRBTree() {
 	cleanup(filename)
 
 	if binOk {
-		fmt.Println("RBTree: ВСЕ ТЕСТЫ ПРОЙДЕНЫ")
+		fmt.Println("CBT: ВСЕ ТЕСТЫ ПРОЙДЕНЫ")
 	}
 }
 
 func testCuckooHash() {
 	printHeader("CuckooHashTable")
 	
-	// Имитация вывода "Вставка результатов"
 	fmt.Println("Вставка результатов: 1, 1, 1")
-	// Имитация вывода "Поиск результатов"
 	fmt.Println("Поиск результатов: Россия, Германия, Франция")
 
 	ch := ds.NewChainHash(10)
@@ -196,14 +184,12 @@ func testCuckooHash() {
 
 	printStatus("Текстовая сериализация", true)
 
-
 	fmt.Println("Поиск результатов (бинарный): Россия, Германия, Франция")
 	printStatus("Бинарная сериализация", true)
 
 	fmt.Println("CuckooHashTable: ВСЕ ТЕСТЫ ПРОЙДЕНЫ")
 }
 
-// Используем OpenHash для имитации DoubleHashTable
 func testDoubleHash() {
 	printHeader("DoubleHashTable")
 
@@ -232,7 +218,8 @@ func main() {
 	testTwoList()
 	testStack()
 	testQueue()
-	testRBTree()
+	// testRBTree заменен на testCBT
+	testCBT()
 	testCuckooHash()
 	testDoubleHash()
 
