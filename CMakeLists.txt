@@ -5,18 +5,21 @@ project(DataStructuresProject CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# --- Настройка Линтера ---
+# Добавляем флаги для покрытия кода 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} --coverage")
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --coverage")
+set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} --coverage")
+
+#Настройка Линтера (опционально) 
 find_program(CLANG_TIDY_EXE clang-tidy)
 if(CLANG_TIDY_EXE)
     set(LINT_COMMAND ${CLANG_TIDY_EXE} -p ${CMAKE_BINARY_DIR})
-else()
-    message(WARNING "clang-tidy not found. Linting target will not be available.")
 endif()
 
-# --- Библиотеки (GTest & GBenchmark) ---
+#Подключение GTest и GBenchmark 
 include(FetchContent)
 
-# Google Test
 FetchContent_Declare(
   googletest
   URL https://github.com/google/googletest/archive/refs/tags/v1.14.0.zip
@@ -24,7 +27,6 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(googletest)
 
-# Google Benchmark
 FetchContent_Declare(
   googlebenchmark
   URL https://github.com/google/benchmark/archive/refs/tags/v1.8.3.zip
@@ -32,7 +34,7 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(googlebenchmark)
 
-# 1. Библиотека структур данных (файлы лежат в корне)
+#Библиотека структур данных 
 add_library(DataStructures
     arr.cpp arr.h
     list.cpp list.h
@@ -49,19 +51,11 @@ if(LINT_COMMAND)
     set_target_properties(DataStructures PROPERTIES CXX_CLANG_TIDY ${LINT_COMMAND})
 endif()
 
-# 2. Главная программа (CLI)
-add_executable(prg main.cpp)
-target_link_libraries(prg PRIVATE DataStructures)
-
-# 3. Тест сериализации (ЛЕЖИТ В ПАПКЕ tests)
-add_executable(serialization_test tests/serialization_test.cpp)
-target_link_libraries(serialization_test PRIVATE DataStructures)
-
-# --- Google Tests ---
+#Тесты
 enable_testing()
 include(GoogleTest)
 
-# Указываем правильный путь: tests/
+# Список тестов 
 set(TEST_SOURCES
     tests/arr_test.cpp
     tests/compl_test.cpp
@@ -70,14 +64,18 @@ set(TEST_SOURCES
     tests/list_test.cpp
     tests/queue_test.cpp
     tests/stack_test.cpp
+    tests/serialization_test.cpp
 )
 
 foreach(TFILE ${TEST_SOURCES})
     get_filename_component(TNAME ${TFILE} NAME_WE)
     
+    # Создаем исполняемый файл для каждого теста
     add_executable(${TNAME} ${TFILE})
+    
+    # Линкуем с нашей библиотекой и gtest
     target_link_libraries(${TNAME}
-    PRIVATE
+        PRIVATE
         DataStructures
         gtest
         gtest_main
@@ -85,3 +83,10 @@ foreach(TFILE ${TEST_SOURCES})
     
     gtest_discover_tests(${TNAME})
 endforeach()
+
+add_executable(prg main.cpp)
+target_link_libraries(prg PRIVATE DataStructures)
+
+#Бенчмарки 
+add_executable(bench bench.cpp)
+target_link_libraries(bench PRIVATE DataStructures benchmark::benchmark)

@@ -41,8 +41,8 @@ TEST(QueueTest, BranchBooster_PopEmpty) {
     
     q.push("A");
     q.push("B");
-    q.pop(); // front -> B
-    q.pop(); // front -> null, rear -> null
+    q.pop(); 
+    q.pop();
     EXPECT_TRUE(q.isEmpty());
 }
 
@@ -87,4 +87,44 @@ TEST(DestructorTest, QueueCleanup) {
         q.push("1");
         q.push("2");
     }
+}
+
+TEST(QueueTest, Coverage_EmptyOps) {
+    Queue q;
+    OutputCapture cap;
+    
+    EXPECT_EQ(q.pop(), "[QUEUE_EMPTY]");
+    EXPECT_EQ(q.peek(), "[QUEUE_EMPTY]");
+    
+    q.print(); 
+    EXPECT_NE(cap.str().find("пуста"), string::npos);
+}
+
+TEST(QueueTest, Coverage_FullCycle) {
+    Queue q;
+    q.push("A");
+    q.push("B");
+    
+    EXPECT_EQ(q.peek(), "A");
+    EXPECT_EQ(q.pop(), "A"); 
+    
+    EXPECT_EQ(q.peek(), "B");
+    EXPECT_EQ(q.pop(), "B"); 
+    
+    EXPECT_TRUE(q.isEmpty());
+}
+
+TEST(QueueTest, Coverage_IO) {
+    Queue q;
+    q.saveToFile("");
+    q.loadFromFile("missing.dat");
+    
+    {
+        ofstream f("trunc.bin", ios::binary);
+        int c = 5;
+        f.write((char*)&c, sizeof(c));
+        f.close();
+    }
+    q.loadFromBinaryFile("trunc.bin");
+    remove("trunc.bin");
 }

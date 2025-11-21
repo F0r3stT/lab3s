@@ -1,5 +1,5 @@
-CMakeFiles/DataStructures.dir/compl.cpp.o: /home/alex/labs3/compl.cpp \
- /usr/include/stdc-predef.h /home/alex/labs3/compl.h \
+CMakeFiles/DataStructures.dir/compl.cpp.o: /home/user/3sem/labb/compl.cpp \
+ /usr/include/stdc-predef.h /home/user/3sem/labb/compl.h \
  /usr/include/c++/13/iostream /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \

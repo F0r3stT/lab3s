@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/alex/labs3
+CXX_INCLUDES = -I/home/user/3sem/labb -isystem /home/user/3sem/labb/build/_deps/googletest-src/googletest/include -isystem /home/user/3sem/labb/build/_deps/googletest-src/googletest
 
-CXX_FLAGS = --coverage -g -O0 -g -std=gnu++17
+CXX_FLAGS =  --coverage -std=gnu++17
 

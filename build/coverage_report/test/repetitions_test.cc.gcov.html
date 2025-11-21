@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - coverage.info - test/repetitions_test.cc</title>
+  <title>LCOV - coverage_cleaned.info - test/repetitions_test.cc</title>
   <link rel="stylesheet" type="text/css" href="../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">coverage.info</td>
+            <td class="headerValue">coverage_cleaned.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2025-11-20 13:27:32</td>
+            <td class="headerValue">2025-11-21 19:45:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
@@ -68,10 +68,10 @@
 <span id="L6"><span class="lineNum">       6</span>              : // ------------------------ Testing Basic Output --------------------------- //</span>
 <span id="L7"><span class="lineNum">       7</span>              : // ========================================================================= //</span>
 <span id="L8"><span class="lineNum">       8</span>              : </span>
-<span id="L9"><span class="lineNum">       9</span> <span class="tlaGNC tlaBgGNC">          18 : static void BM_ExplicitRepetitions(benchmark::State&amp; state) {</span></span>
-<span id="L10"><span class="lineNum">      10</span> <span class="tlaGNC">    40258676 :   for (auto _ : state) {</span></span>
+<span id="L9"><span class="lineNum">       9</span> <span class="tlaGNC tlaBgGNC">           9 : static void BM_ExplicitRepetitions(benchmark::State&amp; state) {</span></span>
+<span id="L10"><span class="lineNum">      10</span> <span class="tlaGNC">    51685538 :   for (auto _ : state) {</span></span>
 <span id="L11"><span class="lineNum">      11</span>              :   }</span>
-<span id="L12"><span class="lineNum">      12</span> <span class="tlaGNC">          18 : }</span></span>
+<span id="L12"><span class="lineNum">      12</span> <span class="tlaGNC">           9 : }</span></span>
 <span id="L13"><span class="lineNum">      13</span>              : BENCHMARK(BM_ExplicitRepetitions)-&gt;Repetitions(2);</span>
 <span id="L14"><span class="lineNum">      14</span>              : </span>
 <span id="L15"><span class="lineNum">      15</span>              : ADD_CASES(TC_ConsoleOut,</span>
@@ -170,10 +170,10 @@
 <span id="L108"><span class="lineNum">     108</span>              : // ------------------------ Testing Basic Output --------------------------- //</span>
 <span id="L109"><span class="lineNum">     109</span>              : // ========================================================================= //</span>
 <span id="L110"><span class="lineNum">     110</span>              : </span>
-<span id="L111"><span class="lineNum">     111</span> <span class="tlaGNC">          20 : static void BM_ImplicitRepetitions(benchmark::State&amp; state) {</span></span>
-<span id="L112"><span class="lineNum">     112</span> <span class="tlaGNC">    68133018 :   for (auto _ : state) {</span></span>
+<span id="L111"><span class="lineNum">     111</span> <span class="tlaGNC">          11 : static void BM_ImplicitRepetitions(benchmark::State&amp; state) {</span></span>
+<span id="L112"><span class="lineNum">     112</span> <span class="tlaGNC">   113160708 :   for (auto _ : state) {</span></span>
 <span id="L113"><span class="lineNum">     113</span>              :   }</span>
-<span id="L114"><span class="lineNum">     114</span> <span class="tlaGNC">          20 : }</span></span>
+<span id="L114"><span class="lineNum">     114</span> <span class="tlaGNC">          11 : }</span></span>
 <span id="L115"><span class="lineNum">     115</span>              : BENCHMARK(BM_ImplicitRepetitions);</span>
 <span id="L116"><span class="lineNum">     116</span>              : </span>
 <span id="L117"><span class="lineNum">     117</span>              : ADD_CASES(TC_ConsoleOut, {{&quot;^BM_ImplicitRepetitions %console_report$&quot;}});</span>
@@ -273,7 +273,7 @@
 <span id="L211"><span class="lineNum">     211</span>              : // --------------------------- TEST CASES END ------------------------------ //</span>
 <span id="L212"><span class="lineNum">     212</span>              : // ========================================================================= //</span>
 <span id="L213"><span class="lineNum">     213</span>              : </span>
-<span id="L214"><span class="lineNum">     214</span> <span class="tlaGNC">           2 : int main(int argc, char* argv[]) { RunOutputTests(argc, argv); }</span></span>
+<span id="L214"><span class="lineNum">     214</span> <span class="tlaGNC">           1 : int main(int argc, char* argv[]) { RunOutputTests(argc, argv); }</span></span>
         </pre>
               </td>
             </tr>

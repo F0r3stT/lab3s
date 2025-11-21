@@ -1,5 +1,5 @@
-CMakeFiles/DataStructures.dir/queue.cpp.o: /home/alex/labs3/queue.cpp \
- /usr/include/stdc-predef.h /home/alex/labs3/queue.h \
+CMakeFiles/DataStructures.dir/queue.cpp.o: /home/user/3sem/labb/queue.cpp \
+ /usr/include/stdc-predef.h /home/user/3sem/labb/queue.h \
  /usr/include/c++/13/iostream /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
@@ -152,4 +152,4 @@ CMakeFiles/DataStructures.dir/queue.cpp.o: /home/alex/labs3/queue.cpp \
  /usr/include/c++/13/bits/codecvt.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/basic_file.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++io.h \
- /usr/include/c++/13/bits/fstream.tcc /home/alex/labs3/serialize.h
+ /usr/include/c++/13/bits/fstream.tcc /home/user/3sem/labb/serialize.h

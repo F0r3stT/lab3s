@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - coverage.info - test/user_counters_thousands_test.cc</title>
+  <title>LCOV - coverage_cleaned.info - test/user_counters_thousands_test.cc</title>
   <link rel="stylesheet" type="text/css" href="../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">coverage.info</td>
+            <td class="headerValue">coverage_cleaned.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntryLo">72.2&nbsp;%</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2025-11-20 13:27:32</td>
+            <td class="headerValue">2025-11-21 19:45:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
@@ -70,11 +70,11 @@
 <span id="L8"><span class="lineNum">       8</span>              : // ------------------------ Thousands Customisation ------------------------ //</span>
 <span id="L9"><span class="lineNum">       9</span>              : // ========================================================================= //</span>
 <span id="L10"><span class="lineNum">      10</span>              : </span>
-<span id="L11"><span class="lineNum">      11</span> <span class="tlaGNC tlaBgGNC">          18 : void BM_Counters_Thousands(benchmark::State&amp; state) {</span></span>
-<span id="L12"><span class="lineNum">      12</span> <span class="tlaGNC">    38113464 :   for (auto _ : state) {</span></span>
+<span id="L11"><span class="lineNum">      11</span> <span class="tlaGNC tlaBgGNC">          10 : void BM_Counters_Thousands(benchmark::State&amp; state) {</span></span>
+<span id="L12"><span class="lineNum">      12</span> <span class="tlaGNC">    82786990 :   for (auto _ : state) {</span></span>
 <span id="L13"><span class="lineNum">      13</span>              :   }</span>
 <span id="L14"><span class="lineNum">      14</span>              :   namespace bm = benchmark;</span>
-<span id="L15"><span class="lineNum">      15</span> <span class="tlaGNC">         108 :   state.counters.insert({</span></span>
+<span id="L15"><span class="lineNum">      15</span> <span class="tlaGNC">          60 :   state.counters.insert({</span></span>
 <span id="L16"><span class="lineNum">      16</span>              :       {&quot;t0_1000000DefaultBase&quot;,</span>
 <span id="L17"><span class="lineNum">      17</span> <span class="tlaUNC tlaBgUNC">           0 :        bm::Counter(1000 * 1000, bm::Counter::kDefaults)},</span></span>
 <span id="L18"><span class="lineNum">      18</span> <span class="tlaUNC">           0 :       {&quot;t1_1000000Base1000&quot;, bm::Counter(1000 * 1000, bm::Counter::kDefaults,</span></span>
@@ -86,7 +86,7 @@
 <span id="L24"><span class="lineNum">      24</span> <span class="tlaUNC">           0 :       {&quot;t4_1048576Base1024&quot;, bm::Counter(1024 * 1024, bm::Counter::kDefaults,</span></span>
 <span id="L25"><span class="lineNum">      25</span>              :                                          bm::Counter::OneK::kIs1024)},</span>
 <span id="L26"><span class="lineNum">      26</span>              :   });</span>
-<span id="L27"><span class="lineNum">      27</span> <span class="tlaGNC tlaBgGNC">          36 : }</span></span>
+<span id="L27"><span class="lineNum">      27</span> <span class="tlaGNC tlaBgGNC">          20 : }</span></span>
 <span id="L28"><span class="lineNum">      28</span>              : BENCHMARK(BM_Counters_Thousands)-&gt;Repetitions(2);</span>
 <span id="L29"><span class="lineNum">      29</span>              : ADD_CASES(</span>
 <span id="L30"><span class="lineNum">      30</span>              :     TC_ConsoleOut,</span>
@@ -227,17 +227,17 @@
 <span id="L165"><span class="lineNum">     165</span>              :      {&quot;^\&quot;BM_Counters_Thousands/repeats:2_stddev\&quot;,%csv_report,0,0,0,0,0$&quot;}});</span>
 <span id="L166"><span class="lineNum">     166</span>              : // VS2013 does not allow this function to be passed as a lambda argument</span>
 <span id="L167"><span class="lineNum">     167</span>              : // to CHECK_BENCHMARK_RESULTS()</span>
-<span id="L168"><span class="lineNum">     168</span> <span class="tlaGNC">          12 : void CheckThousands(Results const&amp; e) {</span></span>
-<span id="L169"><span class="lineNum">     169</span> <span class="tlaGNC">          12 :   if (e.name != &quot;BM_Counters_Thousands/repeats:2&quot;)</span></span>
-<span id="L170"><span class="lineNum">     170</span> <span class="tlaGNC">           8 :     return;  // Do not check the aggregates!</span></span>
+<span id="L168"><span class="lineNum">     168</span> <span class="tlaGNC">           6 : void CheckThousands(Results const&amp; e) {</span></span>
+<span id="L169"><span class="lineNum">     169</span> <span class="tlaGNC">           6 :   if (e.name != &quot;BM_Counters_Thousands/repeats:2&quot;)</span></span>
+<span id="L170"><span class="lineNum">     170</span> <span class="tlaGNC">           4 :     return;  // Do not check the aggregates!</span></span>
 <span id="L171"><span class="lineNum">     171</span>              : </span>
 <span id="L172"><span class="lineNum">     172</span>              :   // check that the values are within 0.01% of the expected values</span>
-<span id="L173"><span class="lineNum">     173</span> <span class="tlaGNC">          32 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;t0_1000000DefaultBase&quot;, EQ, 1000 * 1000,</span></span>
+<span id="L173"><span class="lineNum">     173</span> <span class="tlaGNC">          16 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;t0_1000000DefaultBase&quot;, EQ, 1000 * 1000,</span></span>
 <span id="L174"><span class="lineNum">     174</span>              :                             0.0001);</span>
-<span id="L175"><span class="lineNum">     175</span> <span class="tlaGNC">          32 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;t1_1000000Base1000&quot;, EQ, 1000 * 1000, 0.0001);</span></span>
-<span id="L176"><span class="lineNum">     176</span> <span class="tlaGNC">          32 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;t2_1000000Base1024&quot;, EQ, 1000 * 1000, 0.0001);</span></span>
-<span id="L177"><span class="lineNum">     177</span> <span class="tlaGNC">          32 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;t3_1048576Base1000&quot;, EQ, 1024 * 1024, 0.0001);</span></span>
-<span id="L178"><span class="lineNum">     178</span> <span class="tlaGNC">          32 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;t4_1048576Base1024&quot;, EQ, 1024 * 1024, 0.0001);</span></span>
+<span id="L175"><span class="lineNum">     175</span> <span class="tlaGNC">          16 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;t1_1000000Base1000&quot;, EQ, 1000 * 1000, 0.0001);</span></span>
+<span id="L176"><span class="lineNum">     176</span> <span class="tlaGNC">          16 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;t2_1000000Base1024&quot;, EQ, 1000 * 1000, 0.0001);</span></span>
+<span id="L177"><span class="lineNum">     177</span> <span class="tlaGNC">          16 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;t3_1048576Base1000&quot;, EQ, 1024 * 1024, 0.0001);</span></span>
+<span id="L178"><span class="lineNum">     178</span> <span class="tlaGNC">          16 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;t4_1048576Base1024&quot;, EQ, 1024 * 1024, 0.0001);</span></span>
 <span id="L179"><span class="lineNum">     179</span>              : }</span>
 <span id="L180"><span class="lineNum">     180</span>              : CHECK_BENCHMARK_RESULTS(&quot;BM_Counters_Thousands&quot;, &amp;CheckThousands);</span>
 <span id="L181"><span class="lineNum">     181</span>              : </span>
@@ -245,7 +245,7 @@
 <span id="L183"><span class="lineNum">     183</span>              : // --------------------------- TEST CASES END ------------------------------ //</span>
 <span id="L184"><span class="lineNum">     184</span>              : // ========================================================================= //</span>
 <span id="L185"><span class="lineNum">     185</span>              : </span>
-<span id="L186"><span class="lineNum">     186</span> <span class="tlaGNC">           2 : int main(int argc, char* argv[]) { RunOutputTests(argc, argv); }</span></span>
+<span id="L186"><span class="lineNum">     186</span> <span class="tlaGNC">           1 : int main(int argc, char* argv[]) { RunOutputTests(argc, argv); }</span></span>
         </pre>
               </td>
             </tr>

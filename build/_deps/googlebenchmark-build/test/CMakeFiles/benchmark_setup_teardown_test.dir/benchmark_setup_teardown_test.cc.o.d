@@ -1,5 +1,5 @@
 _deps/googlebenchmark-build/test/CMakeFiles/benchmark_setup_teardown_test.dir/benchmark_setup_teardown_test.cc.o: \
- /home/alex/labs3/build/_deps/googlebenchmark-src/test/benchmark_setup_teardown_test.cc \
+ /home/user/3sem/labb/build/_deps/googlebenchmark-src/test/benchmark_setup_teardown_test.cc \
  /usr/include/stdc-predef.h /usr/include/c++/13/atomic \
  /usr/include/c++/13/bits/atomic_base.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
@@ -153,7 +153,7 @@ _deps/googlebenchmark-build/test/CMakeFiles/benchmark_setup_teardown_test.dir/be
  /usr/include/c++/13/bits/basic_ios.tcc \
  /usr/include/c++/13/bits/ostream.tcc /usr/include/c++/13/istream \
  /usr/include/c++/13/bits/istream.tcc /usr/include/c++/13/limits \
- /home/alex/labs3/build/_deps/googlebenchmark-src/include/benchmark/benchmark.h \
+ /home/user/3sem/labb/build/_deps/googlebenchmark-src/include/benchmark/benchmark.h \
  /usr/include/c++/13/algorithm /usr/include/c++/13/bits/stl_algo.h \
  /usr/include/c++/13/bits/algorithmfwd.h \
  /usr/include/c++/13/bits/stl_heap.h \
@@ -172,4 +172,4 @@ _deps/googlebenchmark-build/test/CMakeFiles/benchmark_setup_teardown_test.dir/be
  /usr/include/c++/13/bits/stl_vector.h \
  /usr/include/c++/13/bits/stl_bvector.h \
  /usr/include/c++/13/bits/vector.tcc \
- /home/alex/labs3/build/_deps/googlebenchmark-src/include/benchmark/export.h
+ /home/user/3sem/labb/build/_deps/googlebenchmark-src/include/benchmark/export.h

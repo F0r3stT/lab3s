@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - coverage.info - test/options_test.cc</title>
+  <title>LCOV - coverage_cleaned.info - test/options_test.cc</title>
   <link rel="stylesheet" type="text/css" href="../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">coverage.info</td>
+            <td class="headerValue">coverage_cleaned.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2025-11-20 13:27:32</td>
+            <td class="headerValue">2025-11-21 19:45:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
@@ -70,18 +70,18 @@
 <span id="L8"><span class="lineNum">       8</span>              : #endif</span>
 <span id="L9"><span class="lineNum">       9</span>              : #include &lt;cassert&gt;</span>
 <span id="L10"><span class="lineNum">      10</span>              : </span>
-<span id="L11"><span class="lineNum">      11</span> <span class="tlaGNC tlaBgGNC">        1380 : void BM_basic(benchmark::State&amp; state) {</span></span>
-<span id="L12"><span class="lineNum">      12</span> <span class="tlaGNC">  4385358522 :   for (auto _ : state) {</span></span>
+<span id="L11"><span class="lineNum">      11</span> <span class="tlaGNC tlaBgGNC">         717 : void BM_basic(benchmark::State&amp; state) {</span></span>
+<span id="L12"><span class="lineNum">      12</span> <span class="tlaGNC">  6961755547 :   for (auto _ : state) {</span></span>
 <span id="L13"><span class="lineNum">      13</span>              :   }</span>
-<span id="L14"><span class="lineNum">      14</span> <span class="tlaGNC">        9848 : }</span></span>
+<span id="L14"><span class="lineNum">      14</span> <span class="tlaGNC">       13702 : }</span></span>
 <span id="L15"><span class="lineNum">      15</span>              : </span>
-<span id="L16"><span class="lineNum">      16</span> <span class="tlaGNC">          10 : void BM_basic_slow(benchmark::State&amp; state) {</span></span>
-<span id="L17"><span class="lineNum">      17</span> <span class="tlaGNC">          10 :   std::chrono::milliseconds sleep_duration(state.range(0));</span></span>
-<span id="L18"><span class="lineNum">      18</span> <span class="tlaGNC">          68 :   for (auto _ : state) {</span></span>
-<span id="L19"><span class="lineNum">      19</span> <span class="tlaGNC">          28 :     std::this_thread::sleep_for(</span></span>
-<span id="L20"><span class="lineNum">      20</span> <span class="tlaGNC">          56 :         std::chrono::duration_cast&lt;std::chrono::nanoseconds&gt;(sleep_duration));</span></span>
+<span id="L16"><span class="lineNum">      16</span> <span class="tlaGNC">           5 : void BM_basic_slow(benchmark::State&amp; state) {</span></span>
+<span id="L17"><span class="lineNum">      17</span> <span class="tlaGNC">           5 :   std::chrono::milliseconds sleep_duration(state.range(0));</span></span>
+<span id="L18"><span class="lineNum">      18</span> <span class="tlaGNC">          34 :   for (auto _ : state) {</span></span>
+<span id="L19"><span class="lineNum">      19</span> <span class="tlaGNC">          14 :     std::this_thread::sleep_for(</span></span>
+<span id="L20"><span class="lineNum">      20</span> <span class="tlaGNC">          28 :         std::chrono::duration_cast&lt;std::chrono::nanoseconds&gt;(sleep_duration));</span></span>
 <span id="L21"><span class="lineNum">      21</span>              :   }</span>
-<span id="L22"><span class="lineNum">      22</span> <span class="tlaGNC">          10 : }</span></span>
+<span id="L22"><span class="lineNum">      22</span> <span class="tlaGNC">           5 : }</span></span>
 <span id="L23"><span class="lineNum">      23</span>              : </span>
 <span id="L24"><span class="lineNum">      24</span>              : BENCHMARK(BM_basic);</span>
 <span id="L25"><span class="lineNum">      25</span>              : BENCHMARK(BM_basic)-&gt;Arg(42);</span>
@@ -112,31 +112,31 @@
 <span id="L50"><span class="lineNum">      50</span>              : BENCHMARK(BM_basic)-&gt;DenseRange(-2, 2, 1);</span>
 <span id="L51"><span class="lineNum">      51</span>              : BENCHMARK(BM_basic)-&gt;Ranges({{-64, 1}, {-8, -1}});</span>
 <span id="L52"><span class="lineNum">      52</span>              : </span>
-<span id="L53"><span class="lineNum">      53</span> <span class="tlaGNC">           2 : void CustomArgs(benchmark::internal::Benchmark* b) {</span></span>
-<span id="L54"><span class="lineNum">      54</span> <span class="tlaGNC">          22 :   for (int i = 0; i &lt; 10; ++i) {</span></span>
-<span id="L55"><span class="lineNum">      55</span> <span class="tlaGNC">          20 :     b-&gt;Arg(i);</span></span>
+<span id="L53"><span class="lineNum">      53</span> <span class="tlaGNC">           1 : void CustomArgs(benchmark::internal::Benchmark* b) {</span></span>
+<span id="L54"><span class="lineNum">      54</span> <span class="tlaGNC">          11 :   for (int i = 0; i &lt; 10; ++i) {</span></span>
+<span id="L55"><span class="lineNum">      55</span> <span class="tlaGNC">          10 :     b-&gt;Arg(i);</span></span>
 <span id="L56"><span class="lineNum">      56</span>              :   }</span>
-<span id="L57"><span class="lineNum">      57</span> <span class="tlaGNC">           2 : }</span></span>
+<span id="L57"><span class="lineNum">      57</span> <span class="tlaGNC">           1 : }</span></span>
 <span id="L58"><span class="lineNum">      58</span>              : </span>
 <span id="L59"><span class="lineNum">      59</span>              : BENCHMARK(BM_basic)-&gt;Apply(CustomArgs);</span>
 <span id="L60"><span class="lineNum">      60</span>              : </span>
-<span id="L61"><span class="lineNum">      61</span> <span class="tlaGNC">           2 : void BM_explicit_iteration_count(benchmark::State&amp; state) {</span></span>
+<span id="L61"><span class="lineNum">      61</span> <span class="tlaGNC">           1 : void BM_explicit_iteration_count(benchmark::State&amp; state) {</span></span>
 <span id="L62"><span class="lineNum">      62</span>              :   // Test that benchmarks specified with an explicit iteration count are</span>
 <span id="L63"><span class="lineNum">      63</span>              :   // only run once.</span>
 <span id="L64"><span class="lineNum">      64</span>              :   static bool invoked_before = false;</span>
-<span id="L65"><span class="lineNum">      65</span> <span class="tlaGNC">           2 :   assert(!invoked_before);</span></span>
-<span id="L66"><span class="lineNum">      66</span> <span class="tlaGNC">           2 :   invoked_before = true;</span></span>
+<span id="L65"><span class="lineNum">      65</span> <span class="tlaGNC">           1 :   assert(!invoked_before);</span></span>
+<span id="L66"><span class="lineNum">      66</span> <span class="tlaGNC">           1 :   invoked_before = true;</span></span>
 <span id="L67"><span class="lineNum">      67</span>              : </span>
 <span id="L68"><span class="lineNum">      68</span>              :   // Test that the requested iteration count is respected.</span>
-<span id="L69"><span class="lineNum">      69</span> <span class="tlaGNC">           2 :   assert(state.max_iterations == 42);</span></span>
-<span id="L70"><span class="lineNum">      70</span> <span class="tlaGNC">         176 :   for (auto _ : state) {</span></span>
+<span id="L69"><span class="lineNum">      69</span> <span class="tlaGNC">           1 :   assert(state.max_iterations == 42);</span></span>
+<span id="L70"><span class="lineNum">      70</span> <span class="tlaGNC">          88 :   for (auto _ : state) {</span></span>
 <span id="L71"><span class="lineNum">      71</span>              :   }</span>
-<span id="L72"><span class="lineNum">      72</span> <span class="tlaGNC">           2 :   assert(state.iterations() == state.max_iterations);</span></span>
-<span id="L73"><span class="lineNum">      73</span> <span class="tlaGNC">           2 :   assert(state.iterations() == 42);</span></span>
-<span id="L74"><span class="lineNum">      74</span> <span class="tlaGNC">           2 : }</span></span>
+<span id="L72"><span class="lineNum">      72</span> <span class="tlaGNC">           1 :   assert(state.iterations() == state.max_iterations);</span></span>
+<span id="L73"><span class="lineNum">      73</span> <span class="tlaGNC">           1 :   assert(state.iterations() == 42);</span></span>
+<span id="L74"><span class="lineNum">      74</span> <span class="tlaGNC">           1 : }</span></span>
 <span id="L75"><span class="lineNum">      75</span>              : BENCHMARK(BM_explicit_iteration_count)-&gt;Iterations(42);</span>
 <span id="L76"><span class="lineNum">      76</span>              : </span>
-<span id="L77"><span class="lineNum">      77</span> <span class="tlaGNC">           2 : BENCHMARK_MAIN();</span></span>
+<span id="L77"><span class="lineNum">      77</span> <span class="tlaGNC">           1 : BENCHMARK_MAIN();</span></span>
         </pre>
               </td>
             </tr>

@@ -1,6 +1,7 @@
 CMakeFiles/serialization_test.dir/tests/serialization_test.cpp.o: \
- /home/alex/labs3/tests/serialization_test.cpp /usr/include/stdc-predef.h \
- /usr/include/c++/13/iostream /usr/include/c++/13/bits/requires_hosted.h \
+ /home/user/3sem/labb/tests/serialization_test.cpp \
+ /usr/include/stdc-predef.h /usr/include/c++/13/iostream \
+ /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -153,12 +154,14 @@ CMakeFiles/serialization_test.dir/tests/serialization_test.cpp.o: \
  /usr/include/x86_64-linux-gnu/c++/13/bits/basic_file.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++io.h \
  /usr/include/c++/13/bits/fstream.tcc /usr/include/c++/13/cassert \
- /usr/include/assert.h /home/alex/labs3/tests/../arr.h \
- /home/alex/labs3/tests/../list.h /home/alex/labs3/tests/../dlist.h \
- /home/alex/labs3/tests/../stack.h /home/alex/labs3/tests/../queue.h \
- /home/alex/labs3/tests/../compl.h /home/alex/labs3/tests/../hash.h \
- /usr/include/c++/13/cmath /usr/include/math.h \
- /usr/include/x86_64-linux-gnu/bits/math-vector.h \
+ /usr/include/assert.h /home/user/3sem/labb/tests/../arr.h \
+ /home/user/3sem/labb/tests/../list.h \
+ /home/user/3sem/labb/tests/../dlist.h \
+ /home/user/3sem/labb/tests/../stack.h \
+ /home/user/3sem/labb/tests/../queue.h \
+ /home/user/3sem/labb/tests/../compl.h \
+ /home/user/3sem/labb/tests/../hash.h /usr/include/c++/13/cmath \
+ /usr/include/math.h /usr/include/x86_64-linux-gnu/bits/math-vector.h \
  /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
  /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h \
  /usr/include/x86_64-linux-gnu/bits/fp-logb.h \

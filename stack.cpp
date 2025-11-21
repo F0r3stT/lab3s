@@ -13,7 +13,6 @@ Stack::~Stack() {
         top = top->next;
         delete tmp;
     }
-    cout << "Стек очищен" << "\n";
 }
 
 void Stack::push(string val) {
@@ -100,7 +99,6 @@ void Stack::loadFromFile(const string& filename) {
     }
 }
 
-// --- BINARY ---
 void Stack::saveToBinaryFile(const string& filename) const {
     ofstream file(filename, ios::binary | ios::trunc);
     if (!file) return;

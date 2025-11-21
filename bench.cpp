@@ -1,7 +1,7 @@
 #include <benchmark/benchmark.h>
 #include "arr.h"
 #include "list.h"
-#include "dList.h"
+#include "dlist.h"
 #include "stack.h"
 #include "queue.h"
 #include "hash.h"
@@ -47,9 +47,7 @@ static void BM_Stack_PushPop(benchmark::State& state) {
 }
 BENCHMARK(BM_Stack_PushPop)->Range(1000, 100000);
 
-// =========================
-// Queue
-// =========================
+
 static void BM_Queue_PushPop(benchmark::State& state) {
     for (auto _ : state) {
         Queue q;
@@ -61,9 +59,7 @@ static void BM_Queue_PushPop(benchmark::State& state) {
 }
 BENCHMARK(BM_Queue_PushPop)->Range(1000, 100000);
 
-// =========================
-// CompleteBinaryTree
-// =========================
+
 static void BM_CBT_Insert(benchmark::State& state) {
     for (auto _ : state) {
         CompleteBinaryTree t;
@@ -96,9 +92,7 @@ static void BM_ChainHash_Insert(benchmark::State& state) {
 }
 BENCHMARK(BM_ChainHash_Insert)->Range(1000, 50000);
 
-// =========================
-// OpenHash
-// =========================
+
 static void BM_OpenHash_Insert(benchmark::State& state) {
     for (auto _ : state) {
         OpenHash h(state.range(0) * 2);
@@ -108,7 +102,5 @@ static void BM_OpenHash_Insert(benchmark::State& state) {
 }
 BENCHMARK(BM_OpenHash_Insert)->Range(1000, 50000);
 
-// ========================================
-// BENCHMARK MAIN
-// ========================================
+
 BENCHMARK_MAIN();

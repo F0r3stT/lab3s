@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - coverage.info - src/string_util.h</title>
+  <title>LCOV - coverage_cleaned.info - src/string_util.h</title>
   <link rel="stylesheet" type="text/css" href="../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">coverage.info</td>
+            <td class="headerValue">coverage_cleaned.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2025-11-20 13:27:32</td>
+            <td class="headerValue">2025-11-21 19:45:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
@@ -87,22 +87,22 @@
 <span id="L25"><span class="lineNum">      25</span>              : std::string</span>
 <span id="L26"><span class="lineNum">      26</span>              : StrFormat(const char* format, ...);</span>
 <span id="L27"><span class="lineNum">      27</span>              : </span>
-<span id="L28"><span class="lineNum">      28</span> <span class="tlaGNC tlaBgGNC">        1978 : inline std::ostream&amp; StrCatImp(std::ostream&amp; out) BENCHMARK_NOEXCEPT {</span></span>
-<span id="L29"><span class="lineNum">      29</span> <span class="tlaGNC">        1978 :   return out;</span></span>
+<span id="L28"><span class="lineNum">      28</span> <span class="tlaGNC tlaBgGNC">         989 : inline std::ostream&amp; StrCatImp(std::ostream&amp; out) BENCHMARK_NOEXCEPT {</span></span>
+<span id="L29"><span class="lineNum">      29</span> <span class="tlaGNC">         989 :   return out;</span></span>
 <span id="L30"><span class="lineNum">      30</span>              : }</span>
 <span id="L31"><span class="lineNum">      31</span>              : </span>
 <span id="L32"><span class="lineNum">      32</span>              : template &lt;class First, class... Rest&gt;</span>
-<span id="L33"><span class="lineNum">      33</span> <span class="tlaGNC">        4902 : inline std::ostream&amp; StrCatImp(std::ostream&amp; out, First&amp;&amp; f, Rest&amp;&amp;... rest) {</span></span>
-<span id="L34"><span class="lineNum">      34</span> <span class="tlaGNC">        4902 :   out &lt;&lt; std::forward&lt;First&gt;(f);</span></span>
-<span id="L35"><span class="lineNum">      35</span> <span class="tlaGNC">        4902 :   return StrCatImp(out, std::forward&lt;Rest&gt;(rest)...);</span></span>
+<span id="L33"><span class="lineNum">      33</span> <span class="tlaGNC">        2451 : inline std::ostream&amp; StrCatImp(std::ostream&amp; out, First&amp;&amp; f, Rest&amp;&amp;... rest) {</span></span>
+<span id="L34"><span class="lineNum">      34</span> <span class="tlaGNC">        2451 :   out &lt;&lt; std::forward&lt;First&gt;(f);</span></span>
+<span id="L35"><span class="lineNum">      35</span> <span class="tlaGNC">        2451 :   return StrCatImp(out, std::forward&lt;Rest&gt;(rest)...);</span></span>
 <span id="L36"><span class="lineNum">      36</span>              : }</span>
 <span id="L37"><span class="lineNum">      37</span>              : </span>
 <span id="L38"><span class="lineNum">      38</span>              : template &lt;class... Args&gt;</span>
-<span id="L39"><span class="lineNum">      39</span> <span class="tlaGNC">        1978 : inline std::string StrCat(Args&amp;&amp;... args) {</span></span>
-<span id="L40"><span class="lineNum">      40</span> <span class="tlaGNC">        1978 :   std::ostringstream ss;</span></span>
-<span id="L41"><span class="lineNum">      41</span> <span class="tlaGNC">        1978 :   StrCatImp(ss, std::forward&lt;Args&gt;(args)...);</span></span>
-<span id="L42"><span class="lineNum">      42</span> <span class="tlaGNC">        3956 :   return ss.str();</span></span>
-<span id="L43"><span class="lineNum">      43</span> <span class="tlaGNC">        1978 : }</span></span>
+<span id="L39"><span class="lineNum">      39</span> <span class="tlaGNC">         989 : inline std::string StrCat(Args&amp;&amp;... args) {</span></span>
+<span id="L40"><span class="lineNum">      40</span> <span class="tlaGNC">         989 :   std::ostringstream ss;</span></span>
+<span id="L41"><span class="lineNum">      41</span> <span class="tlaGNC">         989 :   StrCatImp(ss, std::forward&lt;Args&gt;(args)...);</span></span>
+<span id="L42"><span class="lineNum">      42</span> <span class="tlaGNC">        1978 :   return ss.str();</span></span>
+<span id="L43"><span class="lineNum">      43</span> <span class="tlaGNC">         989 : }</span></span>
 <span id="L44"><span class="lineNum">      44</span>              : </span>
 <span id="L45"><span class="lineNum">      45</span>              : BENCHMARK_EXPORT</span>
 <span id="L46"><span class="lineNum">      46</span>              : std::vector&lt;std::string&gt; StrSplit(const std::string&amp; str, char delim);</span>

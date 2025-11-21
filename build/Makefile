@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/alex/labs3
+CMAKE_SOURCE_DIR = /home/user/3sem/labb
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/alex/labs3/build
+CMAKE_BINARY_DIR = /home/user/3sem/labb/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -142,9 +142,9 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/alex/labs3/build/CMakeFiles /home/alex/labs3/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/user/3sem/labb/build/CMakeFiles /home/user/3sem/labb/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/alex/labs3/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/user/3sem/labb/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -183,32 +183,6 @@ DataStructures: cmake_check_build_system
 DataStructures/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DataStructures.dir/build.make CMakeFiles/DataStructures.dir/build
 .PHONY : DataStructures/fast
-
-#=============================================================================
-# Target rules for targets named prg
-
-# Build rule for target.
-prg: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 prg
-.PHONY : prg
-
-# fast build rule for target.
-prg/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/prg.dir/build.make CMakeFiles/prg.dir/build
-.PHONY : prg/fast
-
-#=============================================================================
-# Target rules for targets named serialization_test
-
-# Build rule for target.
-serialization_test: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 serialization_test
-.PHONY : serialization_test
-
-# fast build rule for target.
-serialization_test/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/serialization_test.dir/build.make CMakeFiles/serialization_test.dir/build
-.PHONY : serialization_test/fast
 
 #=============================================================================
 # Target rules for targets named arr_test
@@ -300,6 +274,45 @@ stack_test: cmake_check_build_system
 stack_test/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/stack_test.dir/build.make CMakeFiles/stack_test.dir/build
 .PHONY : stack_test/fast
+
+#=============================================================================
+# Target rules for targets named serialization_test
+
+# Build rule for target.
+serialization_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 serialization_test
+.PHONY : serialization_test
+
+# fast build rule for target.
+serialization_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/serialization_test.dir/build.make CMakeFiles/serialization_test.dir/build
+.PHONY : serialization_test/fast
+
+#=============================================================================
+# Target rules for targets named prg
+
+# Build rule for target.
+prg: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 prg
+.PHONY : prg
+
+# fast build rule for target.
+prg/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/prg.dir/build.make CMakeFiles/prg.dir/build
+.PHONY : prg/fast
+
+#=============================================================================
+# Target rules for targets named bench
+
+# Build rule for target.
+bench: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bench
+.PHONY : bench
+
+# fast build rule for target.
+bench/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bench.dir/build.make CMakeFiles/bench.dir/build
+.PHONY : bench/fast
 
 #=============================================================================
 # Target rules for targets named gmock
@@ -936,6 +949,30 @@ arr.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DataStructures.dir/build.make CMakeFiles/DataStructures.dir/arr.cpp.s
 .PHONY : arr.cpp.s
 
+bench.o: bench.cpp.o
+.PHONY : bench.o
+
+# target to build an object file
+bench.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bench.dir/build.make CMakeFiles/bench.dir/bench.cpp.o
+.PHONY : bench.cpp.o
+
+bench.i: bench.cpp.i
+.PHONY : bench.i
+
+# target to preprocess a source file
+bench.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bench.dir/build.make CMakeFiles/bench.dir/bench.cpp.i
+.PHONY : bench.cpp.i
+
+bench.s: bench.cpp.s
+.PHONY : bench.s
+
+# target to generate assembly for a file
+bench.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bench.dir/build.make CMakeFiles/bench.dir/bench.cpp.s
+.PHONY : bench.cpp.s
+
 compl.o: compl.cpp.o
 .PHONY : compl.o
 
@@ -1313,6 +1350,7 @@ help:
 	@echo "... args_product_test"
 	@echo "... arr_test"
 	@echo "... basic_test"
+	@echo "... bench"
 	@echo "... benchmark"
 	@echo "... benchmark_gtest"
 	@echo "... benchmark_main"
@@ -1369,6 +1407,9 @@ help:
 	@echo "... arr.o"
 	@echo "... arr.i"
 	@echo "... arr.s"
+	@echo "... bench.o"
+	@echo "... bench.i"
+	@echo "... bench.s"
 	@echo "... compl.o"
 	@echo "... compl.i"
 	@echo "... compl.s"

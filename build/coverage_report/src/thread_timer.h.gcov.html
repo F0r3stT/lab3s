@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - coverage.info - src/thread_timer.h</title>
+  <title>LCOV - coverage_cleaned.info - src/thread_timer.h</title>
   <link rel="stylesheet" type="text/css" href="../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">coverage.info</td>
+            <td class="headerValue">coverage_cleaned.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2025-11-20 13:27:32</td>
+            <td class="headerValue">2025-11-21 19:45:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
@@ -70,62 +70,62 @@
 <span id="L8"><span class="lineNum">       8</span>              : namespace internal {</span>
 <span id="L9"><span class="lineNum">       9</span>              : </span>
 <span id="L10"><span class="lineNum">      10</span>              : class ThreadTimer {</span>
-<span id="L11"><span class="lineNum">      11</span> <span class="tlaGNC tlaBgGNC">       11170 :   explicit ThreadTimer(bool measure_process_cpu_time_)</span></span>
-<span id="L12"><span class="lineNum">      12</span> <span class="tlaGNC">       11170 :       : measure_process_cpu_time(measure_process_cpu_time_) {}</span></span>
+<span id="L11"><span class="lineNum">      11</span> <span class="tlaGNC tlaBgGNC">        5503 :   explicit ThreadTimer(bool measure_process_cpu_time_)</span></span>
+<span id="L12"><span class="lineNum">      12</span> <span class="tlaGNC">        5503 :       : measure_process_cpu_time(measure_process_cpu_time_) {}</span></span>
 <span id="L13"><span class="lineNum">      13</span>              : </span>
 <span id="L14"><span class="lineNum">      14</span>              :  public:</span>
-<span id="L15"><span class="lineNum">      15</span> <span class="tlaGNC">       11115 :   static ThreadTimer Create() {</span></span>
-<span id="L16"><span class="lineNum">      16</span> <span class="tlaGNC">       11115 :     return ThreadTimer(/*measure_process_cpu_time_=*/false);</span></span>
+<span id="L15"><span class="lineNum">      15</span> <span class="tlaGNC">        5476 :   static ThreadTimer Create() {</span></span>
+<span id="L16"><span class="lineNum">      16</span> <span class="tlaGNC">        5476 :     return ThreadTimer(/*measure_process_cpu_time_=*/false);</span></span>
 <span id="L17"><span class="lineNum">      17</span>              :   }</span>
-<span id="L18"><span class="lineNum">      18</span> <span class="tlaGNC">          54 :   static ThreadTimer CreateProcessCpuTime() {</span></span>
-<span id="L19"><span class="lineNum">      19</span> <span class="tlaGNC">          54 :     return ThreadTimer(/*measure_process_cpu_time_=*/true);</span></span>
+<span id="L18"><span class="lineNum">      18</span> <span class="tlaGNC">          27 :   static ThreadTimer CreateProcessCpuTime() {</span></span>
+<span id="L19"><span class="lineNum">      19</span> <span class="tlaGNC">          27 :     return ThreadTimer(/*measure_process_cpu_time_=*/true);</span></span>
 <span id="L20"><span class="lineNum">      20</span>              :   }</span>
 <span id="L21"><span class="lineNum">      21</span>              : </span>
 <span id="L22"><span class="lineNum">      22</span>              :   // Called by each thread</span>
-<span id="L23"><span class="lineNum">      23</span> <span class="tlaGNC">      647563 :   void StartTimer() {</span></span>
-<span id="L24"><span class="lineNum">      24</span> <span class="tlaGNC">      647563 :     running_ = true;</span></span>
-<span id="L25"><span class="lineNum">      25</span> <span class="tlaGNC">      647563 :     start_real_time_ = ChronoClockNow();</span></span>
-<span id="L26"><span class="lineNum">      26</span> <span class="tlaGNC">      641304 :     start_cpu_time_ = ReadCpuTimerOfChoice();</span></span>
-<span id="L27"><span class="lineNum">      27</span> <span class="tlaGNC">      719944 :   }</span></span>
+<span id="L23"><span class="lineNum">      23</span> <span class="tlaGNC">      399130 :   void StartTimer() {</span></span>
+<span id="L24"><span class="lineNum">      24</span> <span class="tlaGNC">      399130 :     running_ = true;</span></span>
+<span id="L25"><span class="lineNum">      25</span> <span class="tlaGNC">      399130 :     start_real_time_ = ChronoClockNow();</span></span>
+<span id="L26"><span class="lineNum">      26</span> <span class="tlaGNC">      401590 :     start_cpu_time_ = ReadCpuTimerOfChoice();</span></span>
+<span id="L27"><span class="lineNum">      27</span> <span class="tlaGNC">      421819 :   }</span></span>
 <span id="L28"><span class="lineNum">      28</span>              : </span>
 <span id="L29"><span class="lineNum">      29</span>              :   // Called by each thread</span>
-<span id="L30"><span class="lineNum">      30</span> <span class="tlaGNC">      692225 :   void StopTimer() {</span></span>
-<span id="L31"><span class="lineNum">      31</span> <span class="tlaGNC">      692225 :     BM_CHECK(running_);</span></span>
-<span id="L32"><span class="lineNum">      32</span> <span class="tlaGNC">      682847 :     running_ = false;</span></span>
-<span id="L33"><span class="lineNum">      33</span> <span class="tlaGNC">      682847 :     real_time_used_ += ChronoClockNow() - start_real_time_;</span></span>
+<span id="L30"><span class="lineNum">      30</span> <span class="tlaGNC">      413216 :   void StopTimer() {</span></span>
+<span id="L31"><span class="lineNum">      31</span> <span class="tlaGNC">      413216 :     BM_CHECK(running_);</span></span>
+<span id="L32"><span class="lineNum">      32</span> <span class="tlaGNC">      412811 :     running_ = false;</span></span>
+<span id="L33"><span class="lineNum">      33</span> <span class="tlaGNC">      412811 :     real_time_used_ += ChronoClockNow() - start_real_time_;</span></span>
 <span id="L34"><span class="lineNum">      34</span>              :     // Floating point error can result in the subtraction producing a negative</span>
 <span id="L35"><span class="lineNum">      35</span>              :     // time. Guard against that.</span>
-<span id="L36"><span class="lineNum">      36</span> <span class="tlaGNC">      711779 :     cpu_time_used_ +=</span></span>
-<span id="L37"><span class="lineNum">      37</span> <span class="tlaGNC">      659822 :         std::max&lt;double&gt;(ReadCpuTimerOfChoice() - start_cpu_time_, 0);</span></span>
-<span id="L38"><span class="lineNum">      38</span> <span class="tlaGNC">      711779 :   }</span></span>
+<span id="L36"><span class="lineNum">      36</span> <span class="tlaGNC">      418625 :     cpu_time_used_ +=</span></span>
+<span id="L37"><span class="lineNum">      37</span> <span class="tlaGNC">      408858 :         std::max&lt;double&gt;(ReadCpuTimerOfChoice() - start_cpu_time_, 0);</span></span>
+<span id="L38"><span class="lineNum">      38</span> <span class="tlaGNC">      418625 :   }</span></span>
 <span id="L39"><span class="lineNum">      39</span>              : </span>
 <span id="L40"><span class="lineNum">      40</span>              :   // Called by each thread</span>
-<span id="L41"><span class="lineNum">      41</span> <span class="tlaGNC">        3676 :   void SetIterationTime(double seconds) { manual_time_used_ += seconds; }</span></span>
+<span id="L41"><span class="lineNum">      41</span> <span class="tlaGNC">        1802 :   void SetIterationTime(double seconds) { manual_time_used_ += seconds; }</span></span>
 <span id="L42"><span class="lineNum">      42</span>              : </span>
-<span id="L43"><span class="lineNum">      43</span> <span class="tlaGNC">          80 :   bool running() const { return running_; }</span></span>
+<span id="L43"><span class="lineNum">      43</span> <span class="tlaGNC">          40 :   bool running() const { return running_; }</span></span>
 <span id="L44"><span class="lineNum">      44</span>              : </span>
 <span id="L45"><span class="lineNum">      45</span>              :   // REQUIRES: timer is not running</span>
-<span id="L46"><span class="lineNum">      46</span> <span class="tlaGNC">       11192 :   double real_time_used() const {</span></span>
-<span id="L47"><span class="lineNum">      47</span> <span class="tlaGNC">       11192 :     BM_CHECK(!running_);</span></span>
-<span id="L48"><span class="lineNum">      48</span> <span class="tlaGNC">       11192 :     return real_time_used_;</span></span>
+<span id="L46"><span class="lineNum">      46</span> <span class="tlaGNC">        5503 :   double real_time_used() const {</span></span>
+<span id="L47"><span class="lineNum">      47</span> <span class="tlaGNC">        5503 :     BM_CHECK(!running_);</span></span>
+<span id="L48"><span class="lineNum">      48</span> <span class="tlaGNC">        5503 :     return real_time_used_;</span></span>
 <span id="L49"><span class="lineNum">      49</span>              :   }</span>
 <span id="L50"><span class="lineNum">      50</span>              : </span>
 <span id="L51"><span class="lineNum">      51</span>              :   // REQUIRES: timer is not running</span>
-<span id="L52"><span class="lineNum">      52</span> <span class="tlaGNC">       11192 :   double cpu_time_used() const {</span></span>
-<span id="L53"><span class="lineNum">      53</span> <span class="tlaGNC">       11192 :     BM_CHECK(!running_);</span></span>
-<span id="L54"><span class="lineNum">      54</span> <span class="tlaGNC">       11192 :     return cpu_time_used_;</span></span>
+<span id="L52"><span class="lineNum">      52</span> <span class="tlaGNC">        5503 :   double cpu_time_used() const {</span></span>
+<span id="L53"><span class="lineNum">      53</span> <span class="tlaGNC">        5503 :     BM_CHECK(!running_);</span></span>
+<span id="L54"><span class="lineNum">      54</span> <span class="tlaGNC">        5503 :     return cpu_time_used_;</span></span>
 <span id="L55"><span class="lineNum">      55</span>              :   }</span>
 <span id="L56"><span class="lineNum">      56</span>              : </span>
 <span id="L57"><span class="lineNum">      57</span>              :   // REQUIRES: timer is not running</span>
-<span id="L58"><span class="lineNum">      58</span> <span class="tlaGNC">       11192 :   double manual_time_used() const {</span></span>
-<span id="L59"><span class="lineNum">      59</span> <span class="tlaGNC">       11192 :     BM_CHECK(!running_);</span></span>
-<span id="L60"><span class="lineNum">      60</span> <span class="tlaGNC">       11192 :     return manual_time_used_;</span></span>
+<span id="L58"><span class="lineNum">      58</span> <span class="tlaGNC">        5503 :   double manual_time_used() const {</span></span>
+<span id="L59"><span class="lineNum">      59</span> <span class="tlaGNC">        5503 :     BM_CHECK(!running_);</span></span>
+<span id="L60"><span class="lineNum">      60</span> <span class="tlaGNC">        5503 :     return manual_time_used_;</span></span>
 <span id="L61"><span class="lineNum">      61</span>              :   }</span>
 <span id="L62"><span class="lineNum">      62</span>              : </span>
 <span id="L63"><span class="lineNum">      63</span>              :  private:</span>
-<span id="L64"><span class="lineNum">      64</span> <span class="tlaGNC">     1240229 :   double ReadCpuTimerOfChoice() const {</span></span>
-<span id="L65"><span class="lineNum">      65</span> <span class="tlaGNC">     1240229 :     if (measure_process_cpu_time) return ProcessCPUUsage();</span></span>
-<span id="L66"><span class="lineNum">      66</span> <span class="tlaGNC">     1240121 :     return ThreadCPUUsage();</span></span>
+<span id="L64"><span class="lineNum">      64</span> <span class="tlaGNC">      770463 :   double ReadCpuTimerOfChoice() const {</span></span>
+<span id="L65"><span class="lineNum">      65</span> <span class="tlaGNC">      770463 :     if (measure_process_cpu_time) return ProcessCPUUsage();</span></span>
+<span id="L66"><span class="lineNum">      66</span> <span class="tlaGNC">      770409 :     return ThreadCPUUsage();</span></span>
 <span id="L67"><span class="lineNum">      67</span>              :   }</span>
 <span id="L68"><span class="lineNum">      68</span>              : </span>
 <span id="L69"><span class="lineNum">      69</span>              :   // should the thread, or the process, time be measured?</span>

@@ -144,8 +144,98 @@ TEST(HashTest, parse_cmd_CorrectSplits) {
 TEST(HashTest, parse_cmd_LeadingSpaces) {
     std::string cmd, arg1, rest;
     parse_cmd("   SEARCH   A", cmd, arg1, rest);
-    EXPECT_EQ(cmd, ""); 
-    EXPECT_EQ(arg1, "SEARCH");
+    
+    EXPECT_EQ(cmd, "SEARCH"); 
+    EXPECT_EQ(arg1, "A");
+}
+
+TEST(HashTest, ChainHash_Collision_DeleteMiddle) {
+    ChainHash h(1); 
+    h.insert("A", "1");
+    h.insert("B", "2");
+    h.insert("C", "3");
+    
+
+    EXPECT_TRUE(h.erase("B"));
+    EXPECT_EQ(h.find("B"), "");
+    EXPECT_EQ(h.find("C"), "3");
+    EXPECT_EQ(h.find("A"), "1");
+    
+    // Удаляем C (голова)
+    EXPECT_TRUE(h.erase("C"));
+    EXPECT_EQ(h.find("C"), "");
+    EXPECT_EQ(h.find("A"), "1");
+}
+
+TEST(HashTest, ChainHash_UpdateValue) {
+    ChainHash h(5);
+    h.insert("Key", "Val1");
+    h.insert("Key", "Val2"); // Обновление
+    EXPECT_EQ(h.find("Key"), "Val2");
+}
+
+TEST(HashTest, ChainHash_EmptyOps) {
+    ChainHash h(5);
+    EXPECT_FALSE(h.erase("Missing"));
+    EXPECT_EQ(h.find("Missing"), "");
+    
+    OutputCapture cap;
+    h.show(); // "пусто"
+    EXPECT_NE(cap.str().find("пусто"), std::string::npos);
+}
+
+
+TEST(HashTest, OpenHash_TableFull_WrapAround) {
+    OutputCapture cap;
+    OpenHash h(2);
+    h.insert("A", "1");
+    h.insert("B", "2");
+    
+
+    h.insert("C", "3"); 
+    
+    EXPECT_NE(cap.str().find("переполнена"), std::string::npos);
+}
+
+TEST(HashTest, OpenHash_Deleted_Reuse) {
+    OpenHash h(3);
+    h.insert("A", "1");
+    h.insert("B", "2");
+    
+    h.erase("A");
+    EXPECT_EQ(h.find("A"), "");
+    
+    h.insert("C", "3");
+    EXPECT_EQ(h.find("C"), "3");
+    
+    EXPECT_EQ(h.find("B"), "2");
+}
+
+TEST(HashTest, OpenHash_Loop_NotFound) {
+    OpenHash h(3);
+    h.insert("A", "1");
+    // Ищем несуществующий, чтобы пройти цикл
+    EXPECT_EQ(h.find("Z"), "");
+    EXPECT_FALSE(h.erase("Z"));
+}
+
+TEST(HashTest, Hash_IO_Errors) {
+    ChainHash ch(5);
+    ch.saveToFile(""); 
+    ch.loadFromFile("missing.txt");
+    
+    OpenHash oh(5);
+    oh.saveToBinaryFile("");
+    oh.loadFromBinaryFile("missing.bin");
+}
+
+TEST(HashTest, Hash_Cmd_Parse) {
+    std::string cmd, a1, rest;
+    // Тест парсинга с лишними пробелами
+    parse_cmd("  INSERT   Key   Value With Space  ", cmd, a1, rest);
+    EXPECT_EQ(cmd, "INSERT");
+    EXPECT_EQ(a1, "Key");
+    EXPECT_EQ(rest, "Value With Space  ");
 }
 
 TEST(HashTest, hash_man_scripted) {

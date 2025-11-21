@@ -3,6 +3,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/serialization_test.dir/tests/serialization_test.cpp.o.d"
   "serialization_test"
   "serialization_test.pdb"
+  "serialization_test[1]_tests.cmake"
 )
 
 # Per-language clean rules from dependency scanning.

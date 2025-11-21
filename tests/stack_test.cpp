@@ -31,7 +31,6 @@ TEST(StackTest, Branch_Coverage) {
 
 TEST(StackTest, Branch_Killer_And_Extras) {
     Stack s;
-    // Операции на пустом стеке
     EXPECT_EQ(s.pop(), "[STACK_EMPTY]");
     EXPECT_EQ(s.peek(), "[STACK_EMPTY]");
     
@@ -79,4 +78,30 @@ TEST(DestructorTest, StackCleanup) {
         s.push("1");
         s.push("2");
     }
+}
+
+TEST(StackTest, Coverage_EmptyOps) {
+    Stack s;
+    OutputCapture cap;
+    
+    EXPECT_EQ(s.pop(), "[STACK_EMPTY]");
+    EXPECT_EQ(s.peek(), "[STACK_EMPTY]");
+    
+    s.readStack();
+    EXPECT_NE(cap.str().find("пуст"), string::npos);
+}
+
+TEST(StackTest, Coverage_IO) {
+    Stack s;
+    s.saveToFile("");
+    s.loadFromFile("missing.dat");
+    
+    {
+        ofstream f("bad_stack.bin", ios::binary);
+        int c = 10;
+        f.write((char*)&c, sizeof(c));
+        f.close();
+    }
+    s.loadFromBinaryFile("bad_stack.bin");
+    remove("bad_stack.bin");
 }

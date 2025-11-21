@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - coverage.info - src/benchmark_api_internal.h</title>
+  <title>LCOV - coverage_cleaned.info - src/benchmark_api_internal.h</title>
   <link rel="stylesheet" type="text/css" href="../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">coverage.info</td>
+            <td class="headerValue">coverage_cleaned.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2025-11-20 13:27:32</td>
+            <td class="headerValue">2025-11-21 19:45:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
@@ -83,24 +83,24 @@
 <span id="L21"><span class="lineNum">      21</span>              :                     int per_family_instance_index,</span>
 <span id="L22"><span class="lineNum">      22</span>              :                     const std::vector&lt;int64_t&gt;&amp; args, int threads);</span>
 <span id="L23"><span class="lineNum">      23</span>              : </span>
-<span id="L24"><span class="lineNum">      24</span> <span class="tlaGNC tlaBgGNC">       10703 :   const BenchmarkName&amp; name() const { return name_; }</span></span>
-<span id="L25"><span class="lineNum">      25</span> <span class="tlaGNC">        1750 :   int family_index() const { return family_index_; }</span></span>
-<span id="L26"><span class="lineNum">      26</span> <span class="tlaGNC">        1602 :   int per_family_instance_index() const { return per_family_instance_index_; }</span></span>
-<span id="L27"><span class="lineNum">      27</span> <span class="tlaGNC">        1148 :   AggregationReportMode aggregation_report_mode() const {</span></span>
-<span id="L28"><span class="lineNum">      28</span> <span class="tlaGNC">        1148 :     return aggregation_report_mode_;</span></span>
+<span id="L24"><span class="lineNum">      24</span> <span class="tlaGNC tlaBgGNC">        5516 :   const BenchmarkName&amp; name() const { return name_; }</span></span>
+<span id="L25"><span class="lineNum">      25</span> <span class="tlaGNC">         875 :   int family_index() const { return family_index_; }</span></span>
+<span id="L26"><span class="lineNum">      26</span> <span class="tlaGNC">         801 :   int per_family_instance_index() const { return per_family_instance_index_; }</span></span>
+<span id="L27"><span class="lineNum">      27</span> <span class="tlaGNC">         574 :   AggregationReportMode aggregation_report_mode() const {</span></span>
+<span id="L28"><span class="lineNum">      28</span> <span class="tlaGNC">         574 :     return aggregation_report_mode_;</span></span>
 <span id="L29"><span class="lineNum">      29</span>              :   }</span>
-<span id="L30"><span class="lineNum">      30</span> <span class="tlaGNC">        1602 :   TimeUnit time_unit() const { return time_unit_; }</span></span>
-<span id="L31"><span class="lineNum">      31</span> <span class="tlaGNC">       17633 :   bool measure_process_cpu_time() const { return measure_process_cpu_time_; }</span></span>
-<span id="L32"><span class="lineNum">      32</span> <span class="tlaGNC">        6393 :   bool use_real_time() const { return use_real_time_; }</span></span>
-<span id="L33"><span class="lineNum">      33</span> <span class="tlaGNC">        8035 :   bool use_manual_time() const { return use_manual_time_; }</span></span>
-<span id="L34"><span class="lineNum">      34</span> <span class="tlaGNC">        2688 :   BigO complexity() const { return complexity_; }</span></span>
-<span id="L35"><span class="lineNum">      35</span> <span class="tlaGNC">        1564 :   BigOFunc* complexity_lambda() const { return complexity_lambda_; }</span></span>
-<span id="L36"><span class="lineNum">      36</span> <span class="tlaGNC">        2688 :   const std::vector&lt;Statistics&gt;&amp; statistics() const { return statistics_; }</span></span>
-<span id="L37"><span class="lineNum">      37</span> <span class="tlaGNC">        2298 :   int repetitions() const { return repetitions_; }</span></span>
-<span id="L38"><span class="lineNum">      38</span> <span class="tlaGNC">        2252 :   double min_time() const { return min_time_; }</span></span>
-<span id="L39"><span class="lineNum">      39</span> <span class="tlaGNC">           6 :   double min_warmup_time() const { return min_warmup_time_; }</span></span>
-<span id="L40"><span class="lineNum">      40</span> <span class="tlaGNC">        1398 :   IterationCount iterations() const { return iterations_; }</span></span>
-<span id="L41"><span class="lineNum">      41</span> <span class="tlaGNC">       31302 :   int threads() const { return threads_; }</span></span>
+<span id="L30"><span class="lineNum">      30</span> <span class="tlaGNC">         801 :   TimeUnit time_unit() const { return time_unit_; }</span></span>
+<span id="L31"><span class="lineNum">      31</span> <span class="tlaGNC">        8899 :   bool measure_process_cpu_time() const { return measure_process_cpu_time_; }</span></span>
+<span id="L32"><span class="lineNum">      32</span> <span class="tlaGNC">        3361 :   bool use_real_time() const { return use_real_time_; }</span></span>
+<span id="L33"><span class="lineNum">      33</span> <span class="tlaGNC">        4182 :   bool use_manual_time() const { return use_manual_time_; }</span></span>
+<span id="L34"><span class="lineNum">      34</span> <span class="tlaGNC">        1344 :   BigO complexity() const { return complexity_; }</span></span>
+<span id="L35"><span class="lineNum">      35</span> <span class="tlaGNC">         782 :   BigOFunc* complexity_lambda() const { return complexity_lambda_; }</span></span>
+<span id="L36"><span class="lineNum">      36</span> <span class="tlaGNC">        1344 :   const std::vector&lt;Statistics&gt;&amp; statistics() const { return statistics_; }</span></span>
+<span id="L37"><span class="lineNum">      37</span> <span class="tlaGNC">        1149 :   int repetitions() const { return repetitions_; }</span></span>
+<span id="L38"><span class="lineNum">      38</span> <span class="tlaGNC">        1126 :   double min_time() const { return min_time_; }</span></span>
+<span id="L39"><span class="lineNum">      39</span> <span class="tlaGNC">           3 :   double min_warmup_time() const { return min_warmup_time_; }</span></span>
+<span id="L40"><span class="lineNum">      40</span> <span class="tlaGNC">         699 :   IterationCount iterations() const { return iterations_; }</span></span>
+<span id="L41"><span class="lineNum">      41</span> <span class="tlaGNC">       16309 :   int threads() const { return threads_; }</span></span>
 <span id="L42"><span class="lineNum">      42</span>              :   void Setup() const;</span>
 <span id="L43"><span class="lineNum">      43</span>              :   void Teardown() const;</span>
 <span id="L44"><span class="lineNum">      44</span>              : </span>

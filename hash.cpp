@@ -446,6 +446,9 @@ void parse_cmd(const string& line, string& cmd, string& arg1, string& rest) {
     cmd.clear(); arg1.clear(); rest.clear();
     int lineLength = (int)line.size();
     int idx = 0;
+    
+    while (idx < lineLength && is_space_char(line[idx])) { idx++; }
+
     while (idx < lineLength && !is_space_char(line[idx])) {
         cmd.push_back(line[idx]); idx++;
     }

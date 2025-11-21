@@ -1,5 +1,5 @@
 _deps/googlebenchmark-build/src/CMakeFiles/benchmark.dir/json_reporter.cc.o: \
- /home/alex/labs3/build/_deps/googlebenchmark-src/src/json_reporter.cc \
+ /home/user/3sem/labb/build/_deps/googlebenchmark-src/src/json_reporter.cc \
  /usr/include/stdc-predef.h /usr/include/c++/13/algorithm \
  /usr/include/c++/13/bits/stl_algobase.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
@@ -174,7 +174,7 @@ _deps/googlebenchmark-build/src/CMakeFiles/benchmark.dir/json_reporter.cc.o: \
  /usr/include/c++/13/bits/stl_vector.h \
  /usr/include/c++/13/bits/stl_bvector.h \
  /usr/include/c++/13/bits/vector.tcc \
- /home/alex/labs3/build/_deps/googlebenchmark-src/include/benchmark/benchmark.h \
+ /home/user/3sem/labb/build/_deps/googlebenchmark-src/include/benchmark/benchmark.h \
  /usr/include/c++/13/cassert /usr/include/assert.h \
  /usr/include/c++/13/cstddef /usr/include/c++/13/map \
  /usr/include/c++/13/bits/stl_tree.h \
@@ -185,15 +185,15 @@ _deps/googlebenchmark-build/src/CMakeFiles/benchmark.dir/json_reporter.cc.o: \
  /usr/include/c++/13/bits/stl_set.h \
  /usr/include/c++/13/bits/stl_multiset.h /usr/include/c++/13/utility \
  /usr/include/c++/13/bits/stl_relops.h \
- /home/alex/labs3/build/_deps/googlebenchmark-src/include/benchmark/export.h \
+ /home/user/3sem/labb/build/_deps/googlebenchmark-src/include/benchmark/export.h \
  /usr/include/c++/13/atomic /usr/include/c++/13/bits/atomic_base.h \
  /usr/include/c++/13/bits/atomic_lockfree_defines.h \
- /home/alex/labs3/build/_deps/googlebenchmark-src/src/complexity.h \
- /home/alex/labs3/build/_deps/googlebenchmark-src/src/string_util.h \
+ /home/user/3sem/labb/build/_deps/googlebenchmark-src/src/complexity.h \
+ /home/user/3sem/labb/build/_deps/googlebenchmark-src/src/string_util.h \
  /usr/include/c++/13/sstream /usr/include/c++/13/bits/sstream.tcc \
- /home/alex/labs3/build/_deps/googlebenchmark-src/src/check.h \
- /home/alex/labs3/build/_deps/googlebenchmark-src/src/internal_macros.h \
- /home/alex/labs3/build/_deps/googlebenchmark-src/src/log.h \
- /home/alex/labs3/build/_deps/googlebenchmark-src/src/timers.h \
+ /home/user/3sem/labb/build/_deps/googlebenchmark-src/src/check.h \
+ /home/user/3sem/labb/build/_deps/googlebenchmark-src/src/internal_macros.h \
+ /home/user/3sem/labb/build/_deps/googlebenchmark-src/src/log.h \
+ /home/user/3sem/labb/build/_deps/googlebenchmark-src/src/timers.h \
  /usr/include/c++/13/chrono /usr/include/c++/13/bits/chrono.h \
  /usr/include/c++/13/ratio /usr/include/c++/13/bits/parse_numbers.h

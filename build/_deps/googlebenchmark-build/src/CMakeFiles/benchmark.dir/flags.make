@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DBENCHMARK_HAS_PTHREAD_AFFINITY -DBENCHMARK_STATIC_DEFINE -DHAVE_POSIX_REGEX -DHAVE_PTHREAD_AFFINITY -DHAVE_STD_REGEX -DHAVE_STEADY_CLOCK
 
-CXX_INCLUDES = -I/home/alex/labs3/build/_deps/googlebenchmark-src/include -I/home/alex/labs3/build/_deps/googlebenchmark-src/src
+CXX_INCLUDES = -I/home/user/3sem/labb/build/_deps/googlebenchmark-src/include -I/home/user/3sem/labb/build/_deps/googlebenchmark-src/src
 
-CXX_FLAGS = --coverage -g -O0  -Wall  -Wextra  -Wshadow  -Wfloat-equal  -Wold-style-cast  -Werror  -pedantic  -pedantic-errors  -fstrict-aliasing  -Wno-deprecated-declarations  -Wno-deprecated  -Wstrict-aliasing -g -std=c++11 -fvisibility=hidden -fvisibility-inlines-hidden
+CXX_FLAGS =  --coverage  -Wall  -Wextra  -Wshadow  -Wfloat-equal  -Wold-style-cast  -Werror  -pedantic  -pedantic-errors  -fstrict-aliasing  -Wno-deprecated-declarations  -Wno-deprecated  -Wstrict-aliasing -std=c++11 -fvisibility=hidden -fvisibility-inlines-hidden
 

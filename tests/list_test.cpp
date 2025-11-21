@@ -179,6 +179,120 @@ TEST(MyListTest, Coverage_Load_Corrupted) {
     remove("corrupted_list.dat");
 }
 
+TEST(MyListTest, Coverage_Delete_From_Empty) {
+    MyList list;
+    OutputCapture cap;
+    
+    // Пытаемся удалить из пустого
+    list.delHead();
+    list.delTail();
+    list.delByValue("A");
+    list.delAfterValue("A");
+    list.delBeforeValue("A");
+    
+    string out = cap.str();
+    EXPECT_NE(out.find("пуст"), string::npos); // Проверяем вывод ошибки
+}
+
+TEST(MyListTest, Coverage_Add_EdgeCases) {
+    MyList list;
+    OutputCapture cap;
+    
+    // addBefore в пустой список
+    list.addBefore("Target", "Val"); 
+    EXPECT_EQ(list.getHead_test(), nullptr);
+
+    list.addAfter("Target", "Val");
+    EXPECT_NE(cap.str().find("пуст"), string::npos);
+    
+    list.addTail("A");
+    list.addBefore("A", "NewHead");
+    EXPECT_EQ(list.getHead_test()->value, "NewHead");
+    
+    list.addAfter("NonExistent", "X");
+    
+    list.addBefore("NonExistent", "X");
+}
+
+TEST(MyListTest, Coverage_Delete_Head_Tail_SingleElement) {
+    MyList list;
+    list.addHead("Single");
+    
+
+    list.delTail();
+    EXPECT_EQ(list.getHead_test(), nullptr);
+    
+    list.addHead("Single2");
+    list.delHead();
+    EXPECT_EQ(list.getHead_test(), nullptr);
+}
+
+TEST(MyListTest, Coverage_DelByValue_Cases) {
+    MyList list;
+    OutputCapture cap;
+    
+    list.addTail("A");
+    list.addTail("B");
+    list.addTail("C");
+    
+    // Удаляем голову по значению
+    list.delByValue("A");
+    EXPECT_FALSE(list.findValue("A"));
+    EXPECT_EQ(list.getHead_test()->value, "B");
+    
+    // Удаляем несуществующий
+    list.delByValue("Z");
+    EXPECT_NE(cap.str().find("не найден"), string::npos);
+    
+    // Удаляем хвост по значению
+    list.delByValue("C");
+    EXPECT_FALSE(list.findValue("C"));
+}
+
+TEST(MyListTest, Coverage_DelAfter_DelBefore) {
+    MyList list;
+    
+    list.addTail("A");
+    list.delAfterValue("A"); // Ничего не должно упасть
+    
+    list.addTail("B");
+    list.delAfterValue("A"); // Удалит B
+    EXPECT_FALSE(list.findValue("B"));
+    
+    list.delHead(); // Очистили A
+    list.addTail("1");
+    list.addTail("2");
+    list.addTail("3");
+    
+    list.delBeforeValue("3");
+    EXPECT_FALSE(list.findValue("2"));
+    
+    list.delBeforeValue("1");
+    EXPECT_TRUE(list.findValue("1"));
+    
+    list.delBeforeValue("3"); 
+    EXPECT_FALSE(list.findValue("1"));
+}
+
+TEST(MyListTest, Coverage_IO_Failures) {
+    MyList list;
+    // Запись в недоступный файл
+    list.saveToFile("");
+    
+    // Чтение из несуществующего
+    list.loadFromFile("does_not_exist.txt");
+    EXPECT_EQ(list.getHead_test(), nullptr);
+    
+    // Чтение битого файла
+    {
+        ofstream f("broken_list.txt");
+        f << "NotANumber";
+        f.close();
+    }
+    list.loadFromFile("broken_list.txt");
+    remove("broken_list.txt");
+}
+
 TEST(MyListTest, Coverage_Load_Overwrite) {
     MyList l;
     l.addTail("Old1");

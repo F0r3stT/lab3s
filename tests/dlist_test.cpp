@@ -1,5 +1,6 @@
 #include "gtest/gtest.h"
 #include "../dlist.h"
+#include "../serialize.h"
 #include <string>
 #include <sstream>
 #include <fstream>
@@ -15,117 +16,138 @@ public:
     std::string str() { return buffer.str(); }
 };
 
-TEST(DListTest, Branch_AllCases) {
-    DList dl;
-    OutputCapture cap;
-
-    dl.delHead();
-    dl.delTail();
-    dl.readForward();
-    dl.readBackward();
-    dl.addBefore("A", "B");
-    dl.addAfter("A", "B");
-
-    dl.addHead("A");
-    dl.delHead(); 
-    EXPECT_EQ(dl.getHead_Test(), nullptr);
-
-    dl.addTail("B");
-    dl.delTail();
-    EXPECT_EQ(dl.getTail_Test(), nullptr);
-
-    dl.addHead("2");
-    dl.addHead("1");
-    dl.addTail("3"); 
-    
-    dl.addAfter("1", "1.5"); 
-    dl.addBefore("3", "2.5");
-    
-    dl.delByVal("1"); // Head
-    dl.delByVal("3"); // Tail
-    dl.delByVal("2"); // Middle
-    
-    dl.delAfterValue("NotExists");
-    dl.delBeforeValue("NotExists");
-    
-    dl.addTail("X"); dl.addTail("Y");
-    dl.delAfterValue("X"); 
-    dl.delBeforeValue("X"); 
-    
-    EXPECT_TRUE(dl.contains("X"));
-}
-
-TEST(DListTest, BranchBooster_Conditions) {
-    OutputCapture cap;
-    DList d;
-
-    
-    d.addHead("A"); 
-    d.addHead("B"); 
-    DList d2;
-    d2.addTail("A"); 
-    d2.addTail("B"); 
-
-   
-    d2.delHead(); 
-    d2.delHead(); 
-
-    DList d3;
-    d3.addTail("A");
-    d3.delTail(); 
-
-    DList d4;
-    d4.addTail("A");
-    d4.delAfterValue("Z"); 
-    d4.delAfterValue("A"); 
-    d4.delBeforeValue("Z");
-    d4.delBeforeValue("A");
-}
-
-TEST(DListTest, Branch_InsertSpecifics) {
-    DList d;
-    d.addTail("A"); d.addTail("B"); d.addTail("C"); 
-    
-    d.addAfter("B", "B_new"); 
-    EXPECT_TRUE(d.contains("B_new"));
-
-    d.addAfter("C", "End");
-    EXPECT_EQ(d.getTail_Test()->value, "End");
-
-    d.addBefore("B", "A_new");
-    EXPECT_TRUE(d.contains("A_new"));
-
-    d.addBefore("A", "Start");
-    EXPECT_EQ(d.getHead_Test()->value, "Start");
-}
-
 TEST(DListTest, Branch_Killer) {
     DList d;
-    d.delAfterValue("Missing"); 
-    d.addTail("A");
-    d.delAfterValue("A"); 
-    d.delBeforeValue("Missing");
-    d.delBeforeValue("A");
 
-    DList empty;
-    empty.delHead(); 
-    empty.delTail(); 
-    empty.readForward(); 
-    empty.readBackward(); 
-    empty.addBefore("Target", "Val"); 
-    empty.addAfter("Target", "Val");
+
+    d.addHead("A"); 
+    d.addHead("B"); // Теперь head был "A" (не null), сработает ветка if
+    // Список: B <-> A
+
+
+    d.delHead(); // head станет A. if (head != nullptr) выполнится.
+    // Список: A
+    EXPECT_EQ(d.getHead_Test()->value, "A");
+
+
+    d.addTail("Z"); 
+    d.delTail(); // tail станет A. if (tail != nullptr) выполнится.
+    EXPECT_EQ(d.getTail_Test()->value, "A");
+
+    
+    d.addTail("C"); 
+    // Список сейчас: A, C
+    d.addAfter("A", "B"); 
+
+    EXPECT_TRUE(d.contains("B"));
 }
 
-TEST(DListTest, SaveAndLoadFile) {
-    OutputCapture cap;
+TEST(DListTest, Coverage_Empty_Ops) {
     DList d;
-    d.addTail("first");
-    d.addTail("second");
-    d.saveToFile("dlist_test.dat");
+    d.delHead();
+    d.delTail();
+    d.delByVal("A");
+    d.delAfterValue("A");
+    d.delBeforeValue("A");
+    d.addAfter("A", "B");
+    d.addBefore("A", "B");
     
-    DList d2;
-    d2.loadFromFile("dlist_test.dat");
-    EXPECT_TRUE(d2.contains("first"));
-    EXPECT_TRUE(d2.contains("second"));
-    remove("dlist_test.dat");
+    EXPECT_FALSE(d.contains("A"));
+}
+
+TEST(DListTest, Coverage_SingleElement_Transitions) {
+    DList d;
+    
+    d.addHead("A");
+    d.delHead();
+    EXPECT_EQ(d.getHead_Test(), nullptr);
+    EXPECT_EQ(d.getTail_Test(), nullptr);
+    
+    d.addHead("B");
+    d.delTail();
+    EXPECT_EQ(d.getHead_Test(), nullptr);
+    EXPECT_EQ(d.getTail_Test(), nullptr);
+}
+
+TEST(DListTest, Coverage_AddBefore_AddAfter_Complex) {
+    DList d;
+    d.addTail("A");
+    d.addTail("C");
+    
+    d.addBefore("C", "B");
+    // Проверка связей
+    // A -> B -> C
+    
+    OutputCapture cap;
+    d.readForward();
+    string out = cap.str();
+    
+    EXPECT_NE(out.find(" B "), string::npos); 
+    
+    d.addBefore("A", "Start");
+    EXPECT_EQ(d.getHead_Test()->value, "Start");
+    
+    d.addAfter("C", "End");
+    EXPECT_EQ(d.getTail_Test()->value, "End");
+}
+
+TEST(DListTest, Coverage_DelByVal_Branches) {
+    DList d;
+    d.addTail("1");
+    d.addTail("2");
+    d.addTail("3");
+    
+    d.delByVal("2");
+    EXPECT_FALSE(d.contains("2"));
+    
+    // Удаление головы
+    d.delByVal("1");
+    EXPECT_EQ(d.getHead_Test()->value, "3");
+    
+    // Удаление хвоста
+    d.delByVal("3");
+    EXPECT_EQ(d.getHead_Test(), nullptr);
+    
+    // Удаление несуществующего
+    d.addTail("X");
+    d.delByVal("Y");
+    EXPECT_TRUE(d.contains("X"));
+}
+
+TEST(DListTest, Coverage_DelAfter_DelBefore_Boundary) {
+    DList d;
+    d.addTail("A");
+    d.addTail("B");
+    
+    d.delBeforeValue("B"); 
+    EXPECT_FALSE(d.contains("A"));
+    EXPECT_EQ(d.getHead_Test()->value, "B");
+    
+    d.delBeforeValue("B"); // Нет элемента перед B
+    EXPECT_EQ(d.getHead_Test()->value, "B");
+    
+    d.delAfterValue("B"); 
+    EXPECT_TRUE(d.contains("B"));
+    
+    d.addTail("C");
+    d.delAfterValue("B"); 
+    EXPECT_FALSE(d.contains("C"));
+}
+
+TEST(DListTest, Coverage_IO) {
+    DList d;
+    d.saveToFile(""); 
+    d.saveToBinaryFile("");
+    
+    d.loadFromFile("missing.txt");
+    d.loadFromBinaryFile("missing.bin");
+    
+    {
+        ofstream f("bad.bin", ios::binary);
+        int count = 5;
+        f.write((char*)&count, sizeof(count));
+        f.close();
+    }
+    d.loadFromBinaryFile("bad.bin");
+    remove("bad.bin");
 }

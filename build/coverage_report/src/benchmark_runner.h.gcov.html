@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - coverage.info - src/benchmark_runner.h</title>
+  <title>LCOV - coverage_cleaned.info - src/benchmark_runner.h</title>
   <link rel="stylesheet" type="text/css" href="../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">coverage.info</td>
+            <td class="headerValue">coverage_cleaned.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2025-11-20 13:27:32</td>
+            <td class="headerValue">2025-11-21 19:45:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
@@ -123,25 +123,25 @@
 <span id="L61"><span class="lineNum">      61</span>              :                   benchmark::internal::PerfCountersMeasurement* pmc_,</span>
 <span id="L62"><span class="lineNum">      62</span>              :                   BenchmarkReporter::PerFamilyRunReports* reports_for_family);</span>
 <span id="L63"><span class="lineNum">      63</span>              : </span>
-<span id="L64"><span class="lineNum">      64</span> <span class="tlaGNC tlaBgGNC">        6576 :   int GetNumRepeats() const { return repeats; }</span></span>
+<span id="L64"><span class="lineNum">      64</span> <span class="tlaGNC tlaBgGNC">        3288 :   int GetNumRepeats() const { return repeats; }</span></span>
 <span id="L65"><span class="lineNum">      65</span>              : </span>
-<span id="L66"><span class="lineNum">      66</span> <span class="tlaGNC">        4328 :   bool HasRepeatsRemaining() const {</span></span>
-<span id="L67"><span class="lineNum">      67</span> <span class="tlaGNC">        4328 :     return GetNumRepeats() != num_repetitions_done;</span></span>
+<span id="L66"><span class="lineNum">      66</span> <span class="tlaGNC">        2164 :   bool HasRepeatsRemaining() const {</span></span>
+<span id="L67"><span class="lineNum">      67</span> <span class="tlaGNC">        2164 :     return GetNumRepeats() != num_repetitions_done;</span></span>
 <span id="L68"><span class="lineNum">      68</span>              :   }</span>
 <span id="L69"><span class="lineNum">      69</span>              : </span>
 <span id="L70"><span class="lineNum">      70</span>              :   void DoOneRepetition();</span>
 <span id="L71"><span class="lineNum">      71</span>              : </span>
 <span id="L72"><span class="lineNum">      72</span>              :   RunResults&amp;&amp; GetResults();</span>
 <span id="L73"><span class="lineNum">      73</span>              : </span>
-<span id="L74"><span class="lineNum">      74</span> <span class="tlaGNC">        1124 :   BenchmarkReporter::PerFamilyRunReports* GetReportsForFamily() const {</span></span>
-<span id="L75"><span class="lineNum">      75</span> <span class="tlaGNC">        1124 :     return reports_for_family;</span></span>
+<span id="L74"><span class="lineNum">      74</span> <span class="tlaGNC">         562 :   BenchmarkReporter::PerFamilyRunReports* GetReportsForFamily() const {</span></span>
+<span id="L75"><span class="lineNum">      75</span> <span class="tlaGNC">         562 :     return reports_for_family;</span></span>
 <span id="L76"><span class="lineNum">      76</span>              :   }</span>
 <span id="L77"><span class="lineNum">      77</span>              : </span>
-<span id="L78"><span class="lineNum">      78</span> <span class="tlaGNC">        1128 :   double GetMinTime() const { return min_time; }</span></span>
+<span id="L78"><span class="lineNum">      78</span> <span class="tlaGNC">         564 :   double GetMinTime() const { return min_time; }</span></span>
 <span id="L79"><span class="lineNum">      79</span>              : </span>
-<span id="L80"><span class="lineNum">      80</span> <span class="tlaGNC">        1128 :   bool HasExplicitIters() const { return has_explicit_iteration_count; }</span></span>
+<span id="L80"><span class="lineNum">      80</span> <span class="tlaGNC">         564 :   bool HasExplicitIters() const { return has_explicit_iteration_count; }</span></span>
 <span id="L81"><span class="lineNum">      81</span>              : </span>
-<span id="L82"><span class="lineNum">      82</span> <span class="tlaGNC">        1128 :   IterationCount GetIters() const { return iters; }</span></span>
+<span id="L82"><span class="lineNum">      82</span> <span class="tlaGNC">         564 :   IterationCount GetIters() const { return iters; }</span></span>
 <span id="L83"><span class="lineNum">      83</span>              : </span>
 <span id="L84"><span class="lineNum">      84</span>              :  private:</span>
 <span id="L85"><span class="lineNum">      85</span>              :   RunResults run_results;</span>

@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - coverage.info - src/perf_counters.cc</title>
+  <title>LCOV - coverage_cleaned.info - src/perf_counters.cc</title>
   <link rel="stylesheet" type="text/css" href="../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">coverage.info</td>
+            <td class="headerValue">coverage_cleaned.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntryMed">85.0&nbsp;%</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2025-11-20 13:27:32</td>
+            <td class="headerValue">2025-11-21 19:45:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryLo">71.4&nbsp;%</td>
@@ -309,36 +309,36 @@
 <span id="L247"><span class="lineNum">     247</span>              : </span>
 <span id="L248"><span class="lineNum">     248</span>              : const bool PerfCounters::kSupported = false;</span>
 <span id="L249"><span class="lineNum">     249</span>              : </span>
-<span id="L250"><span class="lineNum">     250</span> <span class="tlaGNC tlaBgGNC">           4 : bool PerfCounters::Initialize() { return false; }</span></span>
+<span id="L250"><span class="lineNum">     250</span> <span class="tlaGNC tlaBgGNC">           2 : bool PerfCounters::Initialize() { return false; }</span></span>
 <span id="L251"><span class="lineNum">     251</span>              : </span>
 <span id="L252"><span class="lineNum">     252</span> <span class="tlaUNC tlaBgUNC">           0 : bool PerfCounters::IsCounterSupported(const std::string&amp;) { return false; }</span></span>
 <span id="L253"><span class="lineNum">     253</span>              : </span>
-<span id="L254"><span class="lineNum">     254</span> <span class="tlaGNC tlaBgGNC">          94 : PerfCounters PerfCounters::Create(</span></span>
+<span id="L254"><span class="lineNum">     254</span> <span class="tlaGNC tlaBgGNC">          47 : PerfCounters PerfCounters::Create(</span></span>
 <span id="L255"><span class="lineNum">     255</span>              :     const std::vector&lt;std::string&gt;&amp; counter_names) {</span>
-<span id="L256"><span class="lineNum">     256</span> <span class="tlaGNC">          94 :   if (!counter_names.empty()) {</span></span>
+<span id="L256"><span class="lineNum">     256</span> <span class="tlaGNC">          47 :   if (!counter_names.empty()) {</span></span>
 <span id="L257"><span class="lineNum">     257</span> <span class="tlaUNC tlaBgUNC">           0 :     GetErrorLogInstance() &lt;&lt; &quot;Performance counters not supported.&quot;;</span></span>
 <span id="L258"><span class="lineNum">     258</span>              :   }</span>
-<span id="L259"><span class="lineNum">     259</span> <span class="tlaGNC tlaBgGNC">          94 :   return NoCounters();</span></span>
+<span id="L259"><span class="lineNum">     259</span> <span class="tlaGNC tlaBgGNC">          47 :   return NoCounters();</span></span>
 <span id="L260"><span class="lineNum">     260</span>              : }</span>
 <span id="L261"><span class="lineNum">     261</span>              : </span>
-<span id="L262"><span class="lineNum">     262</span> <span class="tlaGNC">         282 : void PerfCounters::CloseCounters() const {}</span></span>
+<span id="L262"><span class="lineNum">     262</span> <span class="tlaGNC">         141 : void PerfCounters::CloseCounters() const {}</span></span>
 <span id="L263"><span class="lineNum">     263</span>              : #endif  // defined HAVE_LIBPFM</span>
 <span id="L264"><span class="lineNum">     264</span>              : </span>
-<span id="L265"><span class="lineNum">     265</span> <span class="tlaGNC">          94 : PerfCountersMeasurement::PerfCountersMeasurement(</span></span>
-<span id="L266"><span class="lineNum">     266</span> <span class="tlaGNC">          94 :     const std::vector&lt;std::string&gt;&amp; counter_names)</span></span>
-<span id="L267"><span class="lineNum">     267</span> <span class="tlaGNC">          94 :     : start_values_(counter_names.size()), end_values_(counter_names.size()) {</span></span>
-<span id="L268"><span class="lineNum">     268</span> <span class="tlaGNC">          94 :   counters_ = PerfCounters::Create(counter_names);</span></span>
-<span id="L269"><span class="lineNum">     269</span> <span class="tlaGNC">          94 : }</span></span>
+<span id="L265"><span class="lineNum">     265</span> <span class="tlaGNC">          47 : PerfCountersMeasurement::PerfCountersMeasurement(</span></span>
+<span id="L266"><span class="lineNum">     266</span> <span class="tlaGNC">          47 :     const std::vector&lt;std::string&gt;&amp; counter_names)</span></span>
+<span id="L267"><span class="lineNum">     267</span> <span class="tlaGNC">          47 :     : start_values_(counter_names.size()), end_values_(counter_names.size()) {</span></span>
+<span id="L268"><span class="lineNum">     268</span> <span class="tlaGNC">          47 :   counters_ = PerfCounters::Create(counter_names);</span></span>
+<span id="L269"><span class="lineNum">     269</span> <span class="tlaGNC">          47 : }</span></span>
 <span id="L270"><span class="lineNum">     270</span>              : </span>
-<span id="L271"><span class="lineNum">     271</span> <span class="tlaGNC">          94 : PerfCounters&amp; PerfCounters::operator=(PerfCounters&amp;&amp; other) noexcept {</span></span>
-<span id="L272"><span class="lineNum">     272</span> <span class="tlaGNC">          94 :   if (this != &amp;other) {</span></span>
-<span id="L273"><span class="lineNum">     273</span> <span class="tlaGNC">          94 :     CloseCounters();</span></span>
+<span id="L271"><span class="lineNum">     271</span> <span class="tlaGNC">          47 : PerfCounters&amp; PerfCounters::operator=(PerfCounters&amp;&amp; other) noexcept {</span></span>
+<span id="L272"><span class="lineNum">     272</span> <span class="tlaGNC">          47 :   if (this != &amp;other) {</span></span>
+<span id="L273"><span class="lineNum">     273</span> <span class="tlaGNC">          47 :     CloseCounters();</span></span>
 <span id="L274"><span class="lineNum">     274</span>              : </span>
-<span id="L275"><span class="lineNum">     275</span> <span class="tlaGNC">          94 :     counter_ids_ = std::move(other.counter_ids_);</span></span>
-<span id="L276"><span class="lineNum">     276</span> <span class="tlaGNC">          94 :     leader_ids_ = std::move(other.leader_ids_);</span></span>
-<span id="L277"><span class="lineNum">     277</span> <span class="tlaGNC">          94 :     counter_names_ = std::move(other.counter_names_);</span></span>
+<span id="L275"><span class="lineNum">     275</span> <span class="tlaGNC">          47 :     counter_ids_ = std::move(other.counter_ids_);</span></span>
+<span id="L276"><span class="lineNum">     276</span> <span class="tlaGNC">          47 :     leader_ids_ = std::move(other.leader_ids_);</span></span>
+<span id="L277"><span class="lineNum">     277</span> <span class="tlaGNC">          47 :     counter_names_ = std::move(other.counter_names_);</span></span>
 <span id="L278"><span class="lineNum">     278</span>              :   }</span>
-<span id="L279"><span class="lineNum">     279</span> <span class="tlaGNC">          94 :   return *this;</span></span>
+<span id="L279"><span class="lineNum">     279</span> <span class="tlaGNC">          47 :   return *this;</span></span>
 <span id="L280"><span class="lineNum">     280</span>              : }</span>
 <span id="L281"><span class="lineNum">     281</span>              : }  // namespace internal</span>
 <span id="L282"><span class="lineNum">     282</span>              : }  // namespace benchmark</span>

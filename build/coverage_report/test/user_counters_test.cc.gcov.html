@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - coverage.info - test/user_counters_test.cc</title>
+  <title>LCOV - coverage_cleaned.info - test/user_counters_test.cc</title>
   <link rel="stylesheet" type="text/css" href="../gcov.css">
 </head>
 
@@ -28,16 +28,16 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">coverage.info</td>
+            <td class="headerValue">coverage_cleaned.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntryHi">99.2&nbsp;%</td>
+            <td class="headerCovTableEntryHi">98.5&nbsp;%</td>
             <td class="headerCovTableEntry">133</td>
-            <td class="headerCovTableEntry">132</td>
+            <td class="headerCovTableEntry">131</td>
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2025-11-20 13:27:32</td>
+            <td class="headerValue">2025-11-21 19:45:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
@@ -84,12 +84,12 @@
 <span id="L22"><span class="lineNum">      22</span>              : // ------------------------- Simple Counters Output ------------------------ //</span>
 <span id="L23"><span class="lineNum">      23</span>              : // ========================================================================= //</span>
 <span id="L24"><span class="lineNum">      24</span>              : </span>
-<span id="L25"><span class="lineNum">      25</span> <span class="tlaGNC tlaBgGNC">          16 : void BM_Counters_Simple(benchmark::State&amp; state) {</span></span>
-<span id="L26"><span class="lineNum">      26</span> <span class="tlaGNC">    25351350 :   for (auto _ : state) {</span></span>
+<span id="L25"><span class="lineNum">      25</span> <span class="tlaGNC tlaBgGNC">           8 : void BM_Counters_Simple(benchmark::State&amp; state) {</span></span>
+<span id="L26"><span class="lineNum">      26</span> <span class="tlaGNC">    26949744 :   for (auto _ : state) {</span></span>
 <span id="L27"><span class="lineNum">      27</span>              :   }</span>
-<span id="L28"><span class="lineNum">      28</span> <span class="tlaGNC">          32 :   state.counters[&quot;foo&quot;] = 1;</span></span>
-<span id="L29"><span class="lineNum">      29</span> <span class="tlaGNC">          32 :   state.counters[&quot;bar&quot;] = 2 * static_cast&lt;double&gt;(state.iterations());</span></span>
-<span id="L30"><span class="lineNum">      30</span> <span class="tlaGNC">          16 : }</span></span>
+<span id="L28"><span class="lineNum">      28</span> <span class="tlaGNC">          16 :   state.counters[&quot;foo&quot;] = 1;</span></span>
+<span id="L29"><span class="lineNum">      29</span> <span class="tlaGNC">          16 :   state.counters[&quot;bar&quot;] = 2 * static_cast&lt;double&gt;(state.iterations());</span></span>
+<span id="L30"><span class="lineNum">      30</span> <span class="tlaGNC">           8 : }</span></span>
 <span id="L31"><span class="lineNum">      31</span>              : BENCHMARK(BM_Counters_Simple);</span>
 <span id="L32"><span class="lineNum">      32</span>              : ADD_CASES(TC_ConsoleOut,</span>
 <span id="L33"><span class="lineNum">      33</span>              :           {{&quot;^BM_Counters_Simple %console_report bar=%hrfloat foo=%hrfloat$&quot;}});</span>
@@ -111,12 +111,12 @@
 <span id="L49"><span class="lineNum">      49</span>              : ADD_CASES(TC_CSVOut, {{&quot;^\&quot;BM_Counters_Simple\&quot;,%csv_report,%float,%float$&quot;}});</span>
 <span id="L50"><span class="lineNum">      50</span>              : // VS2013 does not allow this function to be passed as a lambda argument</span>
 <span id="L51"><span class="lineNum">      51</span>              : // to CHECK_BENCHMARK_RESULTS()</span>
-<span id="L52"><span class="lineNum">      52</span> <span class="tlaGNC">           2 : void CheckSimple(Results const&amp; e) {</span></span>
-<span id="L53"><span class="lineNum">      53</span> <span class="tlaGNC">           2 :   double its = e.NumIterations();</span></span>
-<span id="L54"><span class="lineNum">      54</span> <span class="tlaGNC">           8 :   CHECK_COUNTER_VALUE(e, int, &quot;foo&quot;, EQ, 1);</span></span>
+<span id="L52"><span class="lineNum">      52</span> <span class="tlaGNC">           1 : void CheckSimple(Results const&amp; e) {</span></span>
+<span id="L53"><span class="lineNum">      53</span> <span class="tlaGNC">           1 :   double its = e.NumIterations();</span></span>
+<span id="L54"><span class="lineNum">      54</span> <span class="tlaGNC">           4 :   CHECK_COUNTER_VALUE(e, int, &quot;foo&quot;, EQ, 1);</span></span>
 <span id="L55"><span class="lineNum">      55</span>              :   // check that the value of bar is within 0.1% of the expected value</span>
-<span id="L56"><span class="lineNum">      56</span> <span class="tlaGNC">          14 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;bar&quot;, EQ, 2. * its, 0.001);</span></span>
-<span id="L57"><span class="lineNum">      57</span> <span class="tlaGNC">           2 : }</span></span>
+<span id="L56"><span class="lineNum">      56</span> <span class="tlaGNC">           7 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;bar&quot;, EQ, 2. * its, 0.001);</span></span>
+<span id="L57"><span class="lineNum">      57</span> <span class="tlaGNC">           1 : }</span></span>
 <span id="L58"><span class="lineNum">      58</span>              : CHECK_BENCHMARK_RESULTS(&quot;BM_Counters_Simple&quot;, &amp;CheckSimple);</span>
 <span id="L59"><span class="lineNum">      59</span>              : </span>
 <span id="L60"><span class="lineNum">      60</span>              : // ========================================================================= //</span>
@@ -126,17 +126,17 @@
 <span id="L64"><span class="lineNum">      64</span>              : namespace {</span>
 <span id="L65"><span class="lineNum">      65</span>              : int num_calls1 = 0;</span>
 <span id="L66"><span class="lineNum">      66</span>              : }</span>
-<span id="L67"><span class="lineNum">      67</span> <span class="tlaGNC">          16 : void BM_Counters_WithBytesAndItemsPSec(benchmark::State&amp; state) {</span></span>
-<span id="L68"><span class="lineNum">      68</span> <span class="tlaGNC">    20737604 :   for (auto _ : state) {</span></span>
+<span id="L67"><span class="lineNum">      67</span> <span class="tlaGNC">           8 : void BM_Counters_WithBytesAndItemsPSec(benchmark::State&amp; state) {</span></span>
+<span id="L68"><span class="lineNum">      68</span> <span class="tlaGNC">    15084038 :   for (auto _ : state) {</span></span>
 <span id="L69"><span class="lineNum">      69</span>              :     // This test requires a non-zero CPU time to avoid divide-by-zero</span>
-<span id="L70"><span class="lineNum">      70</span> <span class="tlaGNC">    10368770 :     auto iterations = state.iterations();</span></span>
+<span id="L70"><span class="lineNum">      70</span> <span class="tlaGNC">     7542003 :     auto iterations = state.iterations();</span></span>
 <span id="L71"><span class="lineNum">      71</span>              :     benchmark::DoNotOptimize(iterations);</span>
 <span id="L72"><span class="lineNum">      72</span>              :   }</span>
-<span id="L73"><span class="lineNum">      73</span> <span class="tlaGNC">          16 :   state.counters[&quot;foo&quot;] = 1;</span></span>
-<span id="L74"><span class="lineNum">      74</span> <span class="tlaGNC">          48 :   state.counters[&quot;bar&quot;] = ++num_calls1;</span></span>
+<span id="L73"><span class="lineNum">      73</span> <span class="tlaGNC">           8 :   state.counters[&quot;foo&quot;] = 1;</span></span>
+<span id="L74"><span class="lineNum">      74</span> <span class="tlaGNC">          24 :   state.counters[&quot;bar&quot;] = ++num_calls1;</span></span>
 <span id="L75"><span class="lineNum">      75</span>              :   state.SetBytesProcessed(364);</span>
 <span id="L76"><span class="lineNum">      76</span>              :   state.SetItemsProcessed(150);</span>
-<span id="L77"><span class="lineNum">      77</span> <span class="tlaGNC">          16 : }</span></span>
+<span id="L77"><span class="lineNum">      77</span> <span class="tlaGNC">           8 : }</span></span>
 <span id="L78"><span class="lineNum">      78</span>              : BENCHMARK(BM_Counters_WithBytesAndItemsPSec);</span>
 <span id="L79"><span class="lineNum">      79</span>              : ADD_CASES(TC_ConsoleOut, {{&quot;^BM_Counters_WithBytesAndItemsPSec %console_report &quot;</span>
 <span id="L80"><span class="lineNum">      80</span>              :                            &quot;bar=%hrfloat bytes_per_second=%hrfloat/s &quot;</span>
@@ -163,14 +163,14 @@
 <span id="L101"><span class="lineNum">     101</span>              :                        &quot;%csv_bytes_items_report,%float,%float$&quot;}});</span>
 <span id="L102"><span class="lineNum">     102</span>              : // VS2013 does not allow this function to be passed as a lambda argument</span>
 <span id="L103"><span class="lineNum">     103</span>              : // to CHECK_BENCHMARK_RESULTS()</span>
-<span id="L104"><span class="lineNum">     104</span> <span class="tlaGNC">           2 : void CheckBytesAndItemsPSec(Results const&amp; e) {</span></span>
-<span id="L105"><span class="lineNum">     105</span> <span class="tlaGNC">           2 :   double t = e.DurationCPUTime();  // this (and not real time) is the time used</span></span>
-<span id="L106"><span class="lineNum">     106</span> <span class="tlaGNC">           8 :   CHECK_COUNTER_VALUE(e, int, &quot;foo&quot;, EQ, 1);</span></span>
-<span id="L107"><span class="lineNum">     107</span> <span class="tlaGNC">           8 :   CHECK_COUNTER_VALUE(e, int, &quot;bar&quot;, EQ, num_calls1);</span></span>
+<span id="L104"><span class="lineNum">     104</span> <span class="tlaGNC">           1 : void CheckBytesAndItemsPSec(Results const&amp; e) {</span></span>
+<span id="L105"><span class="lineNum">     105</span> <span class="tlaGNC">           1 :   double t = e.DurationCPUTime();  // this (and not real time) is the time used</span></span>
+<span id="L106"><span class="lineNum">     106</span> <span class="tlaGNC">           4 :   CHECK_COUNTER_VALUE(e, int, &quot;foo&quot;, EQ, 1);</span></span>
+<span id="L107"><span class="lineNum">     107</span> <span class="tlaGNC">           4 :   CHECK_COUNTER_VALUE(e, int, &quot;bar&quot;, EQ, num_calls1);</span></span>
 <span id="L108"><span class="lineNum">     108</span>              :   // check that the values are within 0.1% of the expected values</span>
-<span id="L109"><span class="lineNum">     109</span> <span class="tlaGNC">          16 :   CHECK_FLOAT_RESULT_VALUE(e, &quot;bytes_per_second&quot;, EQ, 364. / t, 0.001);</span></span>
-<span id="L110"><span class="lineNum">     110</span> <span class="tlaGNC">          14 :   CHECK_FLOAT_RESULT_VALUE(e, &quot;items_per_second&quot;, EQ, 150. / t, 0.001);</span></span>
-<span id="L111"><span class="lineNum">     111</span> <span class="tlaGNC">           2 : }</span></span>
+<span id="L109"><span class="lineNum">     109</span> <span class="tlaGNC">           8 :   CHECK_FLOAT_RESULT_VALUE(e, &quot;bytes_per_second&quot;, EQ, 364. / t, 0.001);</span></span>
+<span id="L110"><span class="lineNum">     110</span> <span class="tlaGNC">           7 :   CHECK_FLOAT_RESULT_VALUE(e, &quot;items_per_second&quot;, EQ, 150. / t, 0.001);</span></span>
+<span id="L111"><span class="lineNum">     111</span> <span class="tlaGNC">           1 : }</span></span>
 <span id="L112"><span class="lineNum">     112</span>              : CHECK_BENCHMARK_RESULTS(&quot;BM_Counters_WithBytesAndItemsPSec&quot;,</span>
 <span id="L113"><span class="lineNum">     113</span>              :                         &amp;CheckBytesAndItemsPSec);</span>
 <span id="L114"><span class="lineNum">     114</span>              : </span>
@@ -178,16 +178,16 @@
 <span id="L116"><span class="lineNum">     116</span>              : // ------------------------- Rate Counters Output -------------------------- //</span>
 <span id="L117"><span class="lineNum">     117</span>              : // ========================================================================= //</span>
 <span id="L118"><span class="lineNum">     118</span>              : </span>
-<span id="L119"><span class="lineNum">     119</span> <span class="tlaGNC">          16 : void BM_Counters_Rate(benchmark::State&amp; state) {</span></span>
-<span id="L120"><span class="lineNum">     120</span> <span class="tlaGNC">    20070828 :   for (auto _ : state) {</span></span>
+<span id="L119"><span class="lineNum">     119</span> <span class="tlaGNC">           8 : void BM_Counters_Rate(benchmark::State&amp; state) {</span></span>
+<span id="L120"><span class="lineNum">     120</span> <span class="tlaGNC">    15043618 :   for (auto _ : state) {</span></span>
 <span id="L121"><span class="lineNum">     121</span>              :     // This test requires a non-zero CPU time to avoid divide-by-zero</span>
-<span id="L122"><span class="lineNum">     122</span> <span class="tlaGNC">    10035382 :     auto iterations = state.iterations();</span></span>
+<span id="L122"><span class="lineNum">     122</span> <span class="tlaGNC">     7521793 :     auto iterations = state.iterations();</span></span>
 <span id="L123"><span class="lineNum">     123</span>              :     benchmark::DoNotOptimize(iterations);</span>
 <span id="L124"><span class="lineNum">     124</span>              :   }</span>
 <span id="L125"><span class="lineNum">     125</span>              :   namespace bm = benchmark;</span>
-<span id="L126"><span class="lineNum">     126</span> <span class="tlaGNC">          32 :   state.counters[&quot;foo&quot;] = bm::Counter{1, bm::Counter::kIsRate};</span></span>
-<span id="L127"><span class="lineNum">     127</span> <span class="tlaGNC">          16 :   state.counters[&quot;bar&quot;] = bm::Counter{2, bm::Counter::kIsRate};</span></span>
-<span id="L128"><span class="lineNum">     128</span> <span class="tlaGNC">          16 : }</span></span>
+<span id="L126"><span class="lineNum">     126</span> <span class="tlaGNC">          16 :   state.counters[&quot;foo&quot;] = bm::Counter{1, bm::Counter::kIsRate};</span></span>
+<span id="L127"><span class="lineNum">     127</span> <span class="tlaGNC">           8 :   state.counters[&quot;bar&quot;] = bm::Counter{2, bm::Counter::kIsRate};</span></span>
+<span id="L128"><span class="lineNum">     128</span> <span class="tlaGNC">           8 : }</span></span>
 <span id="L129"><span class="lineNum">     129</span>              : BENCHMARK(BM_Counters_Rate);</span>
 <span id="L130"><span class="lineNum">     130</span>              : ADD_CASES(</span>
 <span id="L131"><span class="lineNum">     131</span>              :     TC_ConsoleOut,</span>
@@ -210,28 +210,28 @@
 <span id="L148"><span class="lineNum">     148</span>              : ADD_CASES(TC_CSVOut, {{&quot;^\&quot;BM_Counters_Rate\&quot;,%csv_report,%float,%float$&quot;}});</span>
 <span id="L149"><span class="lineNum">     149</span>              : // VS2013 does not allow this function to be passed as a lambda argument</span>
 <span id="L150"><span class="lineNum">     150</span>              : // to CHECK_BENCHMARK_RESULTS()</span>
-<span id="L151"><span class="lineNum">     151</span> <span class="tlaGNC">           2 : void CheckRate(Results const&amp; e) {</span></span>
-<span id="L152"><span class="lineNum">     152</span> <span class="tlaGNC">           2 :   double t = e.DurationCPUTime();  // this (and not real time) is the time used</span></span>
+<span id="L151"><span class="lineNum">     151</span> <span class="tlaGNC">           1 : void CheckRate(Results const&amp; e) {</span></span>
+<span id="L152"><span class="lineNum">     152</span> <span class="tlaGNC">           1 :   double t = e.DurationCPUTime();  // this (and not real time) is the time used</span></span>
 <span id="L153"><span class="lineNum">     153</span>              :   // check that the values are within 0.1% of the expected values</span>
-<span id="L154"><span class="lineNum">     154</span> <span class="tlaGNC">          16 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;foo&quot;, EQ, 1. / t, 0.001);</span></span>
-<span id="L155"><span class="lineNum">     155</span> <span class="tlaGNC">          14 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;bar&quot;, EQ, 2. / t, 0.001);</span></span>
-<span id="L156"><span class="lineNum">     156</span> <span class="tlaGNC">           2 : }</span></span>
+<span id="L154"><span class="lineNum">     154</span> <span class="tlaGNC">           8 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;foo&quot;, EQ, 1. / t, 0.001);</span></span>
+<span id="L155"><span class="lineNum">     155</span> <span class="tlaGNC">           7 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;bar&quot;, EQ, 2. / t, 0.001);</span></span>
+<span id="L156"><span class="lineNum">     156</span> <span class="tlaGNC">           1 : }</span></span>
 <span id="L157"><span class="lineNum">     157</span>              : CHECK_BENCHMARK_RESULTS(&quot;BM_Counters_Rate&quot;, &amp;CheckRate);</span>
 <span id="L158"><span class="lineNum">     158</span>              : </span>
 <span id="L159"><span class="lineNum">     159</span>              : // ========================================================================= //</span>
 <span id="L160"><span class="lineNum">     160</span>              : // ----------------------- Inverted Counters Output ------------------------ //</span>
 <span id="L161"><span class="lineNum">     161</span>              : // ========================================================================= //</span>
 <span id="L162"><span class="lineNum">     162</span>              : </span>
-<span id="L163"><span class="lineNum">     163</span> <span class="tlaGNC">          16 : void BM_Invert(benchmark::State&amp; state) {</span></span>
-<span id="L164"><span class="lineNum">     164</span> <span class="tlaGNC">    19907130 :   for (auto _ : state) {</span></span>
+<span id="L163"><span class="lineNum">     163</span> <span class="tlaGNC">           8 : void BM_Invert(benchmark::State&amp; state) {</span></span>
+<span id="L164"><span class="lineNum">     164</span> <span class="tlaGNC">    15429396 :   for (auto _ : state) {</span></span>
 <span id="L165"><span class="lineNum">     165</span>              :     // This test requires a non-zero CPU time to avoid divide-by-zero</span>
-<span id="L166"><span class="lineNum">     166</span> <span class="tlaGNC">     9953533 :     auto iterations = state.iterations();</span></span>
+<span id="L166"><span class="lineNum">     166</span> <span class="tlaGNC">     7714682 :     auto iterations = state.iterations();</span></span>
 <span id="L167"><span class="lineNum">     167</span>              :     benchmark::DoNotOptimize(iterations);</span>
 <span id="L168"><span class="lineNum">     168</span>              :   }</span>
 <span id="L169"><span class="lineNum">     169</span>              :   namespace bm = benchmark;</span>
-<span id="L170"><span class="lineNum">     170</span> <span class="tlaGNC">          32 :   state.counters[&quot;foo&quot;] = bm::Counter{0.0001, bm::Counter::kInvert};</span></span>
-<span id="L171"><span class="lineNum">     171</span> <span class="tlaGNC">          16 :   state.counters[&quot;bar&quot;] = bm::Counter{10000, bm::Counter::kInvert};</span></span>
-<span id="L172"><span class="lineNum">     172</span> <span class="tlaGNC">          16 : }</span></span>
+<span id="L170"><span class="lineNum">     170</span> <span class="tlaGNC">          16 :   state.counters[&quot;foo&quot;] = bm::Counter{0.0001, bm::Counter::kInvert};</span></span>
+<span id="L171"><span class="lineNum">     171</span> <span class="tlaGNC">           8 :   state.counters[&quot;bar&quot;] = bm::Counter{10000, bm::Counter::kInvert};</span></span>
+<span id="L172"><span class="lineNum">     172</span> <span class="tlaGNC">           8 : }</span></span>
 <span id="L173"><span class="lineNum">     173</span>              : BENCHMARK(BM_Invert);</span>
 <span id="L174"><span class="lineNum">     174</span>              : ADD_CASES(TC_ConsoleOut,</span>
 <span id="L175"><span class="lineNum">     175</span>              :           {{&quot;^BM_Invert %console_report bar=%hrfloatu foo=%hrfloatk$&quot;}});</span>
@@ -253,28 +253,28 @@
 <span id="L191"><span class="lineNum">     191</span>              : ADD_CASES(TC_CSVOut, {{&quot;^\&quot;BM_Invert\&quot;,%csv_report,%float,%float$&quot;}});</span>
 <span id="L192"><span class="lineNum">     192</span>              : // VS2013 does not allow this function to be passed as a lambda argument</span>
 <span id="L193"><span class="lineNum">     193</span>              : // to CHECK_BENCHMARK_RESULTS()</span>
-<span id="L194"><span class="lineNum">     194</span> <span class="tlaGNC">           2 : void CheckInvert(Results const&amp; e) {</span></span>
-<span id="L195"><span class="lineNum">     195</span> <span class="tlaGNC">          16 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;foo&quot;, EQ, 10000, 0.0001);</span></span>
-<span id="L196"><span class="lineNum">     196</span> <span class="tlaGNC">          14 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;bar&quot;, EQ, 0.0001, 0.0001);</span></span>
-<span id="L197"><span class="lineNum">     197</span> <span class="tlaGNC">           2 : }</span></span>
+<span id="L194"><span class="lineNum">     194</span> <span class="tlaGNC">           1 : void CheckInvert(Results const&amp; e) {</span></span>
+<span id="L195"><span class="lineNum">     195</span> <span class="tlaGNC">           8 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;foo&quot;, EQ, 10000, 0.0001);</span></span>
+<span id="L196"><span class="lineNum">     196</span> <span class="tlaGNC">           7 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;bar&quot;, EQ, 0.0001, 0.0001);</span></span>
+<span id="L197"><span class="lineNum">     197</span> <span class="tlaGNC">           1 : }</span></span>
 <span id="L198"><span class="lineNum">     198</span>              : CHECK_BENCHMARK_RESULTS(&quot;BM_Invert&quot;, &amp;CheckInvert);</span>
 <span id="L199"><span class="lineNum">     199</span>              : </span>
 <span id="L200"><span class="lineNum">     200</span>              : // ========================================================================= //</span>
 <span id="L201"><span class="lineNum">     201</span>              : // --------------------- InvertedRate Counters Output ---------------------- //</span>
 <span id="L202"><span class="lineNum">     202</span>              : // ========================================================================= //</span>
 <span id="L203"><span class="lineNum">     203</span>              : </span>
-<span id="L204"><span class="lineNum">     204</span> <span class="tlaGNC">          16 : void BM_Counters_InvertedRate(benchmark::State&amp; state) {</span></span>
-<span id="L205"><span class="lineNum">     205</span> <span class="tlaGNC">    20308328 :   for (auto _ : state) {</span></span>
+<span id="L204"><span class="lineNum">     204</span> <span class="tlaGNC">           8 : void BM_Counters_InvertedRate(benchmark::State&amp; state) {</span></span>
+<span id="L205"><span class="lineNum">     205</span> <span class="tlaGNC">    15079420 :   for (auto _ : state) {</span></span>
 <span id="L206"><span class="lineNum">     206</span>              :     // This test requires a non-zero CPU time to avoid divide-by-zero</span>
-<span id="L207"><span class="lineNum">     207</span> <span class="tlaGNC">    10154132 :     auto iterations = state.iterations();</span></span>
+<span id="L207"><span class="lineNum">     207</span> <span class="tlaGNC">     7539694 :     auto iterations = state.iterations();</span></span>
 <span id="L208"><span class="lineNum">     208</span>              :     benchmark::DoNotOptimize(iterations);</span>
 <span id="L209"><span class="lineNum">     209</span>              :   }</span>
 <span id="L210"><span class="lineNum">     210</span>              :   namespace bm = benchmark;</span>
-<span id="L211"><span class="lineNum">     211</span> <span class="tlaGNC">          16 :   state.counters[&quot;foo&quot;] =</span></span>
-<span id="L212"><span class="lineNum">     212</span> <span class="tlaGNC">          16 :       bm::Counter{1, bm::Counter::kIsRate | bm::Counter::kInvert};</span></span>
-<span id="L213"><span class="lineNum">     213</span> <span class="tlaGNC">          16 :   state.counters[&quot;bar&quot;] =</span></span>
-<span id="L214"><span class="lineNum">     214</span> <span class="tlaGNC">          16 :       bm::Counter{8192, bm::Counter::kIsRate | bm::Counter::kInvert};</span></span>
-<span id="L215"><span class="lineNum">     215</span> <span class="tlaGNC">          16 : }</span></span>
+<span id="L211"><span class="lineNum">     211</span> <span class="tlaGNC">           8 :   state.counters[&quot;foo&quot;] =</span></span>
+<span id="L212"><span class="lineNum">     212</span> <span class="tlaGNC">           8 :       bm::Counter{1, bm::Counter::kIsRate | bm::Counter::kInvert};</span></span>
+<span id="L213"><span class="lineNum">     213</span> <span class="tlaGNC">           8 :   state.counters[&quot;bar&quot;] =</span></span>
+<span id="L214"><span class="lineNum">     214</span> <span class="tlaGNC">           8 :       bm::Counter{8192, bm::Counter::kIsRate | bm::Counter::kInvert};</span></span>
+<span id="L215"><span class="lineNum">     215</span> <span class="tlaGNC">           8 : }</span></span>
 <span id="L216"><span class="lineNum">     216</span>              : BENCHMARK(BM_Counters_InvertedRate);</span>
 <span id="L217"><span class="lineNum">     217</span>              : ADD_CASES(TC_ConsoleOut, {{&quot;^BM_Counters_InvertedRate %console_report &quot;</span>
 <span id="L218"><span class="lineNum">     218</span>              :                            &quot;bar=%hrfloats foo=%hrfloats$&quot;}});</span>
@@ -298,24 +298,24 @@
 <span id="L236"><span class="lineNum">     236</span>              :           {{&quot;^\&quot;BM_Counters_InvertedRate\&quot;,%csv_report,%float,%float$&quot;}});</span>
 <span id="L237"><span class="lineNum">     237</span>              : // VS2013 does not allow this function to be passed as a lambda argument</span>
 <span id="L238"><span class="lineNum">     238</span>              : // to CHECK_BENCHMARK_RESULTS()</span>
-<span id="L239"><span class="lineNum">     239</span> <span class="tlaGNC">           2 : void CheckInvertedRate(Results const&amp; e) {</span></span>
-<span id="L240"><span class="lineNum">     240</span> <span class="tlaGNC">           2 :   double t = e.DurationCPUTime();  // this (and not real time) is the time used</span></span>
+<span id="L239"><span class="lineNum">     239</span> <span class="tlaGNC">           1 : void CheckInvertedRate(Results const&amp; e) {</span></span>
+<span id="L240"><span class="lineNum">     240</span> <span class="tlaGNC">           1 :   double t = e.DurationCPUTime();  // this (and not real time) is the time used</span></span>
 <span id="L241"><span class="lineNum">     241</span>              :   // check that the values are within 0.1% of the expected values</span>
-<span id="L242"><span class="lineNum">     242</span> <span class="tlaGNC">          16 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;foo&quot;, EQ, t, 0.001);</span></span>
-<span id="L243"><span class="lineNum">     243</span> <span class="tlaGNC">          14 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;bar&quot;, EQ, t / 8192.0, 0.001);</span></span>
-<span id="L244"><span class="lineNum">     244</span> <span class="tlaGNC">           2 : }</span></span>
+<span id="L242"><span class="lineNum">     242</span> <span class="tlaGNC">           8 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;foo&quot;, EQ, t, 0.001);</span></span>
+<span id="L243"><span class="lineNum">     243</span> <span class="tlaGNC">           7 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;bar&quot;, EQ, t / 8192.0, 0.001);</span></span>
+<span id="L244"><span class="lineNum">     244</span> <span class="tlaGNC">           1 : }</span></span>
 <span id="L245"><span class="lineNum">     245</span>              : CHECK_BENCHMARK_RESULTS(&quot;BM_Counters_InvertedRate&quot;, &amp;CheckInvertedRate);</span>
 <span id="L246"><span class="lineNum">     246</span>              : </span>
 <span id="L247"><span class="lineNum">     247</span>              : // ========================================================================= //</span>
 <span id="L248"><span class="lineNum">     248</span>              : // ------------------------- Thread Counters Output ------------------------ //</span>
 <span id="L249"><span class="lineNum">     249</span>              : // ========================================================================= //</span>
 <span id="L250"><span class="lineNum">     250</span>              : </span>
-<span id="L251"><span class="lineNum">     251</span> <span class="tlaGNC">         197 : void BM_Counters_Threads(benchmark::State&amp; state) {</span></span>
-<span id="L252"><span class="lineNum">     252</span> <span class="tlaGNC">    37519265 :   for (auto _ : state) {</span></span>
+<span id="L251"><span class="lineNum">     251</span> <span class="tlaGNC">          95 : void BM_Counters_Threads(benchmark::State&amp; state) {</span></span>
+<span id="L252"><span class="lineNum">     252</span> <span class="tlaGNC">    55117373 :   for (auto _ : state) {</span></span>
 <span id="L253"><span class="lineNum">     253</span>              :   }</span>
-<span id="L254"><span class="lineNum">     254</span> <span class="tlaGNC">       57683 :   state.counters[&quot;foo&quot;] = 1;</span></span>
-<span id="L255"><span class="lineNum">     255</span> <span class="tlaGNC">         170 :   state.counters[&quot;bar&quot;] = 2;</span></span>
-<span id="L256"><span class="lineNum">     256</span> <span class="tlaGNC">         170 : }</span></span>
+<span id="L254"><span class="lineNum">     254</span> <span class="tlaGNC">       24596 :   state.counters[&quot;foo&quot;] = 1;</span></span>
+<span id="L255"><span class="lineNum">     255</span> <span class="tlaGNC">          90 :   state.counters[&quot;bar&quot;] = 2;</span></span>
+<span id="L256"><span class="lineNum">     256</span> <span class="tlaGNC">          92 : }</span></span>
 <span id="L257"><span class="lineNum">     257</span>              : BENCHMARK(BM_Counters_Threads)-&gt;ThreadRange(1, 8);</span>
 <span id="L258"><span class="lineNum">     258</span>              : ADD_CASES(TC_ConsoleOut, {{&quot;^BM_Counters_Threads/threads:%int %console_report &quot;</span>
 <span id="L259"><span class="lineNum">     259</span>              :                            &quot;bar=%hrfloat foo=%hrfloat$&quot;}});</span>
@@ -340,23 +340,23 @@
 <span id="L278"><span class="lineNum">     278</span>              :     {{&quot;^\&quot;BM_Counters_Threads/threads:%int\&quot;,%csv_report,%float,%float$&quot;}});</span>
 <span id="L279"><span class="lineNum">     279</span>              : // VS2013 does not allow this function to be passed as a lambda argument</span>
 <span id="L280"><span class="lineNum">     280</span>              : // to CHECK_BENCHMARK_RESULTS()</span>
-<span id="L281"><span class="lineNum">     281</span> <span class="tlaGNC">           8 : void CheckThreads(Results const&amp; e) {</span></span>
-<span id="L282"><span class="lineNum">     282</span> <span class="tlaGNC">          32 :   CHECK_COUNTER_VALUE(e, int, &quot;foo&quot;, EQ, e.NumThreads());</span></span>
-<span id="L283"><span class="lineNum">     283</span> <span class="tlaGNC">          24 :   CHECK_COUNTER_VALUE(e, int, &quot;bar&quot;, EQ, 2 * e.NumThreads());</span></span>
-<span id="L284"><span class="lineNum">     284</span> <span class="tlaGNC">           8 : }</span></span>
+<span id="L281"><span class="lineNum">     281</span> <span class="tlaGNC">           4 : void CheckThreads(Results const&amp; e) {</span></span>
+<span id="L282"><span class="lineNum">     282</span> <span class="tlaGNC">          16 :   CHECK_COUNTER_VALUE(e, int, &quot;foo&quot;, EQ, e.NumThreads());</span></span>
+<span id="L283"><span class="lineNum">     283</span> <span class="tlaGNC">          12 :   CHECK_COUNTER_VALUE(e, int, &quot;bar&quot;, EQ, 2 * e.NumThreads());</span></span>
+<span id="L284"><span class="lineNum">     284</span> <span class="tlaGNC">           4 : }</span></span>
 <span id="L285"><span class="lineNum">     285</span>              : CHECK_BENCHMARK_RESULTS(&quot;BM_Counters_Threads/threads:%int&quot;, &amp;CheckThreads);</span>
 <span id="L286"><span class="lineNum">     286</span>              : </span>
 <span id="L287"><span class="lineNum">     287</span>              : // ========================================================================= //</span>
 <span id="L288"><span class="lineNum">     288</span>              : // ---------------------- ThreadAvg Counters Output ------------------------ //</span>
 <span id="L289"><span class="lineNum">     289</span>              : // ========================================================================= //</span>
 <span id="L290"><span class="lineNum">     290</span>              : </span>
-<span id="L291"><span class="lineNum">     291</span> <span class="tlaGNC">         204 : void BM_Counters_AvgThreads(benchmark::State&amp; state) {</span></span>
-<span id="L292"><span class="lineNum">     292</span> <span class="tlaGNC">    29745278 :   for (auto _ : state) {</span></span>
+<span id="L291"><span class="lineNum">     291</span> <span class="tlaGNC">          97 : void BM_Counters_AvgThreads(benchmark::State&amp; state) {</span></span>
+<span id="L292"><span class="lineNum">     292</span> <span class="tlaGNC">    54233954 :   for (auto _ : state) {</span></span>
 <span id="L293"><span class="lineNum">     293</span>              :   }</span>
 <span id="L294"><span class="lineNum">     294</span>              :   namespace bm = benchmark;</span>
-<span id="L295"><span class="lineNum">     295</span> <span class="tlaGNC">       73133 :   state.counters[&quot;foo&quot;] = bm::Counter{1, bm::Counter::kAvgThreads};</span></span>
-<span id="L296"><span class="lineNum">     296</span> <span class="tlaGNC">         190 :   state.counters[&quot;bar&quot;] = bm::Counter{2, bm::Counter::kAvgThreads};</span></span>
-<span id="L297"><span class="lineNum">     297</span> <span class="tlaGNC">         182 : }</span></span>
+<span id="L295"><span class="lineNum">     295</span> <span class="tlaUNC tlaBgUNC">           0 :   state.counters[&quot;foo&quot;] = bm::Counter{1, bm::Counter::kAvgThreads};</span></span>
+<span id="L296"><span class="lineNum">     296</span> <span class="tlaGNC tlaBgGNC">          92 :   state.counters[&quot;bar&quot;] = bm::Counter{2, bm::Counter::kAvgThreads};</span></span>
+<span id="L297"><span class="lineNum">     297</span> <span class="tlaGNC">          89 : }</span></span>
 <span id="L298"><span class="lineNum">     298</span>              : BENCHMARK(BM_Counters_AvgThreads)-&gt;ThreadRange(1, 8);</span>
 <span id="L299"><span class="lineNum">     299</span>              : ADD_CASES(TC_ConsoleOut, {{&quot;^BM_Counters_AvgThreads/threads:%int &quot;</span>
 <span id="L300"><span class="lineNum">     300</span>              :                            &quot;%console_report bar=%hrfloat foo=%hrfloat$&quot;}});</span>
@@ -381,10 +381,10 @@
 <span id="L319"><span class="lineNum">     319</span>              :     {{&quot;^\&quot;BM_Counters_AvgThreads/threads:%int\&quot;,%csv_report,%float,%float$&quot;}});</span>
 <span id="L320"><span class="lineNum">     320</span>              : // VS2013 does not allow this function to be passed as a lambda argument</span>
 <span id="L321"><span class="lineNum">     321</span>              : // to CHECK_BENCHMARK_RESULTS()</span>
-<span id="L322"><span class="lineNum">     322</span> <span class="tlaGNC">           8 : void CheckAvgThreads(Results const&amp; e) {</span></span>
-<span id="L323"><span class="lineNum">     323</span> <span class="tlaGNC">          32 :   CHECK_COUNTER_VALUE(e, int, &quot;foo&quot;, EQ, 1);</span></span>
-<span id="L324"><span class="lineNum">     324</span> <span class="tlaGNC">          24 :   CHECK_COUNTER_VALUE(e, int, &quot;bar&quot;, EQ, 2);</span></span>
-<span id="L325"><span class="lineNum">     325</span> <span class="tlaGNC">           8 : }</span></span>
+<span id="L322"><span class="lineNum">     322</span> <span class="tlaGNC">           4 : void CheckAvgThreads(Results const&amp; e) {</span></span>
+<span id="L323"><span class="lineNum">     323</span> <span class="tlaGNC">          16 :   CHECK_COUNTER_VALUE(e, int, &quot;foo&quot;, EQ, 1);</span></span>
+<span id="L324"><span class="lineNum">     324</span> <span class="tlaGNC">          12 :   CHECK_COUNTER_VALUE(e, int, &quot;bar&quot;, EQ, 2);</span></span>
+<span id="L325"><span class="lineNum">     325</span> <span class="tlaGNC">           4 : }</span></span>
 <span id="L326"><span class="lineNum">     326</span>              : CHECK_BENCHMARK_RESULTS(&quot;BM_Counters_AvgThreads/threads:%int&quot;,</span>
 <span id="L327"><span class="lineNum">     327</span>              :                         &amp;CheckAvgThreads);</span>
 <span id="L328"><span class="lineNum">     328</span>              : </span>
@@ -392,16 +392,16 @@
 <span id="L330"><span class="lineNum">     330</span>              : // ---------------------- ThreadAvg Counters Output ------------------------ //</span>
 <span id="L331"><span class="lineNum">     331</span>              : // ========================================================================= //</span>
 <span id="L332"><span class="lineNum">     332</span>              : </span>
-<span id="L333"><span class="lineNum">     333</span> <span class="tlaGNC">         169 : void BM_Counters_AvgThreadsRate(benchmark::State&amp; state) {</span></span>
-<span id="L334"><span class="lineNum">     334</span> <span class="tlaGNC">    18897612 :   for (auto _ : state) {</span></span>
+<span id="L333"><span class="lineNum">     333</span> <span class="tlaGNC">          86 : void BM_Counters_AvgThreadsRate(benchmark::State&amp; state) {</span></span>
+<span id="L334"><span class="lineNum">     334</span> <span class="tlaGNC">    16179186 :   for (auto _ : state) {</span></span>
 <span id="L335"><span class="lineNum">     335</span>              :     // This test requires a non-zero CPU time to avoid divide-by-zero</span>
-<span id="L336"><span class="lineNum">     336</span> <span class="tlaGNC">     9448413 :     auto iterations = state.iterations();</span></span>
+<span id="L336"><span class="lineNum">     336</span> <span class="tlaGNC">     8089504 :     auto iterations = state.iterations();</span></span>
 <span id="L337"><span class="lineNum">     337</span>              :     benchmark::DoNotOptimize(iterations);</span>
 <span id="L338"><span class="lineNum">     338</span>              :   }</span>
 <span id="L339"><span class="lineNum">     339</span>              :   namespace bm = benchmark;</span>
-<span id="L340"><span class="lineNum">     340</span> <span class="tlaGNC">         429 :   state.counters[&quot;foo&quot;] = bm::Counter{1, bm::Counter::kAvgThreadsRate};</span></span>
-<span id="L341"><span class="lineNum">     341</span> <span class="tlaGNC">         150 :   state.counters[&quot;bar&quot;] = bm::Counter{2, bm::Counter::kAvgThreadsRate};</span></span>
-<span id="L342"><span class="lineNum">     342</span> <span class="tlaGNC">         149 : }</span></span>
+<span id="L340"><span class="lineNum">     340</span> <span class="tlaGNC">           5 :   state.counters[&quot;foo&quot;] = bm::Counter{1, bm::Counter::kAvgThreadsRate};</span></span>
+<span id="L341"><span class="lineNum">     341</span> <span class="tlaGNC">          84 :   state.counters[&quot;bar&quot;] = bm::Counter{2, bm::Counter::kAvgThreadsRate};</span></span>
+<span id="L342"><span class="lineNum">     342</span> <span class="tlaGNC">          81 : }</span></span>
 <span id="L343"><span class="lineNum">     343</span>              : BENCHMARK(BM_Counters_AvgThreadsRate)-&gt;ThreadRange(1, 8);</span>
 <span id="L344"><span class="lineNum">     344</span>              : ADD_CASES(TC_ConsoleOut, {{&quot;^BM_Counters_AvgThreadsRate/threads:%int &quot;</span>
 <span id="L345"><span class="lineNum">     345</span>              :                            &quot;%console_report bar=%hrfloat/s foo=%hrfloat/s$&quot;}});</span>
@@ -426,10 +426,10 @@
 <span id="L364"><span class="lineNum">     364</span>              :                        &quot;threads:%int\&quot;,%csv_report,%float,%float$&quot;}});</span>
 <span id="L365"><span class="lineNum">     365</span>              : // VS2013 does not allow this function to be passed as a lambda argument</span>
 <span id="L366"><span class="lineNum">     366</span>              : // to CHECK_BENCHMARK_RESULTS()</span>
-<span id="L367"><span class="lineNum">     367</span> <span class="tlaGNC">           8 : void CheckAvgThreadsRate(Results const&amp; e) {</span></span>
-<span id="L368"><span class="lineNum">     368</span> <span class="tlaGNC">          64 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;foo&quot;, EQ, 1. / e.DurationCPUTime(), 0.001);</span></span>
-<span id="L369"><span class="lineNum">     369</span> <span class="tlaGNC">          56 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;bar&quot;, EQ, 2. / e.DurationCPUTime(), 0.001);</span></span>
-<span id="L370"><span class="lineNum">     370</span> <span class="tlaGNC">           8 : }</span></span>
+<span id="L367"><span class="lineNum">     367</span> <span class="tlaGNC">           4 : void CheckAvgThreadsRate(Results const&amp; e) {</span></span>
+<span id="L368"><span class="lineNum">     368</span> <span class="tlaGNC">          32 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;foo&quot;, EQ, 1. / e.DurationCPUTime(), 0.001);</span></span>
+<span id="L369"><span class="lineNum">     369</span> <span class="tlaGNC">          28 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;bar&quot;, EQ, 2. / e.DurationCPUTime(), 0.001);</span></span>
+<span id="L370"><span class="lineNum">     370</span> <span class="tlaGNC">           4 : }</span></span>
 <span id="L371"><span class="lineNum">     371</span>              : CHECK_BENCHMARK_RESULTS(&quot;BM_Counters_AvgThreadsRate/threads:%int&quot;,</span>
 <span id="L372"><span class="lineNum">     372</span>              :                         &amp;CheckAvgThreadsRate);</span>
 <span id="L373"><span class="lineNum">     373</span>              : </span>
@@ -437,13 +437,13 @@
 <span id="L375"><span class="lineNum">     375</span>              : // ------------------- IterationInvariant Counters Output ------------------ //</span>
 <span id="L376"><span class="lineNum">     376</span>              : // ========================================================================= //</span>
 <span id="L377"><span class="lineNum">     377</span>              : </span>
-<span id="L378"><span class="lineNum">     378</span> <span class="tlaGNC">          16 : void BM_Counters_IterationInvariant(benchmark::State&amp; state) {</span></span>
-<span id="L379"><span class="lineNum">     379</span> <span class="tlaGNC">    24822434 :   for (auto _ : state) {</span></span>
+<span id="L378"><span class="lineNum">     378</span> <span class="tlaGNC">           9 : void BM_Counters_IterationInvariant(benchmark::State&amp; state) {</span></span>
+<span id="L379"><span class="lineNum">     379</span> <span class="tlaGNC">    51920000 :   for (auto _ : state) {</span></span>
 <span id="L380"><span class="lineNum">     380</span>              :   }</span>
 <span id="L381"><span class="lineNum">     381</span>              :   namespace bm = benchmark;</span>
-<span id="L382"><span class="lineNum">     382</span> <span class="tlaGNC">          32 :   state.counters[&quot;foo&quot;] = bm::Counter{1, bm::Counter::kIsIterationInvariant};</span></span>
-<span id="L383"><span class="lineNum">     383</span> <span class="tlaGNC">          16 :   state.counters[&quot;bar&quot;] = bm::Counter{2, bm::Counter::kIsIterationInvariant};</span></span>
-<span id="L384"><span class="lineNum">     384</span> <span class="tlaGNC">          16 : }</span></span>
+<span id="L382"><span class="lineNum">     382</span> <span class="tlaGNC">          18 :   state.counters[&quot;foo&quot;] = bm::Counter{1, bm::Counter::kIsIterationInvariant};</span></span>
+<span id="L383"><span class="lineNum">     383</span> <span class="tlaGNC">           9 :   state.counters[&quot;bar&quot;] = bm::Counter{2, bm::Counter::kIsIterationInvariant};</span></span>
+<span id="L384"><span class="lineNum">     384</span> <span class="tlaGNC">           9 : }</span></span>
 <span id="L385"><span class="lineNum">     385</span>              : BENCHMARK(BM_Counters_IterationInvariant);</span>
 <span id="L386"><span class="lineNum">     386</span>              : ADD_CASES(TC_ConsoleOut, {{&quot;^BM_Counters_IterationInvariant %console_report &quot;</span>
 <span id="L387"><span class="lineNum">     387</span>              :                            &quot;bar=%hrfloat foo=%hrfloat$&quot;}});</span>
@@ -467,12 +467,12 @@
 <span id="L405"><span class="lineNum">     405</span>              :           {{&quot;^\&quot;BM_Counters_IterationInvariant\&quot;,%csv_report,%float,%float$&quot;}});</span>
 <span id="L406"><span class="lineNum">     406</span>              : // VS2013 does not allow this function to be passed as a lambda argument</span>
 <span id="L407"><span class="lineNum">     407</span>              : // to CHECK_BENCHMARK_RESULTS()</span>
-<span id="L408"><span class="lineNum">     408</span> <span class="tlaGNC">           2 : void CheckIterationInvariant(Results const&amp; e) {</span></span>
-<span id="L409"><span class="lineNum">     409</span> <span class="tlaGNC">           2 :   double its = e.NumIterations();</span></span>
+<span id="L408"><span class="lineNum">     408</span> <span class="tlaGNC">           1 : void CheckIterationInvariant(Results const&amp; e) {</span></span>
+<span id="L409"><span class="lineNum">     409</span> <span class="tlaGNC">           1 :   double its = e.NumIterations();</span></span>
 <span id="L410"><span class="lineNum">     410</span>              :   // check that the values are within 0.1% of the expected value</span>
-<span id="L411"><span class="lineNum">     411</span> <span class="tlaGNC">          16 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;foo&quot;, EQ, its, 0.001);</span></span>
-<span id="L412"><span class="lineNum">     412</span> <span class="tlaGNC">          14 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;bar&quot;, EQ, 2. * its, 0.001);</span></span>
-<span id="L413"><span class="lineNum">     413</span> <span class="tlaGNC">           2 : }</span></span>
+<span id="L411"><span class="lineNum">     411</span> <span class="tlaGNC">           8 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;foo&quot;, EQ, its, 0.001);</span></span>
+<span id="L412"><span class="lineNum">     412</span> <span class="tlaGNC">           7 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;bar&quot;, EQ, 2. * its, 0.001);</span></span>
+<span id="L413"><span class="lineNum">     413</span> <span class="tlaGNC">           1 : }</span></span>
 <span id="L414"><span class="lineNum">     414</span>              : CHECK_BENCHMARK_RESULTS(&quot;BM_Counters_IterationInvariant&quot;,</span>
 <span id="L415"><span class="lineNum">     415</span>              :                         &amp;CheckIterationInvariant);</span>
 <span id="L416"><span class="lineNum">     416</span>              : </span>
@@ -480,18 +480,18 @@
 <span id="L418"><span class="lineNum">     418</span>              : // ----------------- IterationInvariantRate Counters Output ---------------- //</span>
 <span id="L419"><span class="lineNum">     419</span>              : // ========================================================================= //</span>
 <span id="L420"><span class="lineNum">     420</span>              : </span>
-<span id="L421"><span class="lineNum">     421</span> <span class="tlaGNC">          16 : void BM_Counters_kIsIterationInvariantRate(benchmark::State&amp; state) {</span></span>
-<span id="L422"><span class="lineNum">     422</span> <span class="tlaGNC">    19440682 :   for (auto _ : state) {</span></span>
+<span id="L421"><span class="lineNum">     421</span> <span class="tlaGNC">           8 : void BM_Counters_kIsIterationInvariantRate(benchmark::State&amp; state) {</span></span>
+<span id="L422"><span class="lineNum">     422</span> <span class="tlaGNC">    14491344 :   for (auto _ : state) {</span></span>
 <span id="L423"><span class="lineNum">     423</span>              :     // This test requires a non-zero CPU time to avoid divide-by-zero</span>
-<span id="L424"><span class="lineNum">     424</span> <span class="tlaGNC">     9720309 :     auto iterations = state.iterations();</span></span>
+<span id="L424"><span class="lineNum">     424</span> <span class="tlaGNC">     7245656 :     auto iterations = state.iterations();</span></span>
 <span id="L425"><span class="lineNum">     425</span>              :     benchmark::DoNotOptimize(iterations);</span>
 <span id="L426"><span class="lineNum">     426</span>              :   }</span>
 <span id="L427"><span class="lineNum">     427</span>              :   namespace bm = benchmark;</span>
-<span id="L428"><span class="lineNum">     428</span> <span class="tlaGNC">          16 :   state.counters[&quot;foo&quot;] =</span></span>
+<span id="L428"><span class="lineNum">     428</span> <span class="tlaGNC">           8 :   state.counters[&quot;foo&quot;] =</span></span>
 <span id="L429"><span class="lineNum">     429</span> <span class="tlaUNC tlaBgUNC">           0 :       bm::Counter{1, bm::Counter::kIsIterationInvariantRate};</span></span>
-<span id="L430"><span class="lineNum">     430</span> <span class="tlaGNC tlaBgGNC">          16 :   state.counters[&quot;bar&quot;] =</span></span>
-<span id="L431"><span class="lineNum">     431</span> <span class="tlaGNC">          16 :       bm::Counter{2, bm::Counter::kIsRate | bm::Counter::kIsIterationInvariant};</span></span>
-<span id="L432"><span class="lineNum">     432</span> <span class="tlaGNC">          16 : }</span></span>
+<span id="L430"><span class="lineNum">     430</span> <span class="tlaGNC tlaBgGNC">           8 :   state.counters[&quot;bar&quot;] =</span></span>
+<span id="L431"><span class="lineNum">     431</span> <span class="tlaGNC">           8 :       bm::Counter{2, bm::Counter::kIsRate | bm::Counter::kIsIterationInvariant};</span></span>
+<span id="L432"><span class="lineNum">     432</span> <span class="tlaGNC">           8 : }</span></span>
 <span id="L433"><span class="lineNum">     433</span>              : BENCHMARK(BM_Counters_kIsIterationInvariantRate);</span>
 <span id="L434"><span class="lineNum">     434</span>              : ADD_CASES(TC_ConsoleOut, {{&quot;^BM_Counters_kIsIterationInvariantRate &quot;</span>
 <span id="L435"><span class="lineNum">     435</span>              :                            &quot;%console_report bar=%hrfloat/s foo=%hrfloat/s$&quot;}});</span>
@@ -516,13 +516,13 @@
 <span id="L454"><span class="lineNum">     454</span>              :                        &quot;%float,%float$&quot;}});</span>
 <span id="L455"><span class="lineNum">     455</span>              : // VS2013 does not allow this function to be passed as a lambda argument</span>
 <span id="L456"><span class="lineNum">     456</span>              : // to CHECK_BENCHMARK_RESULTS()</span>
-<span id="L457"><span class="lineNum">     457</span> <span class="tlaGNC">           2 : void CheckIsIterationInvariantRate(Results const&amp; e) {</span></span>
-<span id="L458"><span class="lineNum">     458</span> <span class="tlaGNC">           2 :   double its = e.NumIterations();</span></span>
-<span id="L459"><span class="lineNum">     459</span> <span class="tlaGNC">           2 :   double t = e.DurationCPUTime();  // this (and not real time) is the time used</span></span>
+<span id="L457"><span class="lineNum">     457</span> <span class="tlaGNC">           1 : void CheckIsIterationInvariantRate(Results const&amp; e) {</span></span>
+<span id="L458"><span class="lineNum">     458</span> <span class="tlaGNC">           1 :   double its = e.NumIterations();</span></span>
+<span id="L459"><span class="lineNum">     459</span> <span class="tlaGNC">           1 :   double t = e.DurationCPUTime();  // this (and not real time) is the time used</span></span>
 <span id="L460"><span class="lineNum">     460</span>              :   // check that the values are within 0.1% of the expected values</span>
-<span id="L461"><span class="lineNum">     461</span> <span class="tlaGNC">          16 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;foo&quot;, EQ, its * 1. / t, 0.001);</span></span>
-<span id="L462"><span class="lineNum">     462</span> <span class="tlaGNC">          14 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;bar&quot;, EQ, its * 2. / t, 0.001);</span></span>
-<span id="L463"><span class="lineNum">     463</span> <span class="tlaGNC">           2 : }</span></span>
+<span id="L461"><span class="lineNum">     461</span> <span class="tlaGNC">           8 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;foo&quot;, EQ, its * 1. / t, 0.001);</span></span>
+<span id="L462"><span class="lineNum">     462</span> <span class="tlaGNC">           7 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;bar&quot;, EQ, its * 2. / t, 0.001);</span></span>
+<span id="L463"><span class="lineNum">     463</span> <span class="tlaGNC">           1 : }</span></span>
 <span id="L464"><span class="lineNum">     464</span>              : CHECK_BENCHMARK_RESULTS(&quot;BM_Counters_kIsIterationInvariantRate&quot;,</span>
 <span id="L465"><span class="lineNum">     465</span>              :                         &amp;CheckIsIterationInvariantRate);</span>
 <span id="L466"><span class="lineNum">     466</span>              : </span>
@@ -530,13 +530,13 @@
 <span id="L468"><span class="lineNum">     468</span>              : // --------------------- AvgIterations Counters Output --------------------- //</span>
 <span id="L469"><span class="lineNum">     469</span>              : // ========================================================================= //</span>
 <span id="L470"><span class="lineNum">     470</span>              : </span>
-<span id="L471"><span class="lineNum">     471</span> <span class="tlaGNC">          16 : void BM_Counters_AvgIterations(benchmark::State&amp; state) {</span></span>
-<span id="L472"><span class="lineNum">     472</span> <span class="tlaGNC">    26699480 :   for (auto _ : state) {</span></span>
+<span id="L471"><span class="lineNum">     471</span> <span class="tlaGNC">           9 : void BM_Counters_AvgIterations(benchmark::State&amp; state) {</span></span>
+<span id="L472"><span class="lineNum">     472</span> <span class="tlaGNC">    53007890 :   for (auto _ : state) {</span></span>
 <span id="L473"><span class="lineNum">     473</span>              :   }</span>
 <span id="L474"><span class="lineNum">     474</span>              :   namespace bm = benchmark;</span>
-<span id="L475"><span class="lineNum">     475</span> <span class="tlaGNC">          32 :   state.counters[&quot;foo&quot;] = bm::Counter{1, bm::Counter::kAvgIterations};</span></span>
-<span id="L476"><span class="lineNum">     476</span> <span class="tlaGNC">          16 :   state.counters[&quot;bar&quot;] = bm::Counter{2, bm::Counter::kAvgIterations};</span></span>
-<span id="L477"><span class="lineNum">     477</span> <span class="tlaGNC">          16 : }</span></span>
+<span id="L475"><span class="lineNum">     475</span> <span class="tlaGNC">          18 :   state.counters[&quot;foo&quot;] = bm::Counter{1, bm::Counter::kAvgIterations};</span></span>
+<span id="L476"><span class="lineNum">     476</span> <span class="tlaGNC">           9 :   state.counters[&quot;bar&quot;] = bm::Counter{2, bm::Counter::kAvgIterations};</span></span>
+<span id="L477"><span class="lineNum">     477</span> <span class="tlaGNC">           9 : }</span></span>
 <span id="L478"><span class="lineNum">     478</span>              : BENCHMARK(BM_Counters_AvgIterations);</span>
 <span id="L479"><span class="lineNum">     479</span>              : ADD_CASES(TC_ConsoleOut, {{&quot;^BM_Counters_AvgIterations %console_report &quot;</span>
 <span id="L480"><span class="lineNum">     480</span>              :                            &quot;bar=%hrfloat foo=%hrfloat$&quot;}});</span>
@@ -560,29 +560,29 @@
 <span id="L498"><span class="lineNum">     498</span>              :           {{&quot;^\&quot;BM_Counters_AvgIterations\&quot;,%csv_report,%float,%float$&quot;}});</span>
 <span id="L499"><span class="lineNum">     499</span>              : // VS2013 does not allow this function to be passed as a lambda argument</span>
 <span id="L500"><span class="lineNum">     500</span>              : // to CHECK_BENCHMARK_RESULTS()</span>
-<span id="L501"><span class="lineNum">     501</span> <span class="tlaGNC">           2 : void CheckAvgIterations(Results const&amp; e) {</span></span>
-<span id="L502"><span class="lineNum">     502</span> <span class="tlaGNC">           2 :   double its = e.NumIterations();</span></span>
+<span id="L501"><span class="lineNum">     501</span> <span class="tlaGNC">           1 : void CheckAvgIterations(Results const&amp; e) {</span></span>
+<span id="L502"><span class="lineNum">     502</span> <span class="tlaGNC">           1 :   double its = e.NumIterations();</span></span>
 <span id="L503"><span class="lineNum">     503</span>              :   // check that the values are within 0.1% of the expected value</span>
-<span id="L504"><span class="lineNum">     504</span> <span class="tlaGNC">          16 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;foo&quot;, EQ, 1. / its, 0.001);</span></span>
-<span id="L505"><span class="lineNum">     505</span> <span class="tlaGNC">          14 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;bar&quot;, EQ, 2. / its, 0.001);</span></span>
-<span id="L506"><span class="lineNum">     506</span> <span class="tlaGNC">           2 : }</span></span>
+<span id="L504"><span class="lineNum">     504</span> <span class="tlaGNC">           8 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;foo&quot;, EQ, 1. / its, 0.001);</span></span>
+<span id="L505"><span class="lineNum">     505</span> <span class="tlaGNC">           7 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;bar&quot;, EQ, 2. / its, 0.001);</span></span>
+<span id="L506"><span class="lineNum">     506</span> <span class="tlaGNC">           1 : }</span></span>
 <span id="L507"><span class="lineNum">     507</span>              : CHECK_BENCHMARK_RESULTS(&quot;BM_Counters_AvgIterations&quot;, &amp;CheckAvgIterations);</span>
 <span id="L508"><span class="lineNum">     508</span>              : </span>
 <span id="L509"><span class="lineNum">     509</span>              : // ========================================================================= //</span>
 <span id="L510"><span class="lineNum">     510</span>              : // ------------------- AvgIterationsRate Counters Output ------------------- //</span>
 <span id="L511"><span class="lineNum">     511</span>              : // ========================================================================= //</span>
 <span id="L512"><span class="lineNum">     512</span>              : </span>
-<span id="L513"><span class="lineNum">     513</span> <span class="tlaGNC">          16 : void BM_Counters_kAvgIterationsRate(benchmark::State&amp; state) {</span></span>
-<span id="L514"><span class="lineNum">     514</span> <span class="tlaGNC">    20074828 :   for (auto _ : state) {</span></span>
+<span id="L513"><span class="lineNum">     513</span> <span class="tlaGNC">           8 : void BM_Counters_kAvgIterationsRate(benchmark::State&amp; state) {</span></span>
+<span id="L514"><span class="lineNum">     514</span> <span class="tlaGNC">    15212696 :   for (auto _ : state) {</span></span>
 <span id="L515"><span class="lineNum">     515</span>              :     // This test requires a non-zero CPU time to avoid divide-by-zero</span>
-<span id="L516"><span class="lineNum">     516</span> <span class="tlaGNC">    20074764 :     auto iterations = state.iterations();</span></span>
+<span id="L516"><span class="lineNum">     516</span> <span class="tlaGNC">    15212664 :     auto iterations = state.iterations();</span></span>
 <span id="L517"><span class="lineNum">     517</span>              :     benchmark::DoNotOptimize(iterations);</span>
 <span id="L518"><span class="lineNum">     518</span>              :   }</span>
 <span id="L519"><span class="lineNum">     519</span>              :   namespace bm = benchmark;</span>
-<span id="L520"><span class="lineNum">     520</span> <span class="tlaGNC">          16 :   state.counters[&quot;foo&quot;] = bm::Counter{1, bm::Counter::kAvgIterationsRate};</span></span>
-<span id="L521"><span class="lineNum">     521</span> <span class="tlaGNC">          16 :   state.counters[&quot;bar&quot;] =</span></span>
-<span id="L522"><span class="lineNum">     522</span> <span class="tlaGNC">          16 :       bm::Counter{2, bm::Counter::kIsRate | bm::Counter::kAvgIterations};</span></span>
-<span id="L523"><span class="lineNum">     523</span> <span class="tlaGNC">          16 : }</span></span>
+<span id="L520"><span class="lineNum">     520</span> <span class="tlaGNC">           8 :   state.counters[&quot;foo&quot;] = bm::Counter{1, bm::Counter::kAvgIterationsRate};</span></span>
+<span id="L521"><span class="lineNum">     521</span> <span class="tlaGNC">           8 :   state.counters[&quot;bar&quot;] =</span></span>
+<span id="L522"><span class="lineNum">     522</span> <span class="tlaGNC">           8 :       bm::Counter{2, bm::Counter::kIsRate | bm::Counter::kAvgIterations};</span></span>
+<span id="L523"><span class="lineNum">     523</span> <span class="tlaGNC">           8 : }</span></span>
 <span id="L524"><span class="lineNum">     524</span>              : BENCHMARK(BM_Counters_kAvgIterationsRate);</span>
 <span id="L525"><span class="lineNum">     525</span>              : ADD_CASES(TC_ConsoleOut, {{&quot;^BM_Counters_kAvgIterationsRate &quot;</span>
 <span id="L526"><span class="lineNum">     526</span>              :                            &quot;%console_report bar=%hrfloat/s foo=%hrfloat/s$&quot;}});</span>
@@ -606,13 +606,13 @@
 <span id="L544"><span class="lineNum">     544</span>              :                        &quot;%float,%float$&quot;}});</span>
 <span id="L545"><span class="lineNum">     545</span>              : // VS2013 does not allow this function to be passed as a lambda argument</span>
 <span id="L546"><span class="lineNum">     546</span>              : // to CHECK_BENCHMARK_RESULTS()</span>
-<span id="L547"><span class="lineNum">     547</span> <span class="tlaGNC">           2 : void CheckAvgIterationsRate(Results const&amp; e) {</span></span>
-<span id="L548"><span class="lineNum">     548</span> <span class="tlaGNC">           2 :   double its = e.NumIterations();</span></span>
-<span id="L549"><span class="lineNum">     549</span> <span class="tlaGNC">           2 :   double t = e.DurationCPUTime();  // this (and not real time) is the time used</span></span>
+<span id="L547"><span class="lineNum">     547</span> <span class="tlaGNC">           1 : void CheckAvgIterationsRate(Results const&amp; e) {</span></span>
+<span id="L548"><span class="lineNum">     548</span> <span class="tlaGNC">           1 :   double its = e.NumIterations();</span></span>
+<span id="L549"><span class="lineNum">     549</span> <span class="tlaGNC">           1 :   double t = e.DurationCPUTime();  // this (and not real time) is the time used</span></span>
 <span id="L550"><span class="lineNum">     550</span>              :   // check that the values are within 0.1% of the expected values</span>
-<span id="L551"><span class="lineNum">     551</span> <span class="tlaGNC">          16 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;foo&quot;, EQ, 1. / its / t, 0.001);</span></span>
-<span id="L552"><span class="lineNum">     552</span> <span class="tlaGNC">          14 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;bar&quot;, EQ, 2. / its / t, 0.001);</span></span>
-<span id="L553"><span class="lineNum">     553</span> <span class="tlaGNC">           2 : }</span></span>
+<span id="L551"><span class="lineNum">     551</span> <span class="tlaGNC">           8 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;foo&quot;, EQ, 1. / its / t, 0.001);</span></span>
+<span id="L552"><span class="lineNum">     552</span> <span class="tlaGNC">           7 :   CHECK_FLOAT_COUNTER_VALUE(e, &quot;bar&quot;, EQ, 2. / its / t, 0.001);</span></span>
+<span id="L553"><span class="lineNum">     553</span> <span class="tlaGNC">           1 : }</span></span>
 <span id="L554"><span class="lineNum">     554</span>              : CHECK_BENCHMARK_RESULTS(&quot;BM_Counters_kAvgIterationsRate&quot;,</span>
 <span id="L555"><span class="lineNum">     555</span>              :                         &amp;CheckAvgIterationsRate);</span>
 <span id="L556"><span class="lineNum">     556</span>              : </span>
@@ -620,7 +620,7 @@
 <span id="L558"><span class="lineNum">     558</span>              : // --------------------------- TEST CASES END ------------------------------ //</span>
 <span id="L559"><span class="lineNum">     559</span>              : // ========================================================================= //</span>
 <span id="L560"><span class="lineNum">     560</span>              : </span>
-<span id="L561"><span class="lineNum">     561</span> <span class="tlaGNC">           2 : int main(int argc, char* argv[]) { RunOutputTests(argc, argv); }</span></span>
+<span id="L561"><span class="lineNum">     561</span> <span class="tlaGNC">           1 : int main(int argc, char* argv[]) { RunOutputTests(argc, argv); }</span></span>
         </pre>
               </td>
             </tr>

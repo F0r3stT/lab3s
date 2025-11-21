@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - coverage.info - src/thread_manager.h</title>
+  <title>LCOV - coverage_cleaned.info - src/thread_manager.h</title>
   <link rel="stylesheet" type="text/css" href="../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">coverage.info</td>
+            <td class="headerValue">coverage_cleaned.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2025-11-20 13:27:32</td>
+            <td class="headerValue">2025-11-21 19:45:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
@@ -73,30 +73,30 @@
 <span id="L11"><span class="lineNum">      11</span>              : </span>
 <span id="L12"><span class="lineNum">      12</span>              : class ThreadManager {</span>
 <span id="L13"><span class="lineNum">      13</span>              :  public:</span>
-<span id="L14"><span class="lineNum">      14</span> <span class="tlaGNC tlaBgGNC">        6465 :   explicit ThreadManager(int num_threads)</span></span>
-<span id="L15"><span class="lineNum">      15</span> <span class="tlaGNC">        6465 :       : alive_threads_(num_threads), start_stop_barrier_(num_threads) {}</span></span>
+<span id="L14"><span class="lineNum">      14</span> <span class="tlaGNC tlaBgGNC">        3397 :   explicit ThreadManager(int num_threads)</span></span>
+<span id="L15"><span class="lineNum">      15</span> <span class="tlaGNC">        3397 :       : alive_threads_(num_threads), start_stop_barrier_(num_threads) {}</span></span>
 <span id="L16"><span class="lineNum">      16</span>              : </span>
-<span id="L17"><span class="lineNum">      17</span> <span class="tlaGNC">       17694 :   Mutex&amp; GetBenchmarkMutex() const RETURN_CAPABILITY(benchmark_mutex_) {</span></span>
-<span id="L18"><span class="lineNum">      18</span> <span class="tlaGNC">       17694 :     return benchmark_mutex_;</span></span>
+<span id="L17"><span class="lineNum">      17</span> <span class="tlaGNC">        8988 :   Mutex&amp; GetBenchmarkMutex() const RETURN_CAPABILITY(benchmark_mutex_) {</span></span>
+<span id="L18"><span class="lineNum">      18</span> <span class="tlaGNC">        8988 :     return benchmark_mutex_;</span></span>
 <span id="L19"><span class="lineNum">      19</span>              :   }</span>
 <span id="L20"><span class="lineNum">      20</span>              : </span>
-<span id="L21"><span class="lineNum">      21</span> <span class="tlaGNC">       22221 :   bool StartStopBarrier() EXCLUDES(end_cond_mutex_) {</span></span>
-<span id="L22"><span class="lineNum">      22</span> <span class="tlaGNC">       22221 :     return start_stop_barrier_.wait();</span></span>
+<span id="L21"><span class="lineNum">      21</span> <span class="tlaGNC">       10962 :   bool StartStopBarrier() EXCLUDES(end_cond_mutex_) {</span></span>
+<span id="L22"><span class="lineNum">      22</span> <span class="tlaGNC">       10962 :     return start_stop_barrier_.wait();</span></span>
 <span id="L23"><span class="lineNum">      23</span>              :   }</span>
 <span id="L24"><span class="lineNum">      24</span>              : </span>
-<span id="L25"><span class="lineNum">      25</span> <span class="tlaGNC">       11172 :   void NotifyThreadComplete() EXCLUDES(end_cond_mutex_) {</span></span>
-<span id="L26"><span class="lineNum">      26</span> <span class="tlaGNC">       11172 :     start_stop_barrier_.removeThread();</span></span>
-<span id="L27"><span class="lineNum">      27</span> <span class="tlaGNC">       11178 :     if (--alive_threads_ == 0) {</span></span>
-<span id="L28"><span class="lineNum">      28</span> <span class="tlaGNC">        6465 :       MutexLock lock(end_cond_mutex_);</span></span>
-<span id="L29"><span class="lineNum">      29</span> <span class="tlaGNC">        6465 :       end_condition_.notify_all();</span></span>
-<span id="L30"><span class="lineNum">      30</span> <span class="tlaGNC">        6465 :     }</span></span>
-<span id="L31"><span class="lineNum">      31</span> <span class="tlaGNC">       11191 :   }</span></span>
+<span id="L25"><span class="lineNum">      25</span> <span class="tlaGNC">        5496 :   void NotifyThreadComplete() EXCLUDES(end_cond_mutex_) {</span></span>
+<span id="L26"><span class="lineNum">      26</span> <span class="tlaGNC">        5496 :     start_stop_barrier_.removeThread();</span></span>
+<span id="L27"><span class="lineNum">      27</span> <span class="tlaGNC">        5501 :     if (--alive_threads_ == 0) {</span></span>
+<span id="L28"><span class="lineNum">      28</span> <span class="tlaGNC">        3397 :       MutexLock lock(end_cond_mutex_);</span></span>
+<span id="L29"><span class="lineNum">      29</span> <span class="tlaGNC">        3397 :       end_condition_.notify_all();</span></span>
+<span id="L30"><span class="lineNum">      30</span> <span class="tlaGNC">        3397 :     }</span></span>
+<span id="L31"><span class="lineNum">      31</span> <span class="tlaGNC">        5501 :   }</span></span>
 <span id="L32"><span class="lineNum">      32</span>              : </span>
-<span id="L33"><span class="lineNum">      33</span> <span class="tlaGNC">        6465 :   void WaitForAllThreads() EXCLUDES(end_cond_mutex_) {</span></span>
-<span id="L34"><span class="lineNum">      34</span> <span class="tlaGNC">        6465 :     MutexLock lock(end_cond_mutex_);</span></span>
-<span id="L35"><span class="lineNum">      35</span> <span class="tlaGNC">        6465 :     end_condition_.wait(lock.native_handle(),</span></span>
-<span id="L36"><span class="lineNum">      36</span> <span class="tlaGNC">        7054 :                         [this]() { return alive_threads_ == 0; });</span></span>
-<span id="L37"><span class="lineNum">      37</span> <span class="tlaGNC">        6465 :   }</span></span>
+<span id="L33"><span class="lineNum">      33</span> <span class="tlaGNC">        3397 :   void WaitForAllThreads() EXCLUDES(end_cond_mutex_) {</span></span>
+<span id="L34"><span class="lineNum">      34</span> <span class="tlaGNC">        3397 :     MutexLock lock(end_cond_mutex_);</span></span>
+<span id="L35"><span class="lineNum">      35</span> <span class="tlaGNC">        3397 :     end_condition_.wait(lock.native_handle(),</span></span>
+<span id="L36"><span class="lineNum">      36</span> <span class="tlaGNC">        3684 :                         [this]() { return alive_threads_ == 0; });</span></span>
+<span id="L37"><span class="lineNum">      37</span> <span class="tlaGNC">        3397 :   }</span></span>
 <span id="L38"><span class="lineNum">      38</span>              : </span>
 <span id="L39"><span class="lineNum">      39</span>              :   struct Result {</span>
 <span id="L40"><span class="lineNum">      40</span>              :     IterationCount iterations = 0;</span>

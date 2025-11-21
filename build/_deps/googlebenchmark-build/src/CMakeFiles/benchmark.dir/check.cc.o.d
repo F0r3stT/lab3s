@@ -1,7 +1,7 @@
 _deps/googlebenchmark-build/src/CMakeFiles/benchmark.dir/check.cc.o: \
- /home/alex/labs3/build/_deps/googlebenchmark-src/src/check.cc \
+ /home/user/3sem/labb/build/_deps/googlebenchmark-src/src/check.cc \
  /usr/include/stdc-predef.h \
- /home/alex/labs3/build/_deps/googlebenchmark-src/src/check.h \
+ /home/user/3sem/labb/build/_deps/googlebenchmark-src/src/check.h \
  /usr/include/c++/13/cmath /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
@@ -156,8 +156,8 @@ _deps/googlebenchmark-build/src/CMakeFiles/benchmark.dir/check.cc.o: \
  /usr/include/c++/13/bits/locale_facets.tcc \
  /usr/include/c++/13/bits/basic_ios.tcc \
  /usr/include/c++/13/bits/ostream.tcc \
- /home/alex/labs3/build/_deps/googlebenchmark-src/include/benchmark/export.h \
- /home/alex/labs3/build/_deps/googlebenchmark-src/src/internal_macros.h \
- /home/alex/labs3/build/_deps/googlebenchmark-src/src/log.h \
+ /home/user/3sem/labb/build/_deps/googlebenchmark-src/include/benchmark/export.h \
+ /home/user/3sem/labb/build/_deps/googlebenchmark-src/src/internal_macros.h \
+ /home/user/3sem/labb/build/_deps/googlebenchmark-src/src/log.h \
  /usr/include/c++/13/iostream /usr/include/c++/13/istream \
  /usr/include/c++/13/bits/istream.tcc

@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - coverage.info - src/timers.cc</title>
+  <title>LCOV - coverage_cleaned.info - src/timers.cc</title>
   <link rel="stylesheet" type="text/css" href="../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">coverage.info</td>
+            <td class="headerValue">coverage_cleaned.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntryLo">63.4&nbsp;%</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2025-11-20 13:27:32</td>
+            <td class="headerValue">2025-11-21 19:45:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryLo">66.7&nbsp;%</td>
@@ -163,8 +163,8 @@
 <span id="L101"><span class="lineNum">     101</span>              : }</span>
 <span id="L102"><span class="lineNum">     102</span>              : #endif</span>
 <span id="L103"><span class="lineNum">     103</span>              : #if defined(CLOCK_PROCESS_CPUTIME_ID) || defined(CLOCK_THREAD_CPUTIME_ID)</span>
-<span id="L104"><span class="lineNum">     104</span> <span class="tlaGNC tlaBgGNC">     1454146 : double MakeTime(struct timespec const&amp; ts) {</span></span>
-<span id="L105"><span class="lineNum">     105</span> <span class="tlaGNC">     1454146 :   return ts.tv_sec + (static_cast&lt;double&gt;(ts.tv_nsec) * 1e-9);</span></span>
+<span id="L104"><span class="lineNum">     104</span> <span class="tlaGNC tlaBgGNC">      842919 : double MakeTime(struct timespec const&amp; ts) {</span></span>
+<span id="L105"><span class="lineNum">     105</span> <span class="tlaGNC">      842919 :   return ts.tv_sec + (static_cast&lt;double&gt;(ts.tv_nsec) * 1e-9);</span></span>
 <span id="L106"><span class="lineNum">     106</span>              : }</span>
 <span id="L107"><span class="lineNum">     107</span>              : #endif</span>
 <span id="L108"><span class="lineNum">     108</span>              : </span>
@@ -175,7 +175,7 @@
 <span id="L113"><span class="lineNum">     113</span>              : </span>
 <span id="L114"><span class="lineNum">     114</span>              : }  // end namespace</span>
 <span id="L115"><span class="lineNum">     115</span>              : </span>
-<span id="L116"><span class="lineNum">     116</span> <span class="tlaGNC tlaBgGNC">         108 : double ProcessCPUUsage() {</span></span>
+<span id="L116"><span class="lineNum">     116</span> <span class="tlaGNC tlaBgGNC">          54 : double ProcessCPUUsage() {</span></span>
 <span id="L117"><span class="lineNum">     117</span>              : #if defined(BENCHMARK_OS_WINDOWS)</span>
 <span id="L118"><span class="lineNum">     118</span>              :   HANDLE proc = GetCurrentProcess();</span>
 <span id="L119"><span class="lineNum">     119</span>              :   FILETIME creation_time;</span>
@@ -200,8 +200,8 @@
 <span id="L138"><span class="lineNum">     138</span>              :   // FIXME We want to use clock_gettime, but its not available in MacOS 10.11.</span>
 <span id="L139"><span class="lineNum">     139</span>              :   // See https://github.com/google/benchmark/pull/292</span>
 <span id="L140"><span class="lineNum">     140</span>              :   struct timespec spec;</span>
-<span id="L141"><span class="lineNum">     141</span> <span class="tlaGNC">         108 :   if (clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &amp;spec) == 0)</span></span>
-<span id="L142"><span class="lineNum">     142</span> <span class="tlaGNC">         216 :     return MakeTime(spec);</span></span>
+<span id="L141"><span class="lineNum">     141</span> <span class="tlaGNC">          54 :   if (clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &amp;spec) == 0)</span></span>
+<span id="L142"><span class="lineNum">     142</span> <span class="tlaGNC">         108 :     return MakeTime(spec);</span></span>
 <span id="L143"><span class="lineNum">     143</span> <span class="tlaUNC tlaBgUNC">           0 :   DiagnoseAndExit(&quot;clock_gettime(CLOCK_PROCESS_CPUTIME_ID, ...) failed&quot;);</span></span>
 <span id="L144"><span class="lineNum">     144</span>              : #else</span>
 <span id="L145"><span class="lineNum">     145</span>              :   struct rusage ru;</span>
@@ -210,7 +210,7 @@
 <span id="L148"><span class="lineNum">     148</span>              : #endif</span>
 <span id="L149"><span class="lineNum">     149</span>              : }</span>
 <span id="L150"><span class="lineNum">     150</span>              : </span>
-<span id="L151"><span class="lineNum">     151</span> <span class="tlaGNC tlaBgGNC">     1237468 : double ThreadCPUUsage() {</span></span>
+<span id="L151"><span class="lineNum">     151</span> <span class="tlaGNC tlaBgGNC">      766980 : double ThreadCPUUsage() {</span></span>
 <span id="L152"><span class="lineNum">     152</span>              : #if defined(BENCHMARK_OS_WINDOWS)</span>
 <span id="L153"><span class="lineNum">     153</span>              :   HANDLE this_thread = GetCurrentThread();</span>
 <span id="L154"><span class="lineNum">     154</span>              :   FILETIME creation_time;</span>
@@ -249,24 +249,24 @@
 <span id="L187"><span class="lineNum">     187</span>              :   DiagnoseAndExit(&quot;getrusage(RUSAGE_LWP, ...) failed&quot;);</span>
 <span id="L188"><span class="lineNum">     188</span>              : #elif defined(CLOCK_THREAD_CPUTIME_ID)</span>
 <span id="L189"><span class="lineNum">     189</span>              :   struct timespec ts;</span>
-<span id="L190"><span class="lineNum">     190</span> <span class="tlaGNC">     2671135 :   if (clock_gettime(CLOCK_THREAD_CPUTIME_ID, &amp;ts) == 0) return MakeTime(ts);</span></span>
+<span id="L190"><span class="lineNum">     190</span> <span class="tlaGNC">     1600095 :   if (clock_gettime(CLOCK_THREAD_CPUTIME_ID, &amp;ts) == 0) return MakeTime(ts);</span></span>
 <span id="L191"><span class="lineNum">     191</span> <span class="tlaUNC tlaBgUNC">           0 :   DiagnoseAndExit(&quot;clock_gettime(CLOCK_THREAD_CPUTIME_ID, ...) failed&quot;);</span></span>
 <span id="L192"><span class="lineNum">     192</span>              : #else</span>
 <span id="L193"><span class="lineNum">     193</span>              : #error Per-thread timing is not available on your system.</span>
 <span id="L194"><span class="lineNum">     194</span>              : #endif</span>
 <span id="L195"><span class="lineNum">     195</span>              : }</span>
 <span id="L196"><span class="lineNum">     196</span>              : </span>
-<span id="L197"><span class="lineNum">     197</span> <span class="tlaGNC tlaBgGNC">         124 : std::string LocalDateTimeString() {</span></span>
+<span id="L197"><span class="lineNum">     197</span> <span class="tlaGNC tlaBgGNC">          62 : std::string LocalDateTimeString() {</span></span>
 <span id="L198"><span class="lineNum">     198</span>              :   // Write the local time in RFC3339 format yyyy-mm-ddTHH:MM:SS+/-HH:MM.</span>
 <span id="L199"><span class="lineNum">     199</span>              :   typedef std::chrono::system_clock Clock;</span>
-<span id="L200"><span class="lineNum">     200</span> <span class="tlaGNC">         124 :   std::time_t now = Clock::to_time_t(Clock::now());</span></span>
-<span id="L201"><span class="lineNum">     201</span> <span class="tlaGNC">         124 :   const std::size_t kTzOffsetLen = 6;</span></span>
-<span id="L202"><span class="lineNum">     202</span> <span class="tlaGNC">         124 :   const std::size_t kTimestampLen = 19;</span></span>
+<span id="L200"><span class="lineNum">     200</span> <span class="tlaGNC">          62 :   std::time_t now = Clock::to_time_t(Clock::now());</span></span>
+<span id="L201"><span class="lineNum">     201</span> <span class="tlaGNC">          62 :   const std::size_t kTzOffsetLen = 6;</span></span>
+<span id="L202"><span class="lineNum">     202</span> <span class="tlaGNC">          62 :   const std::size_t kTimestampLen = 19;</span></span>
 <span id="L203"><span class="lineNum">     203</span>              : </span>
 <span id="L204"><span class="lineNum">     204</span>              :   std::size_t tz_len;</span>
 <span id="L205"><span class="lineNum">     205</span>              :   std::size_t timestamp_len;</span>
 <span id="L206"><span class="lineNum">     206</span>              :   long int offset_minutes;</span>
-<span id="L207"><span class="lineNum">     207</span> <span class="tlaGNC">         124 :   char tz_offset_sign = '+';</span></span>
+<span id="L207"><span class="lineNum">     207</span> <span class="tlaGNC">          62 :   char tz_offset_sign = '+';</span></span>
 <span id="L208"><span class="lineNum">     208</span>              :   // tz_offset is set in one of three ways:</span>
 <span id="L209"><span class="lineNum">     209</span>              :   // * strftime with %z - This either returns empty or the ISO 8601 time.  The</span>
 <span id="L210"><span class="lineNum">     210</span>              :   // maximum length an</span>
@@ -286,28 +286,28 @@
 <span id="L224"><span class="lineNum">     224</span>              :   std::tm* timeinfo_p = ::localtime(&amp;now);</span>
 <span id="L225"><span class="lineNum">     225</span>              : #else</span>
 <span id="L226"><span class="lineNum">     226</span>              :   std::tm timeinfo;</span>
-<span id="L227"><span class="lineNum">     227</span> <span class="tlaGNC">         124 :   std::tm* timeinfo_p = &amp;timeinfo;</span></span>
-<span id="L228"><span class="lineNum">     228</span> <span class="tlaGNC">         124 :   ::localtime_r(&amp;now, &amp;timeinfo);</span></span>
+<span id="L227"><span class="lineNum">     227</span> <span class="tlaGNC">          62 :   std::tm* timeinfo_p = &amp;timeinfo;</span></span>
+<span id="L228"><span class="lineNum">     228</span> <span class="tlaGNC">          62 :   ::localtime_r(&amp;now, &amp;timeinfo);</span></span>
 <span id="L229"><span class="lineNum">     229</span>              : #endif</span>
 <span id="L230"><span class="lineNum">     230</span>              : </span>
-<span id="L231"><span class="lineNum">     231</span> <span class="tlaGNC">         124 :   tz_len = std::strftime(tz_offset, sizeof(tz_offset), &quot;%z&quot;, timeinfo_p);</span></span>
+<span id="L231"><span class="lineNum">     231</span> <span class="tlaGNC">          62 :   tz_len = std::strftime(tz_offset, sizeof(tz_offset), &quot;%z&quot;, timeinfo_p);</span></span>
 <span id="L232"><span class="lineNum">     232</span>              : </span>
-<span id="L233"><span class="lineNum">     233</span> <span class="tlaGNC">         124 :   if (tz_len &lt; kTzOffsetLen &amp;&amp; tz_len &gt; 1) {</span></span>
+<span id="L233"><span class="lineNum">     233</span> <span class="tlaGNC">          62 :   if (tz_len &lt; kTzOffsetLen &amp;&amp; tz_len &gt; 1) {</span></span>
 <span id="L234"><span class="lineNum">     234</span>              :     // Timezone offset was written. strftime writes offset as +HHMM or -HHMM,</span>
 <span id="L235"><span class="lineNum">     235</span>              :     // RFC3339 specifies an offset as +HH:MM or -HH:MM. To convert, we parse</span>
 <span id="L236"><span class="lineNum">     236</span>              :     // the offset as an integer, then reprint it to a string.</span>
 <span id="L237"><span class="lineNum">     237</span>              : </span>
-<span id="L238"><span class="lineNum">     238</span> <span class="tlaGNC">         124 :     offset_minutes = ::strtol(tz_offset, NULL, 10);</span></span>
-<span id="L239"><span class="lineNum">     239</span> <span class="tlaGNC">         124 :     if (offset_minutes &lt; 0) {</span></span>
+<span id="L238"><span class="lineNum">     238</span> <span class="tlaGNC">          62 :     offset_minutes = ::strtol(tz_offset, NULL, 10);</span></span>
+<span id="L239"><span class="lineNum">     239</span> <span class="tlaGNC">          62 :     if (offset_minutes &lt; 0) {</span></span>
 <span id="L240"><span class="lineNum">     240</span> <span class="tlaUNC tlaBgUNC">           0 :       offset_minutes *= -1;</span></span>
 <span id="L241"><span class="lineNum">     241</span> <span class="tlaUNC">           0 :       tz_offset_sign = '-';</span></span>
 <span id="L242"><span class="lineNum">     242</span>              :     }</span>
 <span id="L243"><span class="lineNum">     243</span>              : </span>
-<span id="L244"><span class="lineNum">     244</span> <span class="tlaGNC tlaBgGNC">         124 :     tz_len =</span></span>
-<span id="L245"><span class="lineNum">     245</span> <span class="tlaGNC">         124 :         ::snprintf(tz_offset, sizeof(tz_offset), &quot;%c%02li:%02li&quot;,</span></span>
+<span id="L244"><span class="lineNum">     244</span> <span class="tlaGNC tlaBgGNC">          62 :     tz_len =</span></span>
+<span id="L245"><span class="lineNum">     245</span> <span class="tlaGNC">          62 :         ::snprintf(tz_offset, sizeof(tz_offset), &quot;%c%02li:%02li&quot;,</span></span>
 <span id="L246"><span class="lineNum">     246</span>              :                    tz_offset_sign, offset_minutes / 100, offset_minutes % 100);</span>
-<span id="L247"><span class="lineNum">     247</span> <span class="tlaGNC">         124 :     BM_CHECK(tz_len == kTzOffsetLen);</span></span>
-<span id="L248"><span class="lineNum">     248</span> <span class="tlaGNC">         124 :     ((void)tz_len);  // Prevent unused variable warning in optimized build.</span></span>
+<span id="L247"><span class="lineNum">     247</span> <span class="tlaGNC">          62 :     BM_CHECK(tz_len == kTzOffsetLen);</span></span>
+<span id="L248"><span class="lineNum">     248</span> <span class="tlaGNC">          62 :     ((void)tz_len);  // Prevent unused variable warning in optimized build.</span></span>
 <span id="L249"><span class="lineNum">     249</span>              :   } else {</span>
 <span id="L250"><span class="lineNum">     250</span>              :     // Unknown offset. RFC3339 specifies that unknown local offsets should be</span>
 <span id="L251"><span class="lineNum">     251</span>              :     // written as UTC time with -00:00 timezone.</span>
@@ -322,13 +322,13 @@
 <span id="L260"><span class="lineNum">     260</span>              :   }</span>
 <span id="L261"><span class="lineNum">     261</span>              : </span>
 <span id="L262"><span class="lineNum">     262</span>              :   timestamp_len =</span>
-<span id="L263"><span class="lineNum">     263</span> <span class="tlaGNC tlaBgGNC">         124 :       std::strftime(storage, sizeof(storage), &quot;%Y-%m-%dT%H:%M:%S&quot;, timeinfo_p);</span></span>
-<span id="L264"><span class="lineNum">     264</span> <span class="tlaGNC">         124 :   BM_CHECK(timestamp_len == kTimestampLen);</span></span>
+<span id="L263"><span class="lineNum">     263</span> <span class="tlaGNC tlaBgGNC">          62 :       std::strftime(storage, sizeof(storage), &quot;%Y-%m-%dT%H:%M:%S&quot;, timeinfo_p);</span></span>
+<span id="L264"><span class="lineNum">     264</span> <span class="tlaGNC">          62 :   BM_CHECK(timestamp_len == kTimestampLen);</span></span>
 <span id="L265"><span class="lineNum">     265</span>              :   // Prevent unused variable warning in optimized build.</span>
 <span id="L266"><span class="lineNum">     266</span>              :   ((void)kTimestampLen);</span>
 <span id="L267"><span class="lineNum">     267</span>              : </span>
-<span id="L268"><span class="lineNum">     268</span> <span class="tlaGNC">         124 :   std::strncat(storage, tz_offset, sizeof(storage) - timestamp_len - 1);</span></span>
-<span id="L269"><span class="lineNum">     269</span> <span class="tlaGNC">         248 :   return std::string(storage);</span></span>
+<span id="L268"><span class="lineNum">     268</span> <span class="tlaGNC">          62 :   std::strncat(storage, tz_offset, sizeof(storage) - timestamp_len - 1);</span></span>
+<span id="L269"><span class="lineNum">     269</span> <span class="tlaGNC">         124 :   return std::string(storage);</span></span>
 <span id="L270"><span class="lineNum">     270</span> <span class="tlaUNC tlaBgUNC">           0 : }</span></span>
 <span id="L271"><span class="lineNum">     271</span>              : </span>
 <span id="L272"><span class="lineNum">     272</span>              : }  // end namespace benchmark</span>

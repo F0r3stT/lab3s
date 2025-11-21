@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - coverage.info - test/perf_counters_test.cc</title>
+  <title>LCOV - coverage_cleaned.info - test/perf_counters_test.cc</title>
   <link rel="stylesheet" type="text/css" href="../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">coverage.info</td>
+            <td class="headerValue">coverage_cleaned.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntryLo">7.7&nbsp;%</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2025-11-20 13:27:32</td>
+            <td class="headerValue">2025-11-21 19:45:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryLo">14.3&nbsp;%</td>
@@ -140,9 +140,9 @@
 <span id="L78"><span class="lineNum">      78</span>              : CHECK_BENCHMARK_RESULTS(&quot;BM_WithoutPauseResume&quot;, &amp;SaveInstrCountWithoutResume);</span>
 <span id="L79"><span class="lineNum">      79</span>              : CHECK_BENCHMARK_RESULTS(&quot;BM_WithPauseResume&quot;, &amp;SaveInstrCountWithResume);</span>
 <span id="L80"><span class="lineNum">      80</span>              : </span>
-<span id="L81"><span class="lineNum">      81</span> <span class="tlaGNC tlaBgGNC">           2 : int main(int argc, char* argv[]) {</span></span>
-<span id="L82"><span class="lineNum">      82</span> <span class="tlaGNC">           2 :   if (!benchmark::internal::PerfCounters::kSupported) {</span></span>
-<span id="L83"><span class="lineNum">      83</span> <span class="tlaGNC">           2 :     return 0;</span></span>
+<span id="L81"><span class="lineNum">      81</span> <span class="tlaGNC tlaBgGNC">           1 : int main(int argc, char* argv[]) {</span></span>
+<span id="L82"><span class="lineNum">      82</span> <span class="tlaGNC">           1 :   if (!benchmark::internal::PerfCounters::kSupported) {</span></span>
+<span id="L83"><span class="lineNum">      83</span> <span class="tlaGNC">           1 :     return 0;</span></span>
 <span id="L84"><span class="lineNum">      84</span>              :   }</span>
 <span id="L85"><span class="lineNum">      85</span> <span class="tlaUNC tlaBgUNC">           0 :   benchmark::FLAGS_benchmark_perf_counters = &quot;CYCLES,INSTRUCTIONS&quot;;</span></span>
 <span id="L86"><span class="lineNum">      86</span> <span class="tlaUNC">           0 :   benchmark::internal::PerfCounters::Initialize();</span></span>

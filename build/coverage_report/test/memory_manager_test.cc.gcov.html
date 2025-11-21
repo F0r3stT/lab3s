@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - coverage.info - test/memory_manager_test.cc</title>
+  <title>LCOV - coverage_cleaned.info - test/memory_manager_test.cc</title>
   <link rel="stylesheet" type="text/css" href="../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">coverage.info</td>
+            <td class="headerValue">coverage_cleaned.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2025-11-20 13:27:32</td>
+            <td class="headerValue">2025-11-21 19:45:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
@@ -67,19 +67,19 @@
 <span id="L5"><span class="lineNum">       5</span>              : #include &quot;output_test.h&quot;</span>
 <span id="L6"><span class="lineNum">       6</span>              : </span>
 <span id="L7"><span class="lineNum">       7</span>              : class TestMemoryManager : public benchmark::MemoryManager {</span>
-<span id="L8"><span class="lineNum">       8</span> <span class="tlaGNC tlaBgGNC">           2 :   void Start() override {}</span></span>
-<span id="L9"><span class="lineNum">       9</span> <span class="tlaGNC">           2 :   void Stop(Result&amp; result) override {</span></span>
-<span id="L10"><span class="lineNum">      10</span> <span class="tlaGNC">           2 :     result.num_allocs = 42;</span></span>
-<span id="L11"><span class="lineNum">      11</span> <span class="tlaGNC">           2 :     result.max_bytes_used = 42000;</span></span>
-<span id="L12"><span class="lineNum">      12</span> <span class="tlaGNC">           2 :   }</span></span>
+<span id="L8"><span class="lineNum">       8</span> <span class="tlaGNC tlaBgGNC">           1 :   void Start() override {}</span></span>
+<span id="L9"><span class="lineNum">       9</span> <span class="tlaGNC">           1 :   void Stop(Result&amp; result) override {</span></span>
+<span id="L10"><span class="lineNum">      10</span> <span class="tlaGNC">           1 :     result.num_allocs = 42;</span></span>
+<span id="L11"><span class="lineNum">      11</span> <span class="tlaGNC">           1 :     result.max_bytes_used = 42000;</span></span>
+<span id="L12"><span class="lineNum">      12</span> <span class="tlaGNC">           1 :   }</span></span>
 <span id="L13"><span class="lineNum">      13</span>              : };</span>
 <span id="L14"><span class="lineNum">      14</span>              : </span>
-<span id="L15"><span class="lineNum">      15</span> <span class="tlaGNC">          18 : void BM_empty(benchmark::State&amp; state) {</span></span>
-<span id="L16"><span class="lineNum">      16</span> <span class="tlaGNC">    16479450 :   for (auto _ : state) {</span></span>
-<span id="L17"><span class="lineNum">      17</span> <span class="tlaGNC">     8239689 :     auto iterations = state.iterations();</span></span>
+<span id="L15"><span class="lineNum">      15</span> <span class="tlaGNC">           9 : void BM_empty(benchmark::State&amp; state) {</span></span>
+<span id="L16"><span class="lineNum">      16</span> <span class="tlaGNC">    14345812 :   for (auto _ : state) {</span></span>
+<span id="L17"><span class="lineNum">      17</span> <span class="tlaGNC">     7172888 :     auto iterations = state.iterations();</span></span>
 <span id="L18"><span class="lineNum">      18</span>              :     benchmark::DoNotOptimize(iterations);</span>
 <span id="L19"><span class="lineNum">      19</span>              :   }</span>
-<span id="L20"><span class="lineNum">      20</span> <span class="tlaGNC">          18 : }</span></span>
+<span id="L20"><span class="lineNum">      20</span> <span class="tlaGNC">           9 : }</span></span>
 <span id="L21"><span class="lineNum">      21</span>              : BENCHMARK(BM_empty);</span>
 <span id="L22"><span class="lineNum">      22</span>              : </span>
 <span id="L23"><span class="lineNum">      23</span>              : ADD_CASES(TC_ConsoleOut, {{&quot;^BM_empty %console_report$&quot;}});</span>
@@ -100,13 +100,13 @@
 <span id="L38"><span class="lineNum">      38</span>              :                        {&quot;}&quot;, MR_Next}});</span>
 <span id="L39"><span class="lineNum">      39</span>              : ADD_CASES(TC_CSVOut, {{&quot;^\&quot;BM_empty\&quot;,%csv_report$&quot;}});</span>
 <span id="L40"><span class="lineNum">      40</span>              : </span>
-<span id="L41"><span class="lineNum">      41</span> <span class="tlaGNC">           2 : int main(int argc, char* argv[]) {</span></span>
-<span id="L42"><span class="lineNum">      42</span> <span class="tlaGNC">           2 :   std::unique_ptr&lt;benchmark::MemoryManager&gt; mm(new TestMemoryManager());</span></span>
+<span id="L41"><span class="lineNum">      41</span> <span class="tlaGNC">           1 : int main(int argc, char* argv[]) {</span></span>
+<span id="L42"><span class="lineNum">      42</span> <span class="tlaGNC">           1 :   std::unique_ptr&lt;benchmark::MemoryManager&gt; mm(new TestMemoryManager());</span></span>
 <span id="L43"><span class="lineNum">      43</span>              : </span>
-<span id="L44"><span class="lineNum">      44</span> <span class="tlaGNC">           2 :   benchmark::RegisterMemoryManager(mm.get());</span></span>
-<span id="L45"><span class="lineNum">      45</span> <span class="tlaGNC">           2 :   RunOutputTests(argc, argv);</span></span>
-<span id="L46"><span class="lineNum">      46</span> <span class="tlaGNC">           2 :   benchmark::RegisterMemoryManager(nullptr);</span></span>
-<span id="L47"><span class="lineNum">      47</span> <span class="tlaGNC">           2 : }</span></span>
+<span id="L44"><span class="lineNum">      44</span> <span class="tlaGNC">           1 :   benchmark::RegisterMemoryManager(mm.get());</span></span>
+<span id="L45"><span class="lineNum">      45</span> <span class="tlaGNC">           1 :   RunOutputTests(argc, argv);</span></span>
+<span id="L46"><span class="lineNum">      46</span> <span class="tlaGNC">           1 :   benchmark::RegisterMemoryManager(nullptr);</span></span>
+<span id="L47"><span class="lineNum">      47</span> <span class="tlaGNC">           1 : }</span></span>
         </pre>
               </td>
             </tr>
