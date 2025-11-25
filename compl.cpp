@@ -5,7 +5,6 @@
 #include <functional>   
 using namespace std;
 
-// --- Реализация методов класса CompleteBinaryTree ---
 
 // Конструктор
 CompleteBinaryTree::CompleteBinaryTree() : root(nullptr), size(0) {}
@@ -15,7 +14,7 @@ CompleteBinaryTree::~CompleteBinaryTree() {
     clear();
 }
 
-// Приватный метод: Рекурсивное удаление дерева
+//Рекурсивное удаление дерева
 void CompleteBinaryTree::deleteTreeRecursive(TreeNode* node) {
     if (node == nullptr) {
         return;
@@ -25,7 +24,7 @@ void CompleteBinaryTree::deleteTreeRecursive(TreeNode* node) {
     delete node;
 }
 
-// Приватный метод: Поиск узла с минимальным значением
+//Поиск узла с минимальным значением
 TreeNode* CompleteBinaryTree::findMin(TreeNode* node) {
     while (node && node->left != nullptr) {
         node = node->left;
@@ -33,7 +32,7 @@ TreeNode* CompleteBinaryTree::findMin(TreeNode* node) {
     return node;
 }
 
-// Приватный метод: Рекурсивное удаление узла
+//Рекурсивное удаление узла
 TreeNode* CompleteBinaryTree::deleteNodeRecursive(TreeNode* current, int value) {
     if (current == nullptr) {
         return nullptr;
@@ -48,14 +47,14 @@ TreeNode* CompleteBinaryTree::deleteNodeRecursive(TreeNode* current, int value) 
     } else {
         // Узел найден
         
-        // Случай 1: Нет левого потомка
+        //Нет левого потомка
         if (current->left == nullptr) {
             TreeNode* temp = current->right;
             delete current;
             size--; 
             return temp;
         }
-        // Случай 2: Нет правого потомка
+        //Нет правого потомка
         else if (current->right == nullptr) {
             TreeNode* temp = current->left;
             delete current;
@@ -63,15 +62,12 @@ TreeNode* CompleteBinaryTree::deleteNodeRecursive(TreeNode* current, int value) 
             return temp;
         }
 
-        // Случай 3: Есть оба потомка
-        // Находим преемника (минимальный в правом поддереве)
+
         TreeNode* successor = findMin(current->right);
 
-        // Копируем значение преемника в текущий узел
         current->data = successor->data;
 
-        // Удаляем преемника из правого поддерева
-        // Важно: рекурсивный вызов сам уменьшит size
+      
         current->right = deleteNodeRecursive(current->right, successor->data);
     }
     return current;
@@ -88,7 +84,6 @@ void CompleteBinaryTree::clear() {
         deleteTreeRecursive(root);
         root = nullptr;
         size = 0;
-        // std::cout << "Дерево очищено." << std::endl;
     }
 }
 
@@ -99,7 +94,6 @@ void CompleteBinaryTree::insert(int value) {
     if (root == nullptr) {
         root = newNode;
         size++;
-        // std::cout << "Элемент " << value << " добавлен" << std::endl;
         return;
     }
 
@@ -109,7 +103,6 @@ void CompleteBinaryTree::insert(int value) {
             if (current->left == nullptr) {
                 current->left = newNode;
                 size++;
-                // std::cout << "Элемент " << value << " добавлен." << std::endl;
                 return;
             }
             current = current->left;
@@ -117,19 +110,17 @@ void CompleteBinaryTree::insert(int value) {
             if (current->right == nullptr) {
                 current->right = newNode;
                 size++;
-                // std::cout << "Элемент " << value << " добавлен." << std::endl;
                 return;
             }
             current = current->right;
         } else {
-            // std::cout << "Элемент " << value << " уже существует." << std::endl;
             delete newNode;
             return;
         }
     }
 }
 
-// Удаление элемента (публичный метод)
+// Удаление элемента 
 void CompleteBinaryTree::remove(int value) {
     if (isEmpty()) {
         std::cout << "Нельзя удалить из пустого дерева." << std::endl;
@@ -165,7 +156,6 @@ bool CompleteBinaryTree::search(int value) const {
     return false;
 }
 
-// Вспомогательная функция печати (const, так как не меняет дерево)
 void CompleteBinaryTree::printTreeUtil(TreeNode* node, const std::string& prefix, bool isLast) const {
     if (node == nullptr) {
         return;
@@ -196,7 +186,6 @@ void CompleteBinaryTree::printTreeUtil(TreeNode* node, const std::string& prefix
     }
 }
 
-// Публичный метод печати
 void CompleteBinaryTree::print() const {
     if (isEmpty()) {
         std::cout << "Дерево пустое." << std::endl;
@@ -219,12 +208,9 @@ void CompleteBinaryTree::print() const {
     std::cout << "------------------------------------------" << std::endl;
 }
 
-// Получение размера
 int CompleteBinaryTree::getSize() const {
     return size;
 }
-
-// --- Реализация для потоков (Stream based) ---
 
 void CompleteBinaryTree::saveToFile(std::ofstream& out) const {
     std::function<void(TreeNode*)> dfs = [&](TreeNode* node) {

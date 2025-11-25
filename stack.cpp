@@ -42,7 +42,7 @@ string Stack::peek() const {
     return top->value;
 }
 
-bool Stack::isEmpty() const { // НОВОЕ
+bool Stack::isEmpty() const { 
     return top == nullptr;
 }
 

@@ -21,22 +21,19 @@ TEST(DListTest, Branch_Killer) {
 
 
     d.addHead("A"); 
-    d.addHead("B"); // Теперь head был "A" (не null), сработает ветка if
-    // Список: B <-> A
+    d.addHead("B"); 
 
 
-    d.delHead(); // head станет A. if (head != nullptr) выполнится.
-    // Список: A
+    d.delHead(); 
     EXPECT_EQ(d.getHead_Test()->value, "A");
 
 
     d.addTail("Z"); 
-    d.delTail(); // tail станет A. if (tail != nullptr) выполнится.
+    d.delTail();
     EXPECT_EQ(d.getTail_Test()->value, "A");
 
     
     d.addTail("C"); 
-    // Список сейчас: A, C
     d.addAfter("A", "B"); 
 
     EXPECT_TRUE(d.contains("B"));
@@ -75,9 +72,7 @@ TEST(DListTest, Coverage_AddBefore_AddAfter_Complex) {
     d.addTail("C");
     
     d.addBefore("C", "B");
-    // Проверка связей
-    // A -> B -> C
-    
+ 
     OutputCapture cap;
     d.readForward();
     string out = cap.str();
@@ -100,15 +95,12 @@ TEST(DListTest, Coverage_DelByVal_Branches) {
     d.delByVal("2");
     EXPECT_FALSE(d.contains("2"));
     
-    // Удаление головы
     d.delByVal("1");
     EXPECT_EQ(d.getHead_Test()->value, "3");
     
-    // Удаление хвоста
     d.delByVal("3");
     EXPECT_EQ(d.getHead_Test(), nullptr);
     
-    // Удаление несуществующего
     d.addTail("X");
     d.delByVal("Y");
     EXPECT_TRUE(d.contains("X"));
@@ -123,7 +115,7 @@ TEST(DListTest, Coverage_DelAfter_DelBefore_Boundary) {
     EXPECT_FALSE(d.contains("A"));
     EXPECT_EQ(d.getHead_Test()->value, "B");
     
-    d.delBeforeValue("B"); // Нет элемента перед B
+    d.delBeforeValue("B"); 
     EXPECT_EQ(d.getHead_Test()->value, "B");
     
     d.delAfterValue("B"); 

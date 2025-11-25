@@ -253,13 +253,13 @@ TEST(MyListTest, Coverage_DelAfter_DelBefore) {
     MyList list;
     
     list.addTail("A");
-    list.delAfterValue("A"); // Ничего не должно упасть
+    list.delAfterValue("A"); 
     
     list.addTail("B");
-    list.delAfterValue("A"); // Удалит B
+    list.delAfterValue("A");
     EXPECT_FALSE(list.findValue("B"));
     
-    list.delHead(); // Очистили A
+    list.delHead();
     list.addTail("1");
     list.addTail("2");
     list.addTail("3");
@@ -298,7 +298,6 @@ TEST(MyListTest, Coverage_Load_Overwrite) {
     l.addTail("Old1");
     l.addTail("Old2");
     
-    // Ensure clean slate
     remove("good_list.dat");
 
     {

@@ -161,7 +161,6 @@ TEST(HashTest, ChainHash_Collision_DeleteMiddle) {
     EXPECT_EQ(h.find("C"), "3");
     EXPECT_EQ(h.find("A"), "1");
     
-    // Удаляем C (голова)
     EXPECT_TRUE(h.erase("C"));
     EXPECT_EQ(h.find("C"), "");
     EXPECT_EQ(h.find("A"), "1");
@@ -180,7 +179,7 @@ TEST(HashTest, ChainHash_EmptyOps) {
     EXPECT_EQ(h.find("Missing"), "");
     
     OutputCapture cap;
-    h.show(); // "пусто"
+    h.show();
     EXPECT_NE(cap.str().find("пусто"), std::string::npos);
 }
 
@@ -214,7 +213,6 @@ TEST(HashTest, OpenHash_Deleted_Reuse) {
 TEST(HashTest, OpenHash_Loop_NotFound) {
     OpenHash h(3);
     h.insert("A", "1");
-    // Ищем несуществующий, чтобы пройти цикл
     EXPECT_EQ(h.find("Z"), "");
     EXPECT_FALSE(h.erase("Z"));
 }

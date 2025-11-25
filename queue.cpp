@@ -7,7 +7,7 @@ using namespace std;
 Queue::Queue() : front(nullptr), rear(nullptr) {
 }
 
-//дыыыыыыыыыеструктор
+//деструктор
 Queue::~Queue() {
     while (!isEmpty()) {
         pop();
@@ -100,7 +100,7 @@ void Queue::loadFromFile(const string& filename) {
     }
 }
 
-// --- BINARY ---
+//бинарный
 void Queue::saveToBinaryFile(const string& filename) const {
     ofstream file(filename, ios::binary | ios::trunc);
     if (!file) return;

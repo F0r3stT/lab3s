@@ -51,7 +51,7 @@ TEST(MyArrTest, Branch_EdgeCases) {
     arr.delAt(0);
     arr.repArr(0, "val");
     
-    // Неверные индексы (отрицательные и больше размера)
+    // Неверные индексы 
     arr.addEnd("A");
     arr.addAt(-1, "err");
     arr.addAt(5, "err");

@@ -43,7 +43,6 @@ ChainHash::~ChainHash()
 void ChainHash::insert(const string& key, const string& value) {
     int idx = hash_str(key, cap);
 
-    // cout << "цепочки вставка: " << key << " -> " << value << " в бакет " << idx << "\n";
     Node* head = table[idx];
     Node* cur = head;
     while (cur != nullptr) {
@@ -122,7 +121,7 @@ void ChainHash::saveToFile(const string& filename) const {
     ofstream file(filename);
     if (!file) return;
 
-    file << cap << "\n"; // Сначала capacity
+    file << cap << "\n"; 
 
     // Считаем количество элементов
     int count = 0;
@@ -164,8 +163,7 @@ void ChainHash::loadFromFile(const string& filename) {
     // Чтение новой
     int newCap;
     file >> newCap;
-    string dummy; getline(file, dummy); // считываем перевод строки после числа
-
+    string dummy; getline(file, dummy); 
     cap = newCap;
     table = new Node*[cap];
     for(int i = 0; i < cap; i++) table[i] = nullptr;
@@ -183,7 +181,6 @@ void ChainHash::loadFromFile(const string& filename) {
     }
 }
 
-// 2. Бинарная
 void ChainHash::saveToBinaryFile(const string& filename) const {
     ofstream file(filename, ios::binary | ios::trunc);
     if (!file) return;
@@ -241,7 +238,6 @@ void ChainHash::loadFromBinaryFile(const string& filename) {
     }
 }
 
-// --- OpenHash ---
 
 OpenHash::OpenHash(int size) : table(nullptr), cap(size)
 {
@@ -273,12 +269,10 @@ void OpenHash::insert(const string& key, const string& value)
             table[idx].val = value;
             table[idx].used = true;
             table[idx].deleted = false;
-            // cout << "Вставлено: " << value << endl; 
             return;
         }
         if (table[idx].used && table[idx].key == key) {
             table[idx].val = value;
-            // cout << "Обновлено: " << value << endl; 
             return;
         }
         if (table[idx].deleted) {
@@ -286,7 +280,6 @@ void OpenHash::insert(const string& key, const string& value)
             table[idx].val     = value;
             table[idx].used    = true;
             table[idx].deleted = false;
-            // cout << "Вставлено на место удаленного: " << value << endl;
             return;
         }
 
@@ -403,7 +396,7 @@ void OpenHash::loadFromFile(const string& filename) {
     }
 }
 
-// --- BINARY ---
+//бинар сериализац
 void OpenHash::saveToBinaryFile(const string& filename) const {
     ofstream file(filename, ios::binary | ios::trunc);
     if (!file) return;

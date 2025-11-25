@@ -23,9 +23,7 @@ void testMyArr() {
     arr1.addEnd("Токио");
     arr1.addEnd("Париж");
     
-    // --- ТЕКСТ ---
     cout << "\nТест текстового формата ---" << endl;
-    // Имя файла как на скриншоте
     cout << "Сохранение в myarr.txt (Text)" << endl;
     arr1.saveToFile("myarr.txt"); 
     
@@ -43,7 +41,6 @@ void testMyArr() {
     assert(arrText.getAt(3) == "Париж");
     cout << "Сериализация (Text): ПРОЙДЕНА" << endl;
 
-    // --- BINARY ---
     cout << "\nТест бинарного формата ---" << endl;
     cout << "Сериализация в файл: myarr.bin (Binary)" << endl;
     arr1.saveToBinaryFile("myarr.bin"); 
@@ -74,7 +71,7 @@ void testMyList() {
     list1.addTail("Мадрид");
     list1.addTail("Рим");
     
-    // --- ТЕКСТ ---
+    //ТЕКСТ
     cout << "\nТест текстового формата ---" << endl;
     cout << "Сохранение в mylist.txt (Text)" << endl;
     list1.saveToFile("mylist.txt");
@@ -92,7 +89,7 @@ void testMyList() {
     cout << "  - Найдено: Рим" << endl;
     cout << "Сериализация (Text): ПРОЙДЕНА" << endl;
 
-    // BINA
+    //бин
     cout << "\nТест бинарного формата ---" << endl;
     cout << "Сериализация в файл: mylist_test.bin (Binary)" << endl;
     list1.saveToBinaryFile("mylist_test.bin");
@@ -356,7 +353,6 @@ void testHashTable() {
     cout << "ChainHash Бинарная Сериализация: ПРОЙДЕНА" << endl;
 
 
-    // 2. OpenHash
     cout << "\n[ OpenHash ---" << endl;
     OpenHash oh1(10);
     cout << "Вставка: k1->v1, k2->v2" << endl;

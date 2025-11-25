@@ -126,7 +126,6 @@ int main() {
             cout << setw(10) << left << "Дв.Список:" << " "; dlist.readForward();
             cout << setw(10) << left << "Стек:" << " "; stack.readStack();
             cout << setw(10) << left << "Очередь:" << " "; queue.print();
-            // cout << setw(10) << left << "BST:" << " "; tree.inorder_print(); // Удалено
             cout << setw(10) << left << "CBT:" << "\n"; cbt.print(); 
             cout << "---------------------------" << "\n";
             continue;
@@ -139,7 +138,6 @@ int main() {
             dlist.saveToFile(arg1 + ".dlist");
             stack.saveToFile(arg1 + ".stack");
             queue.saveToFile(arg1 + ".queue");
-            // tree.saveToFile(arg1 + ".bst"); // Удалено
             cout << "Структуры (кроме CBT) сохранены с базовым именем: " << arg1 << "\n";
             continue;
         }
@@ -150,12 +148,10 @@ int main() {
             dlist.loadFromFile(arg1 + ".dlist");
             stack.loadFromFile(arg1 + ".stack");
             queue.loadFromFile(arg1 + ".queue");
-            // tree.loadFromFile(arg1 + ".bst"); // Удалено
             cout << "Структуры (кроме CBT) загружены с базовым именем: " << arg1 << "\n";
             cmd = "PRINT"; 
         }
 
-        // --- МАССИВ ---
         if (cmd == "M_PUSH_END") {
             if (arg1.empty()) { cout << "Ошибка: команда требует значение" << "\n"; continue; }
             arr.addEnd(arg1);
@@ -189,7 +185,6 @@ int main() {
             cout << "Длина массива: " << arr.lenArr() << "\n";
         }
 
-        // --- СПИСКИ ---
         else if (cmd == "F_PUSH_HEAD") { slist.addHead(arg1); slist.readForward(); }
         else if (cmd == "F_PUSH_TAIL") { slist.addTail(arg1); slist.readForward(); }
         else if (cmd == "F_PUSH_AFTER") { slist.addAfter(arg1, arg2); slist.readForward(); }
@@ -215,7 +210,6 @@ int main() {
         }
         else if (cmd == "L_PRINT_REV") { dlist.readBackward(); }
 
-        // --- ОЧЕРЕДЬ И СТЕК ---
         else if (cmd == "Q_PUSH") {
             if (arg1.empty()) { cout << "Ошибка: команда требует значение." << "\n"; continue; }
             queue.push(arg1);

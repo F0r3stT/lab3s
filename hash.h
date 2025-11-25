@@ -41,7 +41,6 @@ public:
 
     void show();
 
-    // --- СЕРИАЛИЗАЦИЯ ---
     // Текстовая
     void saveToFile(const string& filename) const;
     void loadFromFile(const string& filename);

@@ -15,7 +15,7 @@ MyList::~MyList() {
         delete curr;
         curr = next;
     }
-    head = nullptr; // Не обязательно, но безопасно
+    head = nullptr; 
 }
 
 void MyList::addHead(const string& val) {
@@ -32,7 +32,6 @@ void MyList::addTail(const string& val) {
     }
 
     Node* cur = head; //указатель на узел
-    //идем пока не достигнем нулевого укзаателя(т.е конца)
     while (cur->next)
         cur = cur->next;
     cur->next = node;
@@ -98,7 +97,7 @@ void MyList::delTail() {
 
     Node* cur = head;
     while (cur->next->next) //ищем предпоследний элемент
-        cur = cur->next; // остановится когда узел будет указывать на посолединй
+        cur = cur->next; 
 
     delete cur->next; //освобождаем память посленего узла
     cur->next = nullptr; //делаем новый конец списка
@@ -209,6 +208,7 @@ void MyList::delBeforeValue(const string& val) {
 }
 
 
+//текстовая сериализация
 void MyList::saveToFile(const string& filename) const {
     ofstream file(filename);
     if (!file) return;
@@ -242,7 +242,7 @@ void MyList::loadFromFile(const string& filename) {
     }
 }
 
-// --- BINARY ---
+//бинарная
 void MyList::saveToBinaryFile(const string& filename) const {
     ofstream file(filename, ios::binary | ios::trunc);
     if (!file) return;

@@ -22,7 +22,6 @@ private:
     TreeNode* root;
     int size;
 
-    // Вспомогательные приватные методы (скрыты от пользователя)
     void deleteTreeRecursive(TreeNode* node);
     TreeNode* findMin(TreeNode* node);
     TreeNode* deleteNodeRecursive(TreeNode* current, int value);

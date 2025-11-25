@@ -18,21 +18,19 @@ DList::~DList() {
 
 // добавление элемента в начало
 void DList::addHead(const string& val) {
-    // создаем новый узел и указываем на старую голову списка
     auto node = new DNode(val, head, nullptr);
 
-    if (head != nullptr) // если список не пустой
+    if (head != nullptr) 
     {
-        // указатель перемещает на новый узел (голова и хвост)
         head->prev = node;
     } else {
         tail = node;
     }
 
-    head = node; // новая голова
+    head = node; //новая голова
 }
 
-// добавление элемента в хвост
+//добавление элемента в хвост
 void DList::addTail(const string& val) {
     auto node = new DNode(val, nullptr, tail);
     if (tail != nullptr) {
@@ -45,7 +43,7 @@ void DList::addTail(const string& val) {
     tail = node;
 }
 
-// вставка нового узла перед элементом
+//вставка нового узла перед элементом
 void DList::addBefore(const string& target, const string& val) {
     if (head == nullptr) {
         return;
